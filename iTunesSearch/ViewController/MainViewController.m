@@ -13,6 +13,7 @@
 #import "ScrollView.h"
 #import "PostToServer.h"
 #import "PostMutableArray.h"
+#import "GridViewController.h"
 
 #define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=album&limit=15&term="
 #define RSS_FEED_JPOP @"https://itunes.apple.com/jp/rss/topsongs/limit=25/genre=27/json"
@@ -24,9 +25,11 @@
 
 #define LIMIT 25
 
-#define VIEW_TOP 0
-#define VIEW_MIDDLE 1
-#define VIEW_BOTTOM 2
+enum view {
+    VIEW_TOP,
+    VIEW_MIDDLE,
+    VIEW_BOTTOM
+};
 
 @interface MainViewController ()
 {
@@ -38,10 +41,14 @@
     PostMutableArray *postMutableArray;
     // postMutableArrayとscreen, buttonをひも付ける。
     NSMutableDictionary *selectDictionary;
+    
+    UITextField *txField;
 }
 @end
 
 @implementation MainViewController
+
+@synthesize pocket_id;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -56,28 +63,46 @@
 {
     [super viewDidLoad];
 
+    txField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 190, 30)];
+    txField.delegate = (id)self;
+    txField.borderStyle = UITextBorderStyleBezel;
+    [self.view addSubview:txField];
+
+    UIButton *customView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 30)];
+    [customView setBackgroundImage:[UIImage imageNamed:@"cancelBtn.png"] forState:UIControlStateNormal];
+    [customView addTarget:self action:@selector(modalClose) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:customView];
+    self.navigationItem.leftBarButtonItem = buttonItem;
+
     UIButton *barButtom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [barButtom setFrame:CGRectMake(240, 5, 80, 35)];
+    [barButtom setFrame:CGRectMake(0, 0, 55, 30)];
     [barButtom setTitle:@"post" forState:UIControlStateNormal];
     [barButtom addTarget:self action:@selector(postToCheck) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:barButtom];
+    UIBarButtonItem* rightButton = [[UIBarButtonItem alloc] initWithCustomView:barButtom];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [searchButton setFrame:CGRectMake(240, 5, 80, 30)];
+    [searchButton setTitle:@"search" forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(searchMusic) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:searchButton];
 
     postMutableArray = [[PostMutableArray alloc] init];
     selectDictionary = [NSMutableDictionary dictionary];
 
-    scrollView01 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 40, 300, 100)];
+    scrollView01 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 80, 300, 100)];
     scrollView01.backgroundColor = [UIColor clearColor];
     scrollView01.flag = VIEW_TOP;
     scrollView01.scrollViewDelegate = self;
     [self.view addSubview:scrollView01];
 
-    scrollView02 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 120, 300, 100)];
+    scrollView02 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 180, 300, 100)];
     scrollView02.backgroundColor = [UIColor clearColor];
     scrollView02.flag = VIEW_MIDDLE;
     scrollView02.scrollViewDelegate = self;
     [self.view addSubview:scrollView02];
 
-    scrollView03 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 230, 300, 100)];
+    scrollView03 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 290, 300, 100)];
     scrollView03.backgroundColor = [UIColor clearColor];
     scrollView03.flag = VIEW_BOTTOM;
     scrollView03.scrollViewDelegate = self;
@@ -85,8 +110,12 @@
 
 //  配列を作る。
     [self makeMutableArray:RSS_FEED_ROCK :scrollView01];
-//  [self makeMutableArray:@"http://frankers-job.net/txt.json" :scrollView02];
+    [self makeMutableArray:RSS_FEED_JPOP :scrollView02];
     [self makeMutableArray:RSS_FEED_RB :scrollView03];
+}
+
+-(void) modalClose {
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void) makeMutableArray:(NSString*)keyword:(ScrollView*)scrollView {
@@ -119,15 +148,31 @@
     [dictionary setObject:postMutableArray.titles forKey:@"titles"];
     [dictionary setObject:postMutableArray.track_url forKey:@"track_url"];
     [dictionary setObject:postMutableArray.jacket_url forKey:@"jacket_url"];
+    [dictionary setObject:pocket_id forKey:@"pocket_id"];
 
     [PostToServer postData:dictionary :url :@"post_to_music"];
+}
+
+- (void) searchMusic {
+    if (!txField.text) {
+        
+    } else {
+        GridViewController *gridViewController = [[GridViewController alloc] init];
+        gridViewController.artistName = txField.text;
+        [self.navigationController pushViewController:gridViewController animated:YES];
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [txField resignFirstResponder];
+    return YES;
 }
 
 - (void) getJson:(NSData*)data:(ScrollView*)scrollView {
     NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
     NSDictionary *json = [json_string JSONValue];
-    
+
     NSDictionary *feed = [json objectForKey:@"feed"];
     NSMutableArray *entry = [feed objectForKey:@"entry"];
 
@@ -137,7 +182,7 @@
     NSMutableArray *artists = [NSMutableArray array];
     NSMutableArray *titles = [NSMutableArray array];
     NSMutableArray *track_url = [NSMutableArray array];
-    
+
     for (NSDictionary *status in entry) {
         [artists addObject:[[status objectForKey:@"im:artist"] objectForKey:@"label"]];
         [titles addObject:[[status objectForKey:@"im:name"] objectForKey:@"label"]];
@@ -156,7 +201,7 @@
 - (void) notificateNumbers:(NSMutableDictionary*)dictionary {
     NSInteger button_number = [[dictionary objectForKey:@"button_number"] intValue];
     NSString *is_checked = [dictionary objectForKey:@"is_checked"];
-    
+
     if ([is_checked isEqualToString:@"NO"]) {
         [self removePostMutableArray:button_number];
     } else {
@@ -180,7 +225,6 @@
 }
 
 - (void) addPostMutableArray:(ScrollView*)scrollView:(NSInteger)button_number {
-    DEBUGLOG(@"%i", button_number);
     [postMutableArray.titles addObject:[[scrollView.items objectForKey:@"titles"] objectAtIndex:button_number]];
     [postMutableArray.track_url addObject:[[scrollView.items objectForKey:@"track_url"] objectAtIndex:button_number]];
     [postMutableArray.jacket_url addObject:[[scrollView.items objectForKey:@"jacket_url"] objectAtIndex:button_number]];

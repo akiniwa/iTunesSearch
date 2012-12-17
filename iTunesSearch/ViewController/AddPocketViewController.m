@@ -47,7 +47,6 @@
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)txField {
-    FUNC();
     [textField resignFirstResponder];
     return YES;
 }

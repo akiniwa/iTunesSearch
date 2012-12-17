@@ -48,9 +48,15 @@
     [myPocketTableView setButton];
 }
 
-- (void) pushToDetailView:(NSString*)pocket_id {
+- (void) pushToDetailView:(NSString*)pocket_id:(NSString*)button_string {
+    NSLog(@"pocket_id:%@", pocket_id);
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     detailViewController.pocket_id = pocket_id;
+    if ([button_string isEqualToString:@"YES"]) {
+        [detailViewController setButton:YES];
+    } else {
+        [detailViewController setButton:NO];
+    }
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 

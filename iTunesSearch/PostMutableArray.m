@@ -34,7 +34,6 @@
 
 - (void) removeObjectAtIndex:(NSMutableArray*)mutableArray:(NSInteger)indexNumber{
     [mutableArray removeObjectAtIndex:indexNumber];
-    FUNC();
 }
 
 @end

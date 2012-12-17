@@ -16,4 +16,6 @@
 
 @property (nonatomic, retain) NSString *pocket_id;
 
+- (void)setButton:(BOOL)is_button;
+
 @end

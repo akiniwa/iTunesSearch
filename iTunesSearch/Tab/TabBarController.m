@@ -44,14 +44,15 @@
     [publicViewController initialization];
     [publicViewController setShareButton:YES];
     UINavigationController *naviPublicPocket = [[UINavigationController alloc] initWithRootViewController:publicViewController];
-
+/*
     MainViewController *mainViewController = [[MainViewController alloc] init];
+    UINavigationController *naviMainViewController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     mainViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:2];
-
+*/
     SettingViewController *settingViewController = [[SettingViewController alloc] init];
     settingViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3];
 
-    NSArray *viewArray = [NSArray arrayWithObjects:naviUserPocket, naviPublicPocket, mainViewController, settingViewController, nil];
+    NSArray *viewArray = [NSArray arrayWithObjects:naviUserPocket, naviPublicPocket, settingViewController, nil];
     [self setViewControllers:viewArray animated:YES];
 }
 

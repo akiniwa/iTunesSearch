@@ -184,7 +184,14 @@
 // セルを選択したとき
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [myPocketDelegate performSelector:@selector(pushToDetailView:) withObject:[tlArray.pocket_id objectAtIndex:indexPath.row]];
+    NSString *button_string;
+    if (is_button) {
+        button_string = @"YES";
+    } else {
+        button_string = @"NO";
+    }
+    NSString *pocket_id = [tlArray.pocket_id objectAtIndex:indexPath.row];
+    [myPocketDelegate performSelector:@selector(pushToDetailView::) withObject:pocket_id withObject:button_string];
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 

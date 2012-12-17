@@ -62,12 +62,6 @@ enum view {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIButton *customView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 30)];
-    [customView setBackgroundImage:[UIImage imageNamed:@"cancelBtn.png"] forState:UIControlStateNormal];
-    [customView addTarget:self action:@selector(modalClose) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:customView];
-    self.navigationItem.leftBarButtonItem = buttonItem;
 
     txField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 190, 30)];
     txField.delegate = (id)self;

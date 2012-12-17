@@ -34,7 +34,7 @@
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
-    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 400) style:UITableViewStyleGrouped];
+    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 350) style:UITableViewStyleGrouped];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
 
     [self.view addSubview:detailTableView];
@@ -56,7 +56,7 @@
         [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
         [addPocket setTitle:@"add music" forState:UIControlStateNormal];
         [addPocket addTarget:self action:@selector(showModal) forControlEvents:UIControlEventTouchUpInside];
-        
+
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];
         self.navigationItem.rightBarButtonItem = rightButton;
     }

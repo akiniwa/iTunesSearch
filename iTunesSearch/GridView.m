@@ -13,16 +13,19 @@
 @interface GridView ()
 {
     NSMutableArray *artists;
-    NSMutableArray *artworks;
+    NSMutableArray *jacket_url;
     NSMutableArray *views;
-    NSMutableArray *tracks;
+    NSMutableArray *titles;
+    NSMutableArray *track_url;
     ImageLoader *imageLoader;
+    
+    
 }
 @end
 
 @implementation GridView
 
-@synthesize numberOfColumns;
+@synthesize numberOfColumns, delegateGridView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -35,9 +38,10 @@
 - (void)setItems:(NSMutableDictionary *)value {
 
     artists = [value objectForKey:@"artists"];
-    artworks = [value objectForKey:@"artworks"];
+    track_url = [value objectForKey:@"track_url"];
+    jacket_url = [value objectForKey:@"jacket_url"];
     views = [value objectForKey:@"views"];
-    tracks = [value objectForKey:@"tracks"];
+    titles = [value objectForKey:@"titles"];
 
     if (value != items) {
         for (UIView *item in views) {
@@ -47,14 +51,14 @@
             [items release];
             items = [value copy];
 
-        for (NSInteger i=0;i<[artworks count];i++) {
+        for (NSInteger i=0;i<[jacket_url count];i++) {
 
             UIView *view = [views objectAtIndex:i];
-            NSString *artworkURL = [artworks objectAtIndex:i];
-            NSString *albumName = [tracks objectAtIndex:i];
+            NSString *jacketUrl = [jacket_url objectAtIndex:i];
+            NSString *trackTitle = [titles objectAtIndex:i];
 
             imageLoader = [ImageLoader sharedInstance];
-            UIImage *userImg = [imageLoader cacedImageForUrl:[artworks objectAtIndex:i]];
+            UIImage *userImg = [imageLoader cacedImageForUrl:jacketUrl];
             
             CheckButton *btn = [CheckButton buttonWithType:UIButtonTypeCustom];
             [btn setImage:userImg forState:UIControlStateNormal];
@@ -66,7 +70,7 @@
             [view addSubview:btn];
 
             if (!userImg) {
-                [imageLoader loadImage:artworkURL completion:^(UIImage *image) {
+                [imageLoader loadImage:jacketUrl completion:^(UIImage *image) {
                     SEL selector = @selector(setImages:btn:);
                     // シグネチャを作成
                     NSMethodSignature *signature = [[self class] instanceMethodSignatureForSelector:selector];
@@ -80,9 +84,8 @@
                     [self performSelectorOnMainThread:@selector(performArtWorkIcon:) withObject:invocation waitUntilDone:YES];
                     }];
             }
-
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 65, 80, 15)];
-            label.text = albumName;
+            label.text = trackTitle;
             label.font = [UIFont systemFontOfSize:9];
             [[views objectAtIndex:i] addSubview:label];
             [self addSubview:[views objectAtIndex:i]];
@@ -91,9 +94,7 @@
             [self addSubview:item];
         }
             [self setNeedsLayout];
-        //  just in case.
     }
-
 }
 
 -(void)performArtWorkIcon:(NSInvocation*)anInvocation
@@ -110,33 +111,21 @@
 
 -(void)performBtnEvent:(CheckButton*)btn
 {
-    NSString *artist = [artists objectAtIndex:btn.tag];
-    NSString *track = [tracks objectAtIndex:btn.tag];
-
     [btn setCheckButton];
-    
-    [self touchEvent:artist :track];
-}
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", btn.tag] forKey:@"button_number"];
+    if ([btn confirmIsChecked]) {
+        [dictionary setObject:@"YES" forKey:@"is_checked"];
+    } else {
+        [dictionary setObject:@"NO" forKey:@"is_checked"];
+    }
 
-- (void) touchEvent:(NSString*)artist:(NSString*)artwork {
-/*
-    UIAlertView *alert =
-    [[UIAlertView alloc]
-     initWithTitle:artist
-     message:artwork
-     delegate:nil
-     cancelButtonTitle:nil
-     otherButtonTitles:@"OK", nil
-     ];
-    [alert show];
-    DEBUGLOG(@"artist:%@",artist);
-    DEBUGLOG(@"artwork:%@", artwork);
- */
+    [delegateGridView performSelector:@selector(notificateNumbers:) withObject:dictionary];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-//    LINE();
+
     CGFloat width = [self frame].size.width / numberOfColumns;
     CGFloat height = width;
     CGFloat xoffset = 0;

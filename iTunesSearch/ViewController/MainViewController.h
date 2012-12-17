@@ -12,4 +12,6 @@
 
 @property (nonatomic, retain) NSString *pocket_id;
 
+- (void) setArray:(NSMutableDictionary*)dictionary;
+
 @end

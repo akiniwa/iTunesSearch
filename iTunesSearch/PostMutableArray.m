@@ -24,7 +24,7 @@
     return self;
 }
 
-- (void)removeAllObjects:(NSInteger)button_number {
+- (void)removeObject:(NSInteger)button_number {
 //  [self removeObjectAtIndex:pocket_id :button_number];
     [self removeObjectAtIndex:titles :button_number];
     [self removeObjectAtIndex:track_url :button_number];

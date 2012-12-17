@@ -16,6 +16,6 @@
 @property (nonatomic, retain) NSMutableArray *jacket_url;
 @property (nonatomic, retain) NSMutableArray *artists;
 
-- (void) removeAllObjects:(NSInteger)button_number;
+- (void) removeObject:(NSInteger)button_number;
 
 @end

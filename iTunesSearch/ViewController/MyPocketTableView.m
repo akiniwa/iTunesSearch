@@ -47,7 +47,9 @@
 - (void) mainTableLoad {
     tlArray = [[TLArray alloc] init];
     
-    NSString *encURL = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *encURL = [[NSString stringWithFormat:@"%@%@%@", urlString, @"?user_id=",[defaults objectForKey:@"user_id"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encURL]];
     
@@ -109,7 +111,12 @@
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
     cell.tlImageView.image = jacketImage;
 
-    if (is_button) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString* user_id = [defaults objectForKey:@"user_id"];
+
+    DEBUGLOG(@"default:%@, array:%@", user_id, [tlArray.user_id objectAtIndex:indexPath.row]);
+
+    if (![[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
         [cell setButton];
         cell.shareButton.tag = indexPath.row;
         [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];

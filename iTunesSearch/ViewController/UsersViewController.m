@@ -23,6 +23,8 @@
     [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
     [addPocket setTitle:@"pocket" forState:UIControlStateNormal];
     [addPocket addTarget:self action:@selector(showModal) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.title = @"あなたのプレイリスト";
 
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];
     self.navigationItem.rightBarButtonItem = rightButton;

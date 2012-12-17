@@ -80,7 +80,7 @@ enum view {
     [barButtom addTarget:self action:@selector(postToCheck) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* rightButton = [[UIBarButtonItem alloc] initWithCustomView:barButtom];
     self.navigationItem.rightBarButtonItem = rightButton;
-    
+
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [searchButton setFrame:CGRectMake(240, 5, 80, 30)];
     [searchButton setTitle:@"search" forState:UIControlStateNormal];
@@ -139,6 +139,16 @@ enum view {
     }
 }
 
+- (void) setArray:(NSMutableDictionary *)dictionary {
+    for (int i=0; i<[[dictionary objectForKey:@"artists"] count]; i++) {
+        NSLog(@"dd:%@", [[dictionary objectForKey:@"artists"] objectAtIndex:i]);
+        [postMutableArray.artists addObject:[[dictionary objectForKey:@"artists"] objectAtIndex:i]];
+        [postMutableArray.track_url addObject:[[dictionary objectForKey:@"track_url"] objectAtIndex:i]];
+        [postMutableArray.titles addObject:[[dictionary objectForKey:@"titles"] objectAtIndex:i]];
+        [postMutableArray.jacket_url addObject:[[dictionary objectForKey:@"jacket_url"] objectAtIndex:i]];
+    }
+}
+
 - (void) postToCheck {
     NSURL *url = [[NSURL alloc] initWithString:POST_URL];
     // ここで配列をディクショナリを作り直す。
@@ -159,6 +169,7 @@ enum view {
     } else {
         GridViewController *gridViewController = [[GridViewController alloc] init];
         gridViewController.artistName = txField.text;
+        gridViewController.gridViewDelegate = self;
         [self.navigationController pushViewController:gridViewController animated:YES];
     }
 }
@@ -232,8 +243,7 @@ enum view {
 }
 
 - (void) removePostMutableArray:(NSInteger)button_number {
-    DEBUGLOG(@"%@", [selectDictionary objectForKey:[NSString stringWithFormat:@"%d", button_number]]);
-    [postMutableArray removeAllObjects:[[selectDictionary objectForKey:[NSString stringWithFormat:@"%d", button_number]] intValue]];
+    [postMutableArray removeObject:[[selectDictionary objectForKey:[NSString stringWithFormat:@"%d", button_number]] intValue]];
     [selectDictionary removeObjectForKey:[NSString stringWithFormat:@"%d", button_number]];
 }
 

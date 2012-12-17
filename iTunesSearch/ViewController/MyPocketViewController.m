@@ -30,7 +30,7 @@
 }
 
 - (void)initialization {
-    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 400) style:UITableViewStyleGrouped];
+    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 360) style:UITableViewStyleGrouped];
     myPocketTableView.urlString = self.urlString;
     myPocketTableView.myPocketDelegate = self;
     [self.view addSubview:myPocketTableView];

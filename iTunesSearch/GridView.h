@@ -15,6 +15,7 @@
 }
 
 @property (nonatomic, assign) NSUInteger numberOfColumns;
+@property (nonatomic, retain) id delegateGridView;
 
 - (void)setItems:(NSMutableDictionary *)value;
 

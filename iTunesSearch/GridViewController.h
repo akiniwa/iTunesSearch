@@ -11,5 +11,6 @@
 @interface GridViewController : UIViewController<UIScrollViewDelegate>
 
 @property (nonatomic, retain) NSString *artistName;
+@property (nonatomic, retain) id gridViewDelegate;
 
 @end

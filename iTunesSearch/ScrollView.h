@@ -10,13 +10,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScrollView : UIScrollView<UIScrollViewDelegate>
+@interface ScrollView : UIScrollView <UIScrollViewDelegate>
 {
     BOOL autoScrollStopped;
   	BOOL circulated;
 
     NSInteger leftImageIndex;
-    
 	NSInteger leftViewIndex;
 	NSInteger rightViewIndex;
 }

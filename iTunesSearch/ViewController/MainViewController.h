@@ -10,4 +10,6 @@
 
 @interface MainViewController : UIViewController<UIScrollViewDelegate>
 
+@property (nonatomic, retain) NSString *pocket_id;
+
 @end

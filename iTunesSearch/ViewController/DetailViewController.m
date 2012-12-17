@@ -7,6 +7,8 @@
 //
 
 #import "DetailViewController.h"
+#import "AddPocketViewController.h"
+#import "MainViewController.h"
 
 #define DETAIL_POCKET_URL @"http://neiro.me/api/test/detailPocket.php?pocket_id="
 
@@ -30,20 +32,34 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
 	// Do any additional setup after loading the view.
     detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 400) style:UITableViewStyleGrouped];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
 
     [self.view addSubview:detailTableView];
-    NSLog(@"url:%@", [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id]);
-    
+
     [detailTableView mainTableLoad];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void) showModal {
+    MainViewController *mainViewControllr = [[MainViewController alloc] init];
+    mainViewControllr.pocket_id = pocket_id;
+    UINavigationController *naviCtr = [[UINavigationController alloc] initWithRootViewController:mainViewControllr];
+    mainViewControllr.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentModalViewController:naviCtr animated:YES];
+}
+
+- (void)setButton:(BOOL)is_button {
+    if (!is_button) {
+        UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
+        [addPocket setTitle:@"add music" forState:UIControlStateNormal];
+        [addPocket addTarget:self action:@selector(showModal) forControlEvents:UIControlEventTouchUpInside];
+        
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];
+        self.navigationItem.rightBarButtonItem = rightButton;
+    }
 }
 
 @end

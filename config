@@ -1,0 +1,18 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com:akiniwa/objectiveC_utilities
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[remote "office"]
+	url = https://github.com/akiniwa/objc.git
+	fetch = +refs/heads/*:refs/remotes/office/*
+[branch "master"]
+	remote = office
+	merge = refs/heads/master
+[branch "testing"]
+	remote = office
+	merge = refs/heads/testing

@@ -410,38 +410,18 @@
 		76252CA916786B8E00AD7D5F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				769EAC26167F06D400F01AA7 /* MusicSearchView */,
+				769EAC25167F06A100F01AA7 /* SettingView */,
+				769EAC24167F069600F01AA7 /* PublicView */,
+				769EAC23167F063D00F01AA7 /* UsersView */,
+				769EAC22167F063600F01AA7 /* DetailView */,
+				769EAC20167F062800F01AA7 /* MyPocket */,
 				76252CD816786BEB00AD7D5F /* MovingScrollView.h */,
 				76252CD916786BEB00AD7D5F /* MovingScrollView.m */,
 				76252CAA16786B8E00AD7D5F /* AddPocketViewController.h */,
 				76252CAB16786B8E00AD7D5F /* AddPocketViewController.m */,
-				76252CAC16786B8E00AD7D5F /* DetailArray.h */,
-				76252CAD16786B8E00AD7D5F /* DetailArray.m */,
-				76252CAE16786B8E00AD7D5F /* DetailCell.h */,
-				76252CAF16786B8E00AD7D5F /* DetailCell.m */,
-				76252CB016786B8E00AD7D5F /* DetailTableView.h */,
-				76252CB116786B8E00AD7D5F /* DetailTableView.m */,
-				76252CB216786B8E00AD7D5F /* DetailViewController.h */,
-				76252CB316786B8E00AD7D5F /* DetailViewController.m */,
 				76252CB416786B8E00AD7D5F /* MainViewController.h */,
 				76252CB516786B8E00AD7D5F /* MainViewController.m */,
-				76252CB616786B8E00AD7D5F /* MyPocketTableView.h */,
-				76252CB716786B8E00AD7D5F /* MyPocketTableView.m */,
-				76252CB816786B8E00AD7D5F /* MyPocketViewController.h */,
-				76252CB916786B8E00AD7D5F /* MyPocketViewController.m */,
-				76252CBA16786B8E00AD7D5F /* PublicViewController.h */,
-				76252CBB16786B8E00AD7D5F /* PublicViewController.m */,
-				76252CBC16786B8E00AD7D5F /* SettingCell.h */,
-				76252CBD16786B8E00AD7D5F /* SettingCell.m */,
-				76252CBE16786B8E00AD7D5F /* SettingTableView.h */,
-				76252CBF16786B8E00AD7D5F /* SettingTableView.m */,
-				76252CC016786B8E00AD7D5F /* SettingViewController.h */,
-				76252CC116786B8E00AD7D5F /* SettingViewController.m */,
-				76252CC216786B8E00AD7D5F /* TLArray.h */,
-				76252CC316786B8E00AD7D5F /* TLArray.m */,
-				76252CC416786B8E00AD7D5F /* TLCell.h */,
-				76252CC516786B8E00AD7D5F /* TLCell.m */,
-				76252CC616786B8E00AD7D5F /* UsersViewController.h */,
-				76252CC716786B8E00AD7D5F /* UsersViewController.m */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -575,6 +555,74 @@
 				765C5B0E1638F86B0029DD17 /* ImageLoader.m */,
 			);
 			name = imageLoader;
+			sourceTree = "<group>";
+		};
+		769EAC20167F062800F01AA7 /* MyPocket */ = {
+			isa = PBXGroup;
+			children = (
+				76252CB616786B8E00AD7D5F /* MyPocketTableView.h */,
+				76252CB716786B8E00AD7D5F /* MyPocketTableView.m */,
+				76252CB816786B8E00AD7D5F /* MyPocketViewController.h */,
+				76252CB916786B8E00AD7D5F /* MyPocketViewController.m */,
+				76252CC216786B8E00AD7D5F /* TLArray.h */,
+				76252CC316786B8E00AD7D5F /* TLArray.m */,
+				76252CC416786B8E00AD7D5F /* TLCell.h */,
+				76252CC516786B8E00AD7D5F /* TLCell.m */,
+			);
+			name = MyPocket;
+			sourceTree = "<group>";
+		};
+		769EAC22167F063600F01AA7 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				76252CAC16786B8E00AD7D5F /* DetailArray.h */,
+				76252CAD16786B8E00AD7D5F /* DetailArray.m */,
+				76252CAE16786B8E00AD7D5F /* DetailCell.h */,
+				76252CAF16786B8E00AD7D5F /* DetailCell.m */,
+				76252CB016786B8E00AD7D5F /* DetailTableView.h */,
+				76252CB116786B8E00AD7D5F /* DetailTableView.m */,
+				76252CB216786B8E00AD7D5F /* DetailViewController.h */,
+				76252CB316786B8E00AD7D5F /* DetailViewController.m */,
+			);
+			name = DetailView;
+			sourceTree = "<group>";
+		};
+		769EAC23167F063D00F01AA7 /* UsersView */ = {
+			isa = PBXGroup;
+			children = (
+				76252CC616786B8E00AD7D5F /* UsersViewController.h */,
+				76252CC716786B8E00AD7D5F /* UsersViewController.m */,
+			);
+			name = UsersView;
+			sourceTree = "<group>";
+		};
+		769EAC24167F069600F01AA7 /* PublicView */ = {
+			isa = PBXGroup;
+			children = (
+				76252CBA16786B8E00AD7D5F /* PublicViewController.h */,
+				76252CBB16786B8E00AD7D5F /* PublicViewController.m */,
+			);
+			name = PublicView;
+			sourceTree = "<group>";
+		};
+		769EAC25167F06A100F01AA7 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				76252CBC16786B8E00AD7D5F /* SettingCell.h */,
+				76252CBD16786B8E00AD7D5F /* SettingCell.m */,
+				76252CBE16786B8E00AD7D5F /* SettingTableView.h */,
+				76252CBF16786B8E00AD7D5F /* SettingTableView.m */,
+				76252CC016786B8E00AD7D5F /* SettingViewController.h */,
+				76252CC116786B8E00AD7D5F /* SettingViewController.m */,
+			);
+			name = SettingView;
+			sourceTree = "<group>";
+		};
+		769EAC26167F06D400F01AA7 /* MusicSearchView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MusicSearchView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

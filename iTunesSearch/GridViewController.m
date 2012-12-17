@@ -13,7 +13,7 @@
 #import "MovingScrollView.h"
 #import "ScrollView.h"
 
-#define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=album&limit=30&term="
+#define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=musicTrack&limit=30&term="
 
 @interface GridViewController ()
 {

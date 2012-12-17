@@ -13,6 +13,7 @@
 #import "ScrollView.h"
 #import "PostToServer.h"
 #import "PostMutableArray.h"
+#import "GridViewController.h"
 
 #define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=album&limit=15&term="
 #define RSS_FEED_JPOP @"https://itunes.apple.com/jp/rss/topsongs/limit=25/genre=27/json"
@@ -40,6 +41,8 @@ enum view {
     PostMutableArray *postMutableArray;
     // postMutableArrayとscreen, buttonをひも付ける。
     NSMutableDictionary *selectDictionary;
+    
+    UITextField *txField;
 }
 @end
 
@@ -66,11 +69,29 @@ enum view {
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.leftBarButtonItem = buttonItem;
 
+    txField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 190, 30)];
+    txField.delegate = (id)self;
+    txField.borderStyle = UITextBorderStyleBezel;
+    [self.view addSubview:txField];
+
+    UIButton *customView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 30)];
+    [customView setBackgroundImage:[UIImage imageNamed:@"cancelBtn.png"] forState:UIControlStateNormal];
+    [customView addTarget:self action:@selector(modalClose) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:customView];
+    self.navigationItem.leftBarButtonItem = buttonItem;
+
     UIButton *barButtom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [barButtom setFrame:CGRectMake(240, 5, 80, 35)];
+    [barButtom setFrame:CGRectMake(0, 0, 55, 30)];
     [barButtom setTitle:@"post" forState:UIControlStateNormal];
     [barButtom addTarget:self action:@selector(postToCheck) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:barButtom];
+    UIBarButtonItem* rightButton = [[UIBarButtonItem alloc] initWithCustomView:barButtom];
+    self.navigationItem.rightBarButtonItem = rightButton;
+    
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [searchButton setFrame:CGRectMake(240, 5, 80, 30)];
+    [searchButton setTitle:@"search" forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(searchMusic) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:searchButton];
 
     postMutableArray = [[PostMutableArray alloc] init];
     selectDictionary = [NSMutableDictionary dictionary];
@@ -136,6 +157,21 @@ enum view {
     [dictionary setObject:pocket_id forKey:@"pocket_id"];
 
     [PostToServer postData:dictionary :url :@"post_to_music"];
+}
+
+- (void) searchMusic {
+    if (!txField.text) {
+        
+    } else {
+        GridViewController *gridViewController = [[GridViewController alloc] init];
+        gridViewController.artistName = txField.text;
+        [self.navigationController pushViewController:gridViewController animated:YES];
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField*)textField {
+    [txField resignFirstResponder];
+    return YES;
 }
 
 - (void) getJson:(NSData*)data:(ScrollView*)scrollView {

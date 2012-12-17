@@ -9,7 +9,7 @@
 #import "TabBarController.h"
 #import "MainViewController.h"
 #import "GridViewController.h"
-#import "MyPocketViewController.h"
+#import "PublicViewController.h"
 #import "SettingViewController.h"
 #import "UsersViewController.h"
 
@@ -35,21 +35,23 @@
     usersViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
     usersViewController.urlString = MYPOCKET_FEED_URL;
     [usersViewController initialization];
-    UINavigationController *naviUser = [[UINavigationController alloc] initWithRootViewController:usersViewController];
-    
-    MyPocketViewController *pocketViewController = [[MyPocketViewController alloc] init];
-    pocketViewController.urlString = POCKET_FEED_URL;
-    pocketViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:1];
-    [pocketViewController initialization];
-    UINavigationController *naviMyPocket = [[UINavigationController alloc] initWithRootViewController:pocketViewController];
-    
+    [usersViewController setShareButton:NO];
+    UINavigationController *naviUserPocket = [[UINavigationController alloc] initWithRootViewController:usersViewController];
+
+    PublicViewController *publicViewController = [[PublicViewController alloc] init];
+    publicViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
+    publicViewController.urlString = POCKET_FEED_URL;
+    [publicViewController initialization];
+    [publicViewController setShareButton:YES];
+    UINavigationController *naviPublicPocket = [[UINavigationController alloc] initWithRootViewController:publicViewController];
+
     MainViewController *mainViewController = [[MainViewController alloc] init];
     mainViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:2];
-    
+
     SettingViewController *settingViewController = [[SettingViewController alloc] init];
     settingViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3];
 
-    NSArray *viewArray = [NSArray arrayWithObjects:naviUser, naviMyPocket, mainViewController, settingViewController, nil];
+    NSArray *viewArray = [NSArray arrayWithObjects:naviUserPocket, naviPublicPocket, mainViewController, settingViewController, nil];
     [self setViewControllers:viewArray animated:YES];
 }
 

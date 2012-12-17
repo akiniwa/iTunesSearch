@@ -16,6 +16,7 @@
 @property (nonatomic, retain) UILabel *musicTitle;
 @property (nonatomic, retain) UILabel *shared;
 @property (nonatomic, retain) UIButton *shareButton;
+@property (nonatomic, retain) UILabel *musicCount;
 
 - (void)setButton;
 

@@ -193,7 +193,6 @@
     [selectDictionary removeObjectForKey:[NSString stringWithFormat:@"%d", button_number]];
 }
 
-
 - (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView {
 }
 

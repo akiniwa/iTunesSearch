@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSMutableArray *user_name;
 @property (nonatomic, retain) NSMutableArray *shared;
 @property (nonatomic, retain) NSMutableArray *jacket_url;
+@property (nonatomic, retain) NSMutableArray *music_count;
 
 
 - (void) removeAllObject;

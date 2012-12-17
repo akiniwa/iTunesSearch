@@ -24,7 +24,7 @@
 
 @implementation MyPocketTableView
 
-@synthesize urlString, myPocketDelegate;
+@synthesize urlString, myPocketDelegate, is_button;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -53,16 +53,18 @@
     
     void (^onSuccess)(NSData *) = ^(NSData *data) {
         NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
+
         NSDictionary *json = [json_string JSONValue];
-        for (NSDictionary* photo in json) {
-            [tlArray.user_name addObject:[photo objectForKey:@"user_name"]];
-            [tlArray.shared addObject:[photo objectForKey:@"shared"]];
-            [tlArray.pocket_title addObject:[photo objectForKey:@"pocket_title"]];
-            [tlArray.music_title addObject:[photo objectForKey:@"music_title"]];
-            [tlArray.jacket_url addObject:[photo objectForKey:@"jacket_url"]];
-            [tlArray.pocket_id addObject:[photo objectForKey:@"pocket_id"]];
-            [tlArray.user_id addObject:[photo objectForKey:@"user_id"]];
+
+        for (NSDictionary* value in json) {
+            [tlArray.user_name addObject:[value objectForKey:@"user_name"]];
+            [tlArray.shared addObject:[value objectForKey:@"shared"]];
+            [tlArray.pocket_title addObject:[value objectForKey:@"pocket_title"]];
+            [tlArray.music_title addObject:[value objectForKey:@"music_title"]];
+            [tlArray.jacket_url addObject:[value objectForKey:@"jacket_url"]];
+            [tlArray.pocket_id addObject:[value objectForKey:@"pocket_id"]];
+            [tlArray.user_id addObject:[value objectForKey:@"user_id"]];
+            [tlArray.music_count addObject:[value objectForKey:@"music_count"]];
         }
         [self performSelectorOnMainThread:@selector(updatePlayState) withObject:nil waitUntilDone:YES];
     };
@@ -84,12 +86,25 @@
         cell = [[TLCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
 
-    [cell.shared setText:[tlArray.shared objectAtIndex:indexPath.row]];
     [cell.pocketTitle setText:[tlArray.pocket_title objectAtIndex:indexPath.row]];
     [cell.userName setText:[tlArray.user_name objectAtIndex:indexPath.row]];
-    [cell.musicTitle setText:[tlArray.music_title objectAtIndex:indexPath.row]];
+    [cell.musicCount setText:[tlArray.music_count objectAtIndex:indexPath.row]];
 
-    NSString *pathUrlImage = [tlArray.jacket_url objectAtIndex:indexPath.row];
+    NSString *pathUrlImage;
+
+    if ([[tlArray.music_count objectAtIndex:indexPath.row] intValue]) {
+        [cell.shared setText:[tlArray.shared objectAtIndex:indexPath.row]];
+        [cell.musicTitle setText:[tlArray.music_title objectAtIndex:indexPath.row]];
+
+        pathUrlImage = [tlArray.jacket_url objectAtIndex:indexPath.row];
+        
+    } else {
+        [cell.shared setText:@"0"];
+        [cell.musicTitle setText:@"曲が未登録です。"];
+
+        pathUrlImage = @"http://neiro.me/api/test/empty.jpg";
+    }
+
     imageLoader = [ImageLoader sharedInstance];
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
     cell.tlImageView.image = jacketImage;
@@ -99,7 +114,7 @@
         cell.shareButton.tag = indexPath.row;
         [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
     }
-
+    
     if (!jacketImage) {
         __weak MyPocketTableView *_self = self;
         [imageLoader loadImage:pathUrlImage completion:^(UIImage *image) {
@@ -115,8 +130,9 @@
             [_self performSelectorOnMainThread:@selector(performJacketIcon:) withObject:invocation waitUntilDone:YES];
         }];
     }
+
     return cell;
-} 
+}
 
 - (void) sharePocket:(id)sender {
     UIButton *shareButton = (UIButton*)sender;

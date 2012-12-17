@@ -9,12 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MyPocketTableView : UITableView
-{
-    BOOL is_button;
-}
 
 @property (nonatomic, retain) NSString *urlString;
 @property (nonatomic, retain) id myPocketDelegate;
+@property BOOL is_button;
 
 - (void) mainTableLoad;
 - (void) setButton;

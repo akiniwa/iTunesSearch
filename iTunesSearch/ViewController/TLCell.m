@@ -21,16 +21,16 @@
 #define SHARED_X 250
 #define SHARED_Y 150
 #define SHARED_WIDTH 20
-#define SHARED_HEGHIT 20
+#define SHARED_HEGHIT 10
 
 #define POCKET_TITLE_X 150
 #define POCKET_TITLE_Y 10
 #define POCKET_TITLE_WIDTH 120
-#define POCKET_TITLE_HEGHIT 20
+#define POCKET_TITLE_HEGHIT 10
 
 @implementation TLCell
 
-@synthesize tlImageView, userName, musicTitle, shared, pocketTitle, shareButton;
+@synthesize tlImageView, userName, musicTitle, shared, pocketTitle, shareButton, musicCount;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -59,6 +59,11 @@
         tlImageView = [[UIImageView alloc] init];
         tlImageView.frame = CGRectMake(10, 10, 130, 130);
         [self addSubview:tlImageView];
+        
+        musicCount = [[UILabel alloc] init];
+        [musicCount setFont:[UIFont systemFontOfSize:9]];
+        [self setLabelFrame:musicCount :CGRectMake(SHARED_X, SHARED_Y -20 , SHARED_WIDTH, SHARED_HEGHIT)];
+        [self addSubview:musicCount];
     }
     return self;
 }

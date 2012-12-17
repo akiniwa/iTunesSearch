@@ -32,15 +32,20 @@
 - (void)initialization {
     myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 400) style:UITableViewStyleGrouped];
     myPocketTableView.urlString = self.urlString;
-    [myPocketTableView setButton];
     myPocketTableView.myPocketDelegate = self;
     [self.view addSubview:myPocketTableView];
 }
+
+- (void)setShareButton:(BOOL)is_button {
+    myPocketTableView.is_button = is_button;
+}
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [myPocketTableView mainTableLoad];
+    [myPocketTableView setButton];
 }
 
 - (void) pushToDetailView:(NSString*)pocket_id {

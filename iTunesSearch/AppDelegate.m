@@ -19,7 +19,6 @@
     [GAI sharedInstance].debug = YES;
     id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-27668686-17"];
     [tracker trackView:@"appDelegate"];
-    
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -31,15 +30,13 @@
         && [defaults objectForKey:@"FBExpirationDateKey"] && [defaults stringForKey:@"user_id"]) {
         TabBarController *controller = [[TabBarController alloc] init];
         self.window.rootViewController = controller;
-        
 //        LoginViewController *loginViewController = [[LoginViewController alloc] init];
 //        self.window.rootViewController = loginViewController;
-        
     } else {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         self.window.rootViewController = loginViewController;
     }
-    
+
     [self.window makeKeyAndVisible];
     return YES;
 }

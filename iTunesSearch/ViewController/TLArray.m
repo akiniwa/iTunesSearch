@@ -10,7 +10,7 @@
 
 @implementation TLArray
 
-@synthesize artists, music_title, user_name, pocket_title, shared, jacket_url, pocket_id, user_id;
+@synthesize artists, music_title, user_name, pocket_title, shared, jacket_url, pocket_id, user_id, music_count;
 
 - (id)init {
     self = [super init];
@@ -23,6 +23,7 @@
         jacket_url = [NSMutableArray array];
         pocket_id = [NSMutableArray array];
         user_id = [NSMutableArray array];
+        music_count = [NSMutableArray array];
     }
     return self;
 }
@@ -36,6 +37,7 @@
     [jacket_url removeAllObjects];
     [pocket_id removeAllObjects];
     [user_id removeAllObjects];
+    [music_count removeAllObjects];
 }
 
 @end

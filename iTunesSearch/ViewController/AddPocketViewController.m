@@ -58,7 +58,7 @@
 - (void) addPocket {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *user_id = [defaults objectForKey:@"user_id"];
-    
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:textField.text forKey:@"pocket_title"];
     [dictionary setValue:user_id forKey:@"user_id"];

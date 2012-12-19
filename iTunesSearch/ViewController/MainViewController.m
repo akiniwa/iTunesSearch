@@ -160,7 +160,9 @@ enum view {
     [dictionary setObject:postMutableArray.jacket_url forKey:@"jacket_url"];
     [dictionary setObject:pocket_id forKey:@"pocket_id"];
 
-    [PostToServer postData:dictionary :url :@"post_to_music"];
+    PostToServer *postToServer = [[PostToServer alloc] init];
+    FUNC();
+    [postToServer postData:dictionary :url :@"post_to_music"];
 }
 
 - (void) searchMusic {
@@ -170,6 +172,7 @@ enum view {
         GridViewController *gridViewController = [[GridViewController alloc] init];
         gridViewController.artistName = txField.text;
         gridViewController.gridViewDelegate = self;
+
         [self.navigationController pushViewController:gridViewController animated:YES];
     }
 }

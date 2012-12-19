@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyPocketTableView : UITableView
+@interface MyPocketTableView : UITableView <UIScrollViewDelegate>
 
 @property (nonatomic, retain) NSString *urlString;
 @property (nonatomic, retain) id myPocketDelegate;

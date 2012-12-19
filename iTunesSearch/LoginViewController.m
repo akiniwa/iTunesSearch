@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "SBJson.h"
+#import "TabBarController.h"
 
 #define USER_ADD_URL @"http://neiro.me/api/user_add.php"
 
@@ -31,6 +32,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"FBAccessTokenKey"]
+        && [defaults objectForKey:@"FBExpirationDateKey"] && [defaults stringForKey:@"user_id"]) {
+        TabBarController *tabBarController = [[TabBarController alloc] init];
+
+        [UIApplication sharedApplication].keyWindow.rootViewController = tabBarController;
+    }
 
     facebook = [[Facebook alloc] initWithAppId:APP_ID andDelegate:self];
     

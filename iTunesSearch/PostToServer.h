@@ -11,6 +11,6 @@
 
 @interface PostToServer : NSObject <ASIHTTPRequestDelegate>
 
-+ (void)postData:(NSMutableDictionary*)dictionary:(NSURL*)url:(NSString*)postKey;
+- (void)postData:(NSMutableDictionary*)dictionary:(NSURL*)url:(NSString*)postKey;
 
 @end

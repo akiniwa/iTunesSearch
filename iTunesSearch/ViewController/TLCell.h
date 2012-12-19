@@ -19,5 +19,6 @@
 @property (nonatomic, retain) UILabel *musicCount;
 
 - (void)setButton;
+- (void)removeButton;
 
 @end

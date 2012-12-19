@@ -64,15 +64,20 @@
         [musicCount setFont:[UIFont systemFontOfSize:9]];
         [self setLabelFrame:musicCount :CGRectMake(SHARED_X, SHARED_Y -20 , SHARED_WIDTH, SHARED_HEGHIT)];
         [self addSubview:musicCount];
+        
+        shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        shareButton.frame = CGRectMake(160, 140, 80, 40);
+        [shareButton setTitle:@"share" forState:UIControlStateNormal];
     }
     return self;
 }
 
 - (void) setButton {
-    shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    shareButton.frame = CGRectMake(160, 140, 80, 40);
-    [shareButton setTitle:@"share" forState:UIControlStateNormal];
     [self addSubview:shareButton];
+}
+
+- (void) removeButton {
+    [shareButton removeFromSuperview];
 }
 
 - (void) setLabelFrame:(UILabel*)labelInCell:(CGRect)rect {

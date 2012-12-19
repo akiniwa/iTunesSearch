@@ -45,20 +45,20 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+
     CGRect bounds = [[UIScreen mainScreen] bounds];
     scrollView = [[ScrollView alloc] initWithFrame:bounds];
     scrollView.backgroundColor = [UIColor clearColor];
     scrollView.contentSize = CGSizeMake(320, 700);
     [self.view addSubview:scrollView];
-    
+
     postMutableArray = [[PostMutableArray alloc] init];
 
     // GridViewを組み込み。
     gridView = [[GridView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
     gridView.delegateGridView = self;
     [scrollView addSubview:gridView];
-    
+
     UIButton *barButtom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [barButtom setFrame:CGRectMake(0, 0, 55, 30)];
     [barButtom setTitle:@"選択する" forState:UIControlStateNormal];
@@ -69,7 +69,10 @@
     // 配列を作る。
     [self makeMutableArray];
     // 配列化したviewをGridViewに送る。
-//    [self setGridView:array];
+    // [self setGridView:array];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
 }
 
 - (void) selectedMusic {

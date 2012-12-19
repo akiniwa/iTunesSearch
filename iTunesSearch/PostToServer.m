@@ -12,30 +12,27 @@
 
 @implementation PostToServer
 
-+ (void)postData:(NSMutableDictionary *)dictionary :(NSURL *)url :(NSString *)postKey{
+- (void)postData:(NSMutableDictionary *)dictionary :(NSURL *)url :(NSString *)postKey{
 
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 
     [request setPostValue:[dictionary JSONRepresentation] forKey:postKey];
-
+    DEBUGLOG(@"dictionay:%@", dictionary);
     [request addRequestHeader:@"Content-Type" value:@"application/json; encoding=utf-8"];
     [request setDelegate:self];
-//    [request setDidFinishSelector:@selector(requestDone:)];
-//    [request setDidFailSelector:@selector(requestFailed:)];
-    [request startAsynchronous];
+
+//    [request startAsynchronous];
+    [request startSynchronous];
     FUNC();
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    FUNC();
     // Use when fetching text data
     NSString *responseString = [request responseString];
-    
-    // Use when fetching binary data
-    NSData *responseData = [request responseData];
-    
+
     DEBUGLOG(@"responseString:%@", responseString);
-    
 }
 
 - (void)requestStarted:(ASIHTTPRequest *)request {
@@ -47,15 +44,31 @@
 }
 
 - (void) request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSDictionary *)responseHeaders {
+    NSDictionary *dictionay = [request responseHeaders];
+    int i = [request responseStatusCode];
+    DEBUGLOG(@"statuscode:%d", i);
+    DEBUGLOG(@"responseHeaders:%@", dictionay);
+}
+
+- (void)request:(ASIHTTPRequest *)request willRedirectToURL:(NSURL *)newURL {
     FUNC();
 }
 
-- (void) requestDone:(id)sender {
-    NSLog(@"done, sender:%@", [sender class]);
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    FUNC();
 }
 
-- (void) requestFailed:(id)sender {
-    NSLog(@"failed, sender:%@", [sender class]);
+- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data {
+    FUNC();
 }
+
+- (void)authenticationNeededForRequest:(ASIHTTPRequest *)request {
+    FUNC();
+}
+
+- (void)proxyAuthenticationNeededForRequest:(ASIHTTPRequest *)request {
+    FUNC();
+}
+
 
 @end

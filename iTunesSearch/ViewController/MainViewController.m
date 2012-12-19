@@ -170,7 +170,10 @@ enum view {
         GridViewController *gridViewController = [[GridViewController alloc] init];
         gridViewController.artistName = txField.text;
         gridViewController.gridViewDelegate = self;
-        [self.navigationController pushViewController:gridViewController animated:YES];
+
+//        [self.navigationController pushViewController:gridViewController animated:YES];
+        
+        [self presentViewController:gridViewController animated:YES completion:nil];
     }
 }
 

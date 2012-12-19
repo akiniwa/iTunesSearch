@@ -23,14 +23,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"Cell";
     SettingCell *cell = (SettingCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+
     if (cell==nil) {
         cell = [[SettingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    
     switch (indexPath.section) {
         case 0:
             switch (indexPath.row) {

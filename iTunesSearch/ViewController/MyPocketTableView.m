@@ -168,7 +168,6 @@
     } else {
         [cell.shared setText:@"0"];
         [cell.musicTitle setText:@"曲が未登録です。"];
-
         pathUrlImage = @"http://neiro.me/api/test/empty.jpg";
     }
 
@@ -179,44 +178,21 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString* user_id = [defaults objectForKey:@"user_id"];
 
-    DEBUGLOG(@"default:%@, array:%@", user_id, [tlArray.user_id objectAtIndex:indexPath.row]);
-
-    /*
     if (![[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
-        DEBUGLOG(@"equal:%@", [tlArray.user_id objectAtIndex:indexPath.row]);
-        cell.shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cell.shareButton.frame = CGRectMake(160, 140, 80, 40);
-        [cell.shareButton setTitle:@"share" forState:UIControlStateNormal];
-        [cell addSubview:cell.shareButton];
+        [cell setButton];
+        cell.shareButton.tag = indexPath.row;
+        [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+//        [cell.shareButton removeFromSuperview];
+        [cell removeButton];
+    }
 
-        cell.shareButton.tag = indexPath.row;
-        [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    */
-    if (indexPath.row % 2 == 0) {
-        DEBUGLOG(@"index:path");
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-/*
-        cell.shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        cell.shareButton.frame = CGRectMake(160, 140, 80, 40);
-        [cell.shareButton setTitle:@"share" forState:UIControlStateNormal];
-        [cell addSubview:cell.shareButton];
-        cell.shareButton.tag = indexPath.row;
-        [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
- */
-        button.frame = CGRectMake(160, 140, 80, 40);
-        [button setTitle:@"share" forState:UIControlStateNormal];
-        [cell addSubview:button];
-        button.tag = indexPath.row;
-        [button addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    
     if (!jacketImage) {
         __weak MyPocketTableView *_self = self;
         [imageLoader loadImage:pathUrlImage completion:^(UIImage *image) {
             SEL selector = @selector(reloadJacketIcon:jacktImage:);
             int cellNumber = indexPath.row;
-            
+
             NSMethodSignature *signature = [[self class] instanceMethodSignatureForSelector:selector];
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
             [invocation setTarget:self];
@@ -226,13 +202,14 @@
             [_self performSelectorOnMainThread:@selector(performJacketIcon:) withObject:invocation waitUntilDone:YES];
         }];
     }
-
     return cell;
 }
 
 - (void) sharePocket:(id)sender {
     UIButton *shareButton = (UIButton*)sender;
-    NSString *user_id = [tlArray.user_id objectAtIndex:shareButton.tag];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *user_id = [defaults objectForKey:@"user_id"];
     NSString *pocket_id = [tlArray.pocket_id objectAtIndex:shareButton.tag];
 
     DEBUGLOG(@":%d:%d", [user_id intValue], [pocket_id intValue]);
@@ -241,8 +218,8 @@
     [dictionary setValue:user_id forKey:@"user_id"];
     [dictionary setValue:pocket_id forKey:@"pocket_id"];
     NSURL *url = [[NSURL alloc] initWithString:POCKET_URL];
-    
-    [PostToServer postData:dictionary :url :@"pocket"];
+
+    [PostToServer postData:dictionary :url :@"share"];
 }
 
 - (void) reloadJacketIcon:(int)integer jacktImage:(UIImage*)image {

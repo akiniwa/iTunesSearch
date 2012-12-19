@@ -65,6 +65,7 @@
         [detailViewController setButton:NO];
     }
     [self.navigationController pushViewController:detailViewController animated:YES];
+
 }
 
 - (void)didReceiveMemoryWarning

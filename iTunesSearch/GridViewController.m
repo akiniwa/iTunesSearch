@@ -69,7 +69,10 @@
     // 配列を作る。
     [self makeMutableArray];
     // 配列化したviewをGridViewに送る。
-//    [self setGridView:array];
+    // [self setGridView:array];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
 }
 
 - (void) selectedMusic {

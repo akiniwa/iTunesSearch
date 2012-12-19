@@ -47,11 +47,7 @@
 - (void) mainTableLoad {
     tlArray = [[TLArray alloc] init];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *encURL = [[NSString stringWithFormat:@"%@%@%@", urlString, @"?user_id=",[defaults objectForKey:@"user_id"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encURL]];
+    NSURLRequest *request = [self getRequest];
     
     void (^onSuccess)(NSData *) = ^(NSData *data) {
         NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -78,6 +74,75 @@
     }
     @catch (NSException *exception) {
     }
+}
+
+- (void) reloadTable {
+    FUNC();
+    // 追加用の配列
+    TLArray *tlReloadArray = [[TLArray alloc] init];
+    
+    NSURLRequest *request = [self getRequest];
+    
+    void (^onSuccess)(NSData *) = ^(NSData *data) {
+        NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        NSDictionary *json = [json_string JSONValue];
+        
+        int n = 0;
+        
+        for (NSDictionary *value in json) {
+            if ([[value objectForKey:@"pocket_id"] intValue]>[[tlArray.pocket_id objectAtIndex:0] intValue]) {
+                
+                [tlReloadArray.user_name addObject:[value objectForKey:@"user_name"]];
+                [tlReloadArray.shared addObject:[value objectForKey:@"shared"]];
+                [tlReloadArray.pocket_title addObject:[value objectForKey:@"pocket_title"]];
+                [tlReloadArray.music_title addObject:[value objectForKey:@"music_title"]];
+                [tlReloadArray.jacket_url addObject:[value objectForKey:@"jacket_url"]];
+                [tlReloadArray.pocket_id addObject:[value objectForKey:@"pocket_id"]];
+                [tlReloadArray.user_id addObject:[value objectForKey:@"user_id"]];
+                [tlReloadArray.music_count addObject:[value objectForKey:@"music_count"]];
+                n++;
+            } else {
+                break;
+            }
+        }
+        int k = n;
+        for (int l=0; l<k; l++) {
+            [self insertObjectToTLArray:tlArray.user_name :tlReloadArray.user_name :n];
+            [self insertObjectToTLArray:tlArray.shared :tlReloadArray.shared :n];
+            [self insertObjectToTLArray:tlArray.pocket_title :tlReloadArray.pocket_title :n];
+            [self insertObjectToTLArray:tlArray.music_title :tlReloadArray.music_title :n];
+            [self insertObjectToTLArray:tlArray.jacket_url :tlReloadArray.jacket_url :n];
+            [self insertObjectToTLArray:tlArray.pocket_id :tlReloadArray.pocket_id :n];
+            [self insertObjectToTLArray:tlArray.user_id :tlReloadArray.user_id :n];
+            [self insertObjectToTLArray:tlArray.music_count :tlReloadArray.music_count :n];
+            n--;
+        }
+        [self performSelectorOnMainThread:@selector(updatePlayState) withObject:nil waitUntilDone:YES];
+    };
+    void (^onError)(NSError *) = ^(NSError *error) {
+    };
+    
+    @try {
+        [HttpClient request:request success:onSuccess error:onError];
+    }
+    @catch (NSException *exception) {
+    }
+
+}
+
+- (void) insertObjectToTLArray:(NSMutableArray*)tableArray:(NSMutableArray*)tlReloadArray:(int)n {
+    DEBUGLOG(@"tlReloadArray:%@", [tlReloadArray objectAtIndex:n-1]);
+    [tableArray insertObject:[tlReloadArray objectAtIndex:n-1] atIndex:0];
+}
+
+- (NSURLRequest*) getRequest {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *encURL = [[NSString stringWithFormat:@"%@%@%@", urlString, @"?user_id=",[defaults objectForKey:@"user_id"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encURL]];
+    return request;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -116,10 +181,34 @@
 
     DEBUGLOG(@"default:%@, array:%@", user_id, [tlArray.user_id objectAtIndex:indexPath.row]);
 
+    /*
     if (![[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
-        [cell setButton];
+        DEBUGLOG(@"equal:%@", [tlArray.user_id objectAtIndex:indexPath.row]);
+        cell.shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        cell.shareButton.frame = CGRectMake(160, 140, 80, 40);
+        [cell.shareButton setTitle:@"share" forState:UIControlStateNormal];
+        [cell addSubview:cell.shareButton];
+
         cell.shareButton.tag = indexPath.row;
         [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    */
+    if (indexPath.row % 2 == 0) {
+        DEBUGLOG(@"index:path");
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+/*
+        cell.shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        cell.shareButton.frame = CGRectMake(160, 140, 80, 40);
+        [cell.shareButton setTitle:@"share" forState:UIControlStateNormal];
+        [cell addSubview:cell.shareButton];
+        cell.shareButton.tag = indexPath.row;
+        [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
+ */
+        button.frame = CGRectMake(160, 140, 80, 40);
+        [button setTitle:@"share" forState:UIControlStateNormal];
+        [cell addSubview:button];
+        button.tag = indexPath.row;
+        [button addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
     }
     
     if (!jacketImage) {

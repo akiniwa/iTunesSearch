@@ -45,11 +45,18 @@
 {
     [super viewDidLoad];
     [myPocketTableView mainTableLoad];
-    [myPocketTableView setButton];
+
+    UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
+    [addPocket setTitle:@"reload" forState:UIControlStateNormal];
+    [addPocket addTarget:myPocketTableView action:@selector(reloadTable) forControlEvents:UIControlEventTouchUpInside];
+
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];
+    self.navigationItem.leftBarButtonItem = leftButton;
 }
 
 - (void) pushToDetailView:(NSString*)pocket_id:(NSString*)button_string {
-    NSLog(@"pocket_id:%@", pocket_id);
+
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     detailViewController.pocket_id = pocket_id;
     if ([button_string isEqualToString:@"YES"]) {

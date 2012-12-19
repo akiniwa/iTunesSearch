@@ -15,6 +15,7 @@
 @property BOOL is_button;
 
 - (void) mainTableLoad;
+- (void) reloadTable;
 - (void) setButton;
 
 @end

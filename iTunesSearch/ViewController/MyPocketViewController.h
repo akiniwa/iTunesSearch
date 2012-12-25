@@ -10,6 +10,9 @@
 #import "MyPocketTableView.h"
 
 @interface MyPocketViewController : UIViewController
+{
+    UILabel *triggerHeader;
+}
 
 @property (nonatomic, retain) NSString *urlString;
 @property (nonatomic, retain) MyPocketTableView *myPocketTableView;

@@ -9,6 +9,13 @@
 #import "MyPocketViewController.h"
 #import "DetailViewController.h"
 
+@interface MyPocketViewController()
+{
+    BOOL is_reload;
+}
+
+@end
+
 @implementation MyPocketViewController
 
 @synthesize myPocketTableView, urlString;
@@ -67,6 +74,36 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 
 }
+
+-(void)hideMusicView {
+    //トリガーは追加。
+    CGRect r = myPocketTableView.bounds;
+    if (r.origin.y > -70) {
+        triggerHeader.text = @"引っ張って…";
+    } else {
+        triggerHeader.text = @"離して更新!!";
+        if (is_reload){
+            is_reload = NO;
+        }
+    }
+    if ((r.origin.y < -70) && (is_reload == NO)) {
+		is_reload = YES;
+		UIImageView* imageview = (UIImageView*)[triggerHeader viewWithTag:1];
+		[UIView beginAnimations:nil context:nil];
+        //CGAffineTransformRotate:回転
+		imageview.transform = CGAffineTransformRotate(CGAffineTransformIdentity, 3.14);
+		[UIView commitAnimations];
+	}
+	if ((r.origin.y > -70) && (is_reload == YES)) {
+		is_reload = NO;
+		UIImageView* imageview = (UIImageView*)[triggerHeader viewWithTag:1];
+		[UIView beginAnimations:nil context:nil];
+        //CGAffineTransformIdentity:オリジナルのアフィンに戻す。
+		imageview.transform = CGAffineTransformIdentity;
+		[UIView commitAnimations];
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

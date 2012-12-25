@@ -19,6 +19,7 @@
 @interface MyPocketTableView () {
     TLArray *tlArray;
     ImageLoader *imageLoader;
+    BOOL headerOn;
 }
 @end
 
@@ -219,7 +220,8 @@
     [dictionary setValue:pocket_id forKey:@"pocket_id"];
     NSURL *url = [[NSURL alloc] initWithString:POCKET_URL];
 
-    [PostToServer postData:dictionary :url :@"share"];
+    PostToServer *postToServer = [[PostToServer alloc] init];
+    [postToServer postData:dictionary :url :@"share"];
 }
 
 - (void) reloadJacketIcon:(int)integer jacktImage:(UIImage*)image {
@@ -272,6 +274,35 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 190;
+}
+
+- (void) scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGRect r = self.bounds;
+    if ((r.origin.y < -70) && (headerOn == NO)) {
+		headerOn = YES;
+	}
+	if ((r.origin.y > -70) && (headerOn == YES)) {
+		headerOn = NO;
+    }
+//    [myPocketDelegate performSelector:@selector(hideMusicView)];
+}
+
+- (void) endScroll{
+//    [myPocketDelegate performSelector:@selector(showMusicView)];
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self endScroll];
+}
+// ドラッグ終了 かつ 加速無し
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if(!decelerate) {
+        [self endScroll];
+    }
+}
+// setContentOffset: 等によるスクロール終了
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    [self endScroll];
 }
 
 @end

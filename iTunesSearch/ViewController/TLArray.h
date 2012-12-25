@@ -22,5 +22,6 @@
 
 
 - (void) removeAllObject;
+- (void) removeAtIndexPath:(NSInteger)indexPath;
 
 @end

@@ -21,7 +21,7 @@
 #define RSS_FEED_ANIME @"https://itunes.apple.com/jp/rss/topsongs/limit=25/genre=29/json"
 #define RSS_FEED_RB @"https://itunes.apple.com/jp/rss/topsongs/limit=25/genre=15/json"
 
-#define POST_URL @"http://neiro.me/api/check.php"
+#define POST_URL @"http://neiro.me/api/test/check.php"
 
 #define LIMIT 25
 
@@ -167,7 +167,7 @@ enum view {
 
 - (void) searchMusic {
     if (!txField.text) {
-        
+
     } else {
         GridViewController *gridViewController = [[GridViewController alloc] init];
         gridViewController.artistName = txField.text;

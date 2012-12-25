@@ -14,7 +14,10 @@
 #import "HttpClient.h"
 #import "PostToServer.h"
 
-#define POCKET_URL @"http://neiro.me/api/share.php"
+#define POCKET_SHARE_URL @"http://neiro.me/api/test/share.php"
+#define POCKET_DELETE_URL @"http://neiro.me/api/test/deletePocket.php"
+
+static NSString *user_id;
 
 @interface MyPocketTableView () {
     TLArray *tlArray;
@@ -41,6 +44,8 @@
     if (self) {
         [self setDelegate:(id)self];
         [self setDataSource:(id)self];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        user_id = [defaults objectForKey:@"user_id"];
     }
     return self;
 }
@@ -86,11 +91,8 @@
     
     void (^onSuccess)(NSData *) = ^(NSData *data) {
         NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
         NSDictionary *json = [json_string JSONValue];
-        
         int n = 0;
-        
         for (NSDictionary *value in json) {
             if ([[value objectForKey:@"pocket_id"] intValue]>[[tlArray.pocket_id objectAtIndex:0] intValue]) {
                 
@@ -129,7 +131,6 @@
     }
     @catch (NSException *exception) {
     }
-
 }
 
 - (void) insertObjectToTLArray:(NSMutableArray*)tableArray:(NSMutableArray*)tlReloadArray:(int)n {
@@ -138,10 +139,8 @@
 }
 
 - (NSURLRequest*) getRequest {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    NSString *encURL = [[NSString stringWithFormat:@"%@%@%@", urlString, @"?user_id=",[defaults objectForKey:@"user_id"]] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
+    NSString *encURL = [[NSString stringWithFormat:@"%@%@%@", urlString, @"?user_id=", user_id] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encURL]];
     return request;
 }
@@ -176,9 +175,6 @@
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
     cell.tlImageView.image = jacketImage;
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString* user_id = [defaults objectForKey:@"user_id"];
-
     if (![[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
         [cell setButton];
         cell.shareButton.tag = indexPath.row;
@@ -208,9 +204,7 @@
 
 - (void) sharePocket:(id)sender {
     UIButton *shareButton = (UIButton*)sender;
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *user_id = [defaults objectForKey:@"user_id"];
     NSString *pocket_id = [tlArray.pocket_id objectAtIndex:shareButton.tag];
 
     DEBUGLOG(@":%d:%d", [user_id intValue], [pocket_id intValue]);
@@ -218,7 +212,7 @@
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:user_id forKey:@"user_id"];
     [dictionary setValue:pocket_id forKey:@"pocket_id"];
-    NSURL *url = [[NSURL alloc] initWithString:POCKET_URL];
+    NSURL *url = [[NSURL alloc] initWithString:POCKET_SHARE_URL];
 
     PostToServer *postToServer = [[PostToServer alloc] init];
     [postToServer postData:dictionary :url :@"share"];
@@ -303,6 +297,34 @@
 // setContentOffset: 等によるスクロール終了
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
     [self endScroll];
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView*)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([user_id isEqualToString:[tlArray.user_id objectAtIndex:indexPath.row]]) {
+        return UITableViewCellEditingStyleDelete;
+    } else {
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        [dictionary setValue:[tlArray.pocket_id objectAtIndex:indexPath.row] forKey:@"pocket_id"];
+
+        NSURL *url = [[NSURL alloc] initWithString:POCKET_DELETE_URL];
+        
+        PostToServer *postToServer = [[PostToServer alloc] init];
+        [postToServer postData:dictionary :url :@"deletePocket"];
+
+        [tlArray removeAtIndexPath:indexPath.row];
+        
+        [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // ここは空のままでOKです。
+    }
+    FUNC();
 }
 
 @end

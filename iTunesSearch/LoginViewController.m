@@ -10,7 +10,7 @@
 #import "SBJson.h"
 #import "TabBarController.h"
 
-#define USER_ADD_URL @"http://neiro.me/api/user_add.php"
+#define USER_ADD_URL @"http://neiro.me/api/test/user_add.php"
 
 @interface LoginViewController ()
 

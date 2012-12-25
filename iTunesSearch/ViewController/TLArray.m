@@ -40,4 +40,16 @@
     [music_count removeAllObjects];
 }
 
+- (void) removeAtIndexPath:(NSInteger)indexPath {
+//  [artists removeObjectAtIndex:indexPath];
+    [music_title removeObjectAtIndex:indexPath];
+    [user_name removeObjectAtIndex:indexPath];
+    [pocket_title removeObjectAtIndex:indexPath];
+    [shared removeObjectAtIndex:indexPath];
+    [jacket_url removeObjectAtIndex:indexPath];
+    [pocket_id removeObjectAtIndex:indexPath];
+    [user_id removeObjectAtIndex:indexPath];
+    [music_count removeObjectAtIndex:indexPath];
+}
+
 @end

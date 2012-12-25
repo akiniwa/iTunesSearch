@@ -14,7 +14,9 @@
 @property (nonatomic, retain) NSMutableArray *artists;
 @property (nonatomic, retain) NSMutableArray *jacket_url;
 @property (nonatomic, retain) NSMutableArray *track_url;
+@property (nonatomic, retain) NSMutableArray *music_id;
 
 - (void) removeAllObject;
+- (void) removeAtIndex:(NSInteger)index;
 
 @end

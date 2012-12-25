@@ -47,7 +47,6 @@
     myPocketTableView.is_button = is_button;
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -62,17 +61,16 @@
     self.navigationItem.leftBarButtonItem = leftButton;
 }
 
-- (void) pushToDetailView:(NSString*)pocket_id:(NSString*)button_string {
+- (void) pushToDetailView:(NSString*)pocket_id:(NSString*)is_mine {
 
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     detailViewController.pocket_id = pocket_id;
-    if ([button_string isEqualToString:@"YES"]) {
+    if ([is_mine isEqualToString:@"YES"]) {
         [detailViewController setButton:YES];
     } else {
         [detailViewController setButton:NO];
     }
     [self.navigationController pushViewController:detailViewController animated:YES];
-
 }
 
 -(void)hideMusicView {

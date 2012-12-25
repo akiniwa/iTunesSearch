@@ -11,7 +11,7 @@
 #import "PostToServer.h"
 #import "SBJson.h"
 
-#define POCKET_URL @"http://neiro.me/api/test/pocket.php"
+#define POCKET_URL @"http://neiro.me/api/test/createPocket.php"
 
 @interface AddPocketViewController()
 {

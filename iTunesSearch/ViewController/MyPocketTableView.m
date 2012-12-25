@@ -4,7 +4,6 @@
 //
 //  Created by s_akiba on 12/12/06.
 //  Copyright (c) 2012年 s_akiba. All rights reserved.
-//
 
 #import "MyPocketTableView.h"
 #import "TLArray.h"
@@ -82,20 +81,28 @@ static NSString *user_id;
     }
 }
 
+- (int) checkPocketId:(NSMutableArray*)array {
+    if ([array count]) {
+        DEBUGLOG(@"int:%d", [[array objectAtIndex:0] intValue]);
+        return [[array objectAtIndex:0] intValue];
+    } else {
+        return 0;
+    }
+}
+
 - (void) reloadTable {
     FUNC();
     // 追加用の配列
     TLArray *tlReloadArray = [[TLArray alloc] init];
-    
+
     NSURLRequest *request = [self getRequest];
-    
+
     void (^onSuccess)(NSData *) = ^(NSData *data) {
         NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSDictionary *json = [json_string JSONValue];
         int n = 0;
         for (NSDictionary *value in json) {
-            if ([[value objectForKey:@"pocket_id"] intValue]>[[tlArray.pocket_id objectAtIndex:0] intValue]) {
-                
+            if ([[value objectForKey:@"pocket_id"] intValue] > [self checkPocketId:tlArray.pocket_id]) {
                 [tlReloadArray.user_name addObject:[value objectForKey:@"user_name"]];
                 [tlReloadArray.shared addObject:[value objectForKey:@"shared"]];
                 [tlReloadArray.pocket_title addObject:[value objectForKey:@"pocket_title"]];
@@ -134,7 +141,6 @@ static NSString *user_id;
 }
 
 - (void) insertObjectToTLArray:(NSMutableArray*)tableArray:(NSMutableArray*)tlReloadArray:(int)n {
-    DEBUGLOG(@"tlReloadArray:%@", [tlReloadArray objectAtIndex:n-1]);
     [tableArray insertObject:[tlReloadArray objectAtIndex:n-1] atIndex:0];
 }
 
@@ -180,7 +186,6 @@ static NSString *user_id;
         cell.shareButton.tag = indexPath.row;
         [cell.shareButton addTarget:self action:@selector(sharePocket:) forControlEvents:UIControlEventTouchUpInside];
     } else {
-//        [cell.shareButton removeFromSuperview];
         [cell removeButton];
     }
 
@@ -253,14 +258,16 @@ static NSString *user_id;
 // セルを選択したとき
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *button_string;
-    if (is_button) {
-        button_string = @"YES";
+    ;
+    NSString *is_mine;
+    if ([[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
+        is_mine = @"YES";
     } else {
-        button_string = @"NO";
+        is_mine = @"NO";
     }
     NSString *pocket_id = [tlArray.pocket_id objectAtIndex:indexPath.row];
-    [myPocketDelegate performSelector:@selector(pushToDetailView::) withObject:pocket_id withObject:button_string];
+    [myPocketDelegate performSelector:@selector(pushToDetailView::) withObject:pocket_id withObject:is_mine];
+    
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -13,8 +13,8 @@
 #import "SettingViewController.h"
 #import "UsersViewController.h"
 
-#define POCKET_FEED_URL @"http://neiro.me/api/test/pocketFeed.php"
-#define MYPOCKET_FEED_URL @"http://neiro.me/api/test/myPocket.php"
+#define PUBLIC_FEED_URL @"http://neiro.me/api/test/publicFeed.php"
+#define USER_FEED_URL @"http://neiro.me/api/test/userFeed.php"
 
 @implementation TabBarController
 
@@ -33,14 +33,14 @@
 	// Do any additional setup after loading the view.
     UsersViewController *usersViewController = [[UsersViewController alloc] init];
     usersViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
-    usersViewController.urlString = MYPOCKET_FEED_URL;
+    usersViewController.urlString = USER_FEED_URL;
     [usersViewController initialization];
     [usersViewController setShareButton:NO];
     UINavigationController *naviUserPocket = [[UINavigationController alloc] initWithRootViewController:usersViewController];
 
     PublicViewController *publicViewController = [[PublicViewController alloc] init];
     publicViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
-    publicViewController.urlString = POCKET_FEED_URL;
+    publicViewController.urlString = PUBLIC_FEED_URL;
     [publicViewController initialization];
     [publicViewController setShareButton:YES];
     UINavigationController *naviPublicPocket = [[UINavigationController alloc] initWithRootViewController:publicViewController];

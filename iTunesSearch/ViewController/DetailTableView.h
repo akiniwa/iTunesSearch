@@ -11,6 +11,8 @@
 @interface DetailTableView : UITableView
 
 @property (nonatomic, retain) NSString *urlString;
+@property (nonatomic, retain) NSString *pocket_id;
+@property BOOL is_editable;
 
 - (void)mainTableLoad;
 

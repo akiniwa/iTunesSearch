@@ -12,7 +12,9 @@
 
 #define DETAIL_POCKET_URL @"http://neiro.me/api/test/detailPocket.php?pocket_id="
 
-@interface DetailViewController ()
+@interface DetailViewController (){
+    BOOL is_editable;
+}
 
 @end
 
@@ -36,6 +38,8 @@
 	// Do any additional setup after loading the view.
     detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 350) style:UITableViewStyleGrouped];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
+    detailTableView.is_editable = is_editable;
+    detailTableView.pocket_id = pocket_id;
 
     [self.view addSubview:detailTableView];
 
@@ -50,8 +54,8 @@
     [self presentModalViewController:naviCtr animated:YES];
 }
 
-- (void)setButton:(BOOL)is_button {
-    if (!is_button) {
+- (void)setButton:(BOOL)is_mine {
+    if (is_mine) {
         UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
         [addPocket setTitle:@"add music" forState:UIControlStateNormal];
@@ -59,6 +63,9 @@
 
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];
         self.navigationItem.rightBarButtonItem = rightButton;
+        is_editable = YES;
+    } else {
+        is_editable = NO;
     }
 }
 

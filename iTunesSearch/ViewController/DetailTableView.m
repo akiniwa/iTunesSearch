@@ -12,6 +12,9 @@
 #import "DetailArray.h"
 #import "DetailCell.h"
 #import "SBJson.h"
+#import "PostToServer.h"
+
+#define MUSIC_DELETE_URL @"http://neiro.me/api/test/deleteMusic.php"
 
 @interface DetailTableView () {
     DetailArray *detailArray;
@@ -22,7 +25,7 @@
 
 @implementation DetailTableView
 
-@synthesize urlString;
+@synthesize urlString, is_editable, pocket_id;
 
 - (id) initWithFrame:(CGRect)frame
 {
@@ -54,10 +57,11 @@
         
         NSDictionary *json = [json_string JSONValue];
         for (NSDictionary* photo in json) {
-            NSLog(@"photo:%@", photo);
             [detailArray.music_title addObject:[photo objectForKey:@"music_title"]];
             [detailArray.jacket_url addObject:[photo objectForKey:@"jacket_url"]];
             [detailArray.artists addObject:[photo objectForKey:@"artist"]];
+            [detailArray.music_id addObject:[photo objectForKey:@"music_id"]];
+            [detailArray.track_url addObject:[photo objectForKey:@"track_url"]];
         }
         [self performSelectorOnMainThread:@selector(updatePlayState) withObject:nil waitUntilDone:YES];
     };
@@ -80,7 +84,6 @@
     }
     
     [cell.musicTitle setText:[detailArray.music_title objectAtIndex:indexPath.row]];
-    
     [cell.artist setText:[detailArray.artists objectAtIndex:indexPath.row]];
     
     NSString *pathUrlImage = [detailArray.jacket_url objectAtIndex:indexPath.row];
@@ -146,5 +149,33 @@
 {
     return 100;
 }
+
+- (UITableViewCellEditingStyle)tableView:(UITableView*)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (is_editable) {
+        return UITableViewCellEditingStyleDelete;
+    } else {
+        return UITableViewCellEditingStyleNone;
+    }
+}
+
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        [dictionary setValue:pocket_id forKey:@"pocket_id"];
+        [dictionary setValue:[detailArray.music_id objectAtIndex:indexPath.row] forKey:@"music_id"];
+        NSURL *url = [[NSURL alloc] initWithString:MUSIC_DELETE_URL];
+
+        PostToServer *postToServer = [[PostToServer alloc] init];
+        [postToServer postData:dictionary :url :@"deleteMusic"];
+
+        [detailArray removeAtIndex:indexPath.row];
+        [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // ここは空のままでOKです。
+    }
+    FUNC();
+}
+
 
 @end

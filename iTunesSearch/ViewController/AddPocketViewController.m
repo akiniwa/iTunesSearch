@@ -11,7 +11,7 @@
 #import "PostToServer.h"
 #import "SBJson.h"
 
-#define POCKET_ADD_URL @"http://neiro.me/api/test/pocket.php"
+#define POCKET_URL @"http://neiro.me/api/test/pocket.php"
 
 @interface AddPocketViewController()
 {
@@ -63,7 +63,7 @@
     [dictionary setValue:textField.text forKey:@"pocket_title"];
     [dictionary setValue:user_id forKey:@"user_id"];
 
-    NSURL *url = [[NSURL alloc] initWithString:POCKET_ADD_URL];
+    NSURL *url = [[NSURL alloc] initWithString:POCKET_URL];
 
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 

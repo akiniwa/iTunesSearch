@@ -20,7 +20,6 @@
 @interface DetailTableView () {
     DetailArray *detailArray;
     ImageLoader *imageLoader;
-    DetailMusicView *musicView;
 }
 
 @end
@@ -93,11 +92,13 @@
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
     cell.tlImageView.image = jacketImage;
     
-    musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
-    [cell addSubview:musicView];
-    [musicView.playButton addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
-     musicView.playButton.tag = indexPath.row;
+    [cell.musicView.playButton addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.musicView.pauseButton addTarget:self action:@selector(pauseMusic:) forControlEvents:UIControlEventTouchUpInside];
+    cell.musicView.playButton.tag = indexPath.row;
+    cell.musicView.pauseButton.tag = indexPath.row;
+//    [cell.musicView addSubview:cell.musicView.playButton];
 
+    
     if (!jacketImage) {
         __weak DetailTableView *_self = self;
         [imageLoader loadImage:pathUrlImage completion:^(UIImage *image) {
@@ -133,7 +134,27 @@
 }
 
 - (void) playMusic:(UIButton*)playButton {
-    [musicView playSound:[detailArray.track_url objectAtIndex:playButton.tag]];
+    /*
+    NSArray *cells = [self visibleCells];
+
+    for (DetailCell *cell in cells) {
+        [cell.musicView.pauseButton removeFromSuperview];
+        [cell.musicView addSubview:cell.musicView.playButton];
+    }
+    
+    [cell.musicView playSound:[detailArray.track_url objectAtIndex:playButton.tag]];
+    [cell.musicView.playButton removeFromSuperview];
+    [cell.musicView addSubview:cell.musicView.pauseButton];
+     */
+    DetailCell *cell = (DetailCell*)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:playButton.tag inSection:0]];
+    [cell.musicView playSound:[detailArray.track_url objectAtIndex:playButton.tag]];
+}
+
+- (void) pauseMusic:(UIButton*)pauseButton {
+    DetailCell *cell = (DetailCell*)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:pauseButton.tag inSection:0]];
+    [cell.musicView pauseSound];
+//    [cell.musicView.pauseButton removeFromSuperview];
+//    [cell.musicView addSubview:cell.musicView.playButton];
 }
 
 //リストアイテムの数。

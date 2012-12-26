@@ -13,8 +13,6 @@ static id theSharedManager = nil;
 @implementation AudioPlayer
 {
     AVAudioPlayer *player;
-    NSNotification *notification;
-    NSNotificationCenter *center;
 }
 
 + (id)sharedManager
@@ -45,9 +43,6 @@ static id theSharedManager = nil;
     if (player) 
     {
         [player play];
-        notification = [NSNotification notificationWithName:@"playingStatusChanged" object:@"play" userInfo:nil];
-        center = [NSNotificationCenter defaultCenter];
-        [center postNotification:notification];
     }
 }
 
@@ -56,9 +51,6 @@ static id theSharedManager = nil;
     if (player) 
     {
         [player pause];
-        notification = [NSNotification notificationWithName:@"playingStatusChanged" object:@"pause" userInfo:nil];
-        center = [NSNotificationCenter defaultCenter];
-        [center postNotification:notification];
     }
 }
 

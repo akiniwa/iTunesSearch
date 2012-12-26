@@ -10,32 +10,38 @@
 
 #define PLAY_BUTTON_X 0
 #define PLAY_BUTTON_Y 0
-#define PLAY_BUTTON_WIDTH 40
-#define PLAY_BUTTON_HEIGHT 40
+#define PLAY_BUTTON_WIDTH 30
+#define PLAY_BUTTON_HEIGHT 30
+
+#define PAUSE_BUTTON_Y 30
 
 @implementation DetailMusicView
 
-@synthesize playButton;
+@synthesize playButton, pauseButton;
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-        [center addObserver:self selector:@selector(observe:) name:@"playingStatusChanged" object:nil];
-        
         playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [playButton setImage:[UIImage imageNamed:@"jacket_play"] forState:UIControlStateNormal];
         [playButton setFrame:CGRectMake(PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT)];
         [self addSubview:playButton];
-        
-        
+
+        pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [pauseButton setImage:[UIImage imageNamed:@"pauseBtn"] forState:UIControlStateNormal];
+        [pauseButton setFrame:CGRectMake(PLAY_BUTTON_X, PAUSE_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT)];
+        [self addSubview:pauseButton];
     }
     return self;
 }
 
-- (void)observe:(NSNotification*)notification {
-    DEBUGLOG(@"object_class:%@:%d", notification.object, self.playButton.tag);
+- (void)playSound:(NSString *)url {
+    [super playSound:url];
+}
+
+- (void)pauseSound {
+    [super pauseSound];
 }
 
 @end

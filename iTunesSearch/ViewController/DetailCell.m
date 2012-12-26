@@ -7,6 +7,7 @@
 //
 
 #import "DetailCell.h"
+#import "DetailMusicView.h"
 
 #define ARTIST_NAME_X 150
 #define ARTIST_NAME_Y 50
@@ -20,7 +21,7 @@
 
 @implementation DetailCell
 
-@synthesize tlImageView, musicTitle, artist;
+@synthesize tlImageView, musicTitle, artist, musicView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -39,6 +40,9 @@
         [artist setFont:[UIFont systemFontOfSize:10]];
         [self setLabelFrame:artist :CGRectMake(ARTIST_NAME_X, ARTIST_NAME_Y, ARTIST_NAME_WIDTH, ARTIST_NAME_HEIGHT)];
         [self addSubview:artist];
+        
+        musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(100, 20, 50, 50)];
+        [self addSubview:musicView];
     }
     return self;
 }

@@ -20,11 +20,6 @@
         soundData = [SoundData sharedInstance];
         audioPlayer = [AudioPlayer sharedManager];
         // URLがキーになっているキャッシュのデータを取得しにいき、なければロードする。
-        if ([audioPlayer isPlaying]) {
-            DEBUGLOG(@"playing");
-        } else {
-            DEBUGLOG(@"not playing");
-        }
     }
     return self;
 }
@@ -43,7 +38,7 @@
     return [audioPlayer isPlaying];
 }
 
-- (void)stopSound {
+- (void)pauseSound {
     [audioPlayer pause];
 }
 
@@ -54,11 +49,6 @@
 - (void) sendDataForPlaying:(NSData*)data {
     [audioPlayer playAudioWithData:data];
     [audioPlayer play];
-    if ([audioPlayer isPlaying]) {
-        DEBUGLOG(@"playing");
-    } else {
-        DEBUGLOG(@"not playing");
-    }
 }
 
 @end

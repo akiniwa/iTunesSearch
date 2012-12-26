@@ -13,6 +13,7 @@
 		761D8AAF168AB248002A7E0C /* MusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 761D8AAE168AB248002A7E0C /* MusicView.m */; };
 		761D8AB2168AC010002A7E0C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 761D8AB1168AC010002A7E0C /* AVFoundation.framework */; };
 		761D8AB5168AC955002A7E0C /* DetailMusicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 761D8AB4168AC955002A7E0C /* DetailMusicView.m */; };
+		761D8AB7168ADC1C002A7E0C /* pauseBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 761D8AB6168ADC1C002A7E0C /* pauseBtn@2x.png */; };
 		76252B5F167864CB00AD7D5F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252B5E167864CB00AD7D5F /* LoginViewController.m */; };
 		76252C4D16786B7300AD7D5F /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252C3816786B7300AD7D5F /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		76252C4E16786B7300AD7D5F /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252C3B16786B7300AD7D5F /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -112,6 +113,7 @@
 		761D8AB1168AC010002A7E0C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		761D8AB3168AC955002A7E0C /* DetailMusicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailMusicView.h; path = ../DetailMusicView.h; sourceTree = "<group>"; };
 		761D8AB4168AC955002A7E0C /* DetailMusicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailMusicView.m; path = ../DetailMusicView.m; sourceTree = "<group>"; };
+		761D8AB6168ADC1C002A7E0C /* pauseBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pauseBtn@2x.png"; sourceTree = "<group>"; };
 		76252B5D167864CB00AD7D5F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		76252B5E167864CB00AD7D5F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		76252C3716786B7300AD7D5F /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
@@ -387,6 +389,7 @@
 		76252C7116786B8800AD7D5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				761D8AB6168ADC1C002A7E0C /* pauseBtn@2x.png */,
 				761D8AA4168AADF9002A7E0C /* jacket_play@2x.png */,
 				76252CDD16786FBE00AD7D5F /* connectFB@2x.png */,
 				76252C7216786B8800AD7D5F /* background.png */,
@@ -755,6 +758,7 @@
 				76252C9916786B8800AD7D5F /* Default@2x.png in Resources */,
 				76252CDE16786FBE00AD7D5F /* connectFB@2x.png in Resources */,
 				761D8AA5168AADF9002A7E0C /* jacket_play@2x.png in Resources */,
+				761D8AB7168ADC1C002A7E0C /* pauseBtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

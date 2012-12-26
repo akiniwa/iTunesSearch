@@ -83,7 +83,6 @@ static NSString *user_id;
 
 - (int) checkPocketId:(NSMutableArray*)array {
     if ([array count]) {
-        DEBUGLOG(@"int:%d", [[array objectAtIndex:0] intValue]);
         return [[array objectAtIndex:0] intValue];
     } else {
         return 0;
@@ -100,34 +99,48 @@ static NSString *user_id;
     void (^onSuccess)(NSData *) = ^(NSData *data) {
         NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSDictionary *json = [json_string JSONValue];
+
         int n = 0;
         for (NSDictionary *value in json) {
             if ([[value objectForKey:@"pocket_id"] intValue] > [self checkPocketId:tlArray.pocket_id]) {
-                [tlReloadArray.user_name addObject:[value objectForKey:@"user_name"]];
-                [tlReloadArray.shared addObject:[value objectForKey:@"shared"]];
-                [tlReloadArray.pocket_title addObject:[value objectForKey:@"pocket_title"]];
-                [tlReloadArray.music_title addObject:[value objectForKey:@"music_title"]];
-                [tlReloadArray.jacket_url addObject:[value objectForKey:@"jacket_url"]];
-                [tlReloadArray.pocket_id addObject:[value objectForKey:@"pocket_id"]];
-                [tlReloadArray.user_id addObject:[value objectForKey:@"user_id"]];
-                [tlReloadArray.music_count addObject:[value objectForKey:@"music_count"]];
                 n++;
+            }
+            [tlReloadArray.user_name addObject:[value objectForKey:@"user_name"]];
+            [tlReloadArray.shared addObject:[value objectForKey:@"shared"]];
+            [tlReloadArray.pocket_title addObject:[value objectForKey:@"pocket_title"]];
+            [tlReloadArray.music_title addObject:[value objectForKey:@"music_title"]];
+            [tlReloadArray.jacket_url addObject:[value objectForKey:@"jacket_url"]];
+            [tlReloadArray.pocket_id addObject:[value objectForKey:@"pocket_id"]];
+            [tlReloadArray.user_id addObject:[value objectForKey:@"user_id"]];
+            [tlReloadArray.music_count addObject:[value objectForKey:@"music_count"]];
+        }
+
+        int k = n;
+        for (int l=0; l<[tlReloadArray.user_id count]; l++) {
+            if (l<k) {
+                [self insertObjectToTLArray:tlArray.user_name :tlReloadArray.user_name :n];
+                [self insertObjectToTLArray:tlArray.shared :tlReloadArray.shared :n];
+                [self insertObjectToTLArray:tlArray.pocket_title :tlReloadArray.pocket_title :n];
+                [self insertObjectToTLArray:tlArray.music_title :tlReloadArray.music_title :n];
+                [self insertObjectToTLArray:tlArray.jacket_url :tlReloadArray.jacket_url :n];
+                [self insertObjectToTLArray:tlArray.pocket_id :tlReloadArray.pocket_id :n];
+                [self insertObjectToTLArray:tlArray.user_id :tlReloadArray.user_id :n];
+                [self insertObjectToTLArray:tlArray.music_count :tlReloadArray.music_count :n];
+                n--;
+                DEBUGLOG(@"insert");
             } else {
-                break;
+                [self replaceObjectToTLArray:tlArray.user_name :tlReloadArray.user_name :l];
+                [self replaceObjectToTLArray:tlArray.shared :tlReloadArray.shared :l];
+                [self replaceObjectToTLArray:tlArray.pocket_title :tlReloadArray.pocket_title :l];
+                [self replaceObjectToTLArray:tlArray.music_title :tlReloadArray.music_title :l];
+                [self replaceObjectToTLArray:tlArray.jacket_url :tlReloadArray.jacket_url :l];
+                [self replaceObjectToTLArray:tlArray.pocket_id :tlReloadArray.pocket_id :l];
+                [self replaceObjectToTLArray:tlArray.user_id :tlReloadArray.user_id :l];
+                [self replaceObjectToTLArray:tlArray.music_count :tlReloadArray.music_count :l];
+                DEBUGLOG(@"replace");
             }
         }
-        int k = n;
-        for (int l=0; l<k; l++) {
-            [self insertObjectToTLArray:tlArray.user_name :tlReloadArray.user_name :n];
-            [self insertObjectToTLArray:tlArray.shared :tlReloadArray.shared :n];
-            [self insertObjectToTLArray:tlArray.pocket_title :tlReloadArray.pocket_title :n];
-            [self insertObjectToTLArray:tlArray.music_title :tlReloadArray.music_title :n];
-            [self insertObjectToTLArray:tlArray.jacket_url :tlReloadArray.jacket_url :n];
-            [self insertObjectToTLArray:tlArray.pocket_id :tlReloadArray.pocket_id :n];
-            [self insertObjectToTLArray:tlArray.user_id :tlReloadArray.user_id :n];
-            [self insertObjectToTLArray:tlArray.music_count :tlReloadArray.music_count :n];
-            n--;
-        }
+
         [self performSelectorOnMainThread:@selector(updatePlayState) withObject:nil waitUntilDone:YES];
     };
     void (^onError)(NSError *) = ^(NSError *error) {
@@ -140,8 +153,12 @@ static NSString *user_id;
     }
 }
 
-- (void) insertObjectToTLArray:(NSMutableArray*)tableArray:(NSMutableArray*)tlReloadArray:(int)n {
-    [tableArray insertObject:[tlReloadArray objectAtIndex:n-1] atIndex:0];
+- (void) insertObjectToTLArray:(NSMutableArray*)tableArray:(NSMutableArray*)tlReloadArray:(int)indexNumber {
+    [tableArray insertObject:[tlReloadArray objectAtIndex:indexNumber-1] atIndex:0];
+}
+
+- (void) replaceObjectToTLArray:(NSMutableArray*)tableArray:(NSMutableArray*)tlReloadArray:(int)indexNumber {
+    [tableArray replaceObjectAtIndex:indexNumber withObject:[tlReloadArray objectAtIndex:indexNumber]];
 }
 
 - (NSURLRequest*) getRequest {

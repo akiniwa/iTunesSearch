@@ -78,14 +78,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"Cell";
     DetailCell *cell = (DetailCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+
     if (cell==nil) {
         cell = [[DetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
+
     [cell.musicTitle setText:[detailArray.music_title objectAtIndex:indexPath.row]];
     [cell.artist setText:[detailArray.artists objectAtIndex:indexPath.row]];
-    
+
     NSString *pathUrlImage = [detailArray.jacket_url objectAtIndex:indexPath.row];
     imageLoader = [ImageLoader sharedInstance];
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
@@ -96,7 +96,7 @@
         [imageLoader loadImage:pathUrlImage completion:^(UIImage *image) {
             SEL selector = @selector(reloadJacketIcon:jacktImage:);
             int cellNumber = indexPath.row;
-            
+
             NSMethodSignature *signature = [[self class] instanceMethodSignatureForSelector:selector];
             NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
             [invocation setTarget:self];

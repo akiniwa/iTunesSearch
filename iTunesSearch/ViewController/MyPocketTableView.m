@@ -13,7 +13,7 @@
 #import "HttpClient.h"
 #import "PostToServer.h"
 
-#define POCKET_SHARE_URL @"http://neiro.me/api/test/share.php"
+#define POCKET_SHARE_URL @"http://neiro.me/api/test/sharePocket.php"
 #define POCKET_DELETE_URL @"http://neiro.me/api/test/deletePocket.php"
 
 static NSString *user_id;
@@ -44,7 +44,7 @@ static NSString *user_id;
         [self setDelegate:(id)self];
         [self setDataSource:(id)self];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        user_id = [defaults objectForKey:@"user_id"];
+        user_id = [defaults objectForKey:@"user_id"]; 
     }
     return self;
 }
@@ -197,6 +197,8 @@ static NSString *user_id;
     imageLoader = [ImageLoader sharedInstance];
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
     cell.tlImageView.image = jacketImage;
+    
+
 
     if (![[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
         [cell setButton];
@@ -237,7 +239,7 @@ static NSString *user_id;
     NSURL *url = [[NSURL alloc] initWithString:POCKET_SHARE_URL];
 
     PostToServer *postToServer = [[PostToServer alloc] init];
-    [postToServer postData:dictionary :url :@"share"];
+    [postToServer postData:dictionary :url :@"sharePocket"];
 }
 
 - (void) reloadJacketIcon:(int)integer jacktImage:(UIImage*)image {

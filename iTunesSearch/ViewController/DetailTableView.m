@@ -13,12 +13,14 @@
 #import "DetailCell.h"
 #import "SBJson.h"
 #import "PostToServer.h"
+#import "DetailMusicView.h"
 
 #define MUSIC_DELETE_URL @"http://neiro.me/api/test/deleteMusic.php"
 
 @interface DetailTableView () {
     DetailArray *detailArray;
     ImageLoader *imageLoader;
+    DetailMusicView *musicView;
 }
 
 @end
@@ -90,6 +92,11 @@
     imageLoader = [ImageLoader sharedInstance];
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
     cell.tlImageView.image = jacketImage;
+    
+    musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(100, 50, 50, 50)];
+    [cell addSubview:musicView];
+    [musicView.playButton addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
+     musicView.playButton.tag = indexPath.row;
 
     if (!jacketImage) {
         __weak DetailTableView *_self = self;
@@ -123,6 +130,10 @@
 - (void)updatePlayState {
     NSLog(@"updatePlayState");
     [self reloadData];
+}
+
+- (void) playMusic:(UIButton*)playButton {
+    [musicView playSound:[detailArray.track_url objectAtIndex:playButton.tag]];
 }
 
 //リストアイテムの数。

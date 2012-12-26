@@ -43,7 +43,7 @@
     }
 
     facebook = [[Facebook alloc] initWithAppId:APP_ID andDelegate:self];
-    
+
     UIButton *fbloginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [fbloginBtn setImage:[UIImage imageNamed:@"connectFB.png"] forState:UIControlStateNormal];
     fbloginBtn.frame = CGRectMake(65, 355, 200, 80);
@@ -100,7 +100,7 @@
 }
 
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"received response");
+    NSLog(@"received response:%@", response);
 }
 
 //requestが成功してロードされた時に呼び出されるデリゲートメソッド
@@ -135,8 +135,8 @@
     [asiFormRequest setPostValue:[dictionary JSONRepresentation] forKey:@"user_add"];
     [asiFormRequest addRequestHeader:@"Content-Type" value:@"application/json; encoding=utf-8"];
     [asiFormRequest setDelegate:self];
-    [asiFormRequest startAsynchronous];
-    // ここはレスポンスを受け取ってuser_idをゲットする。
+    // not asynchronous
+    [asiFormRequest startSynchronous];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request
@@ -160,6 +160,10 @@
     [defaults setObject:[dictionay objectForKey:@"user_id"] forKey:@"user_id"];
     DEBUGLOG(@"dictionary:%@", [dictionay objectForKey:@"user_id"]);
     [defaults synchronize];
+
+    TabBarController *tabBarController = [[TabBarController alloc] init];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = tabBarController;
 }
 
 - (void) requestDone:(id)sender {

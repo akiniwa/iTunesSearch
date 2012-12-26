@@ -37,8 +37,6 @@ void uncaughtExceptionHander(NSException *exception) {
         && [defaults objectForKey:@"FBExpirationDateKey"] && [defaults stringForKey:@"user_id"]) {
         TabBarController *controller = [[TabBarController alloc] init];
         self.window.rootViewController = controller;
-//        LoginViewController *loginViewController = [[LoginViewController alloc] init];
-//        self.window.rootViewController = loginViewController;
     } else {
         LoginViewController *loginViewController = [[LoginViewController alloc] init];
         self.window.rootViewController = loginViewController;
@@ -72,7 +70,6 @@ void uncaughtExceptionHander(NSException *exception) {
     [_window makeKeyAndVisible];
     [defaults setObject:@"key" forKey:@"loginflag"];
 */
-//    return [[waitingView facebook] handleOpenURL:url];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application

@@ -25,16 +25,17 @@
         [label setText:@"プレイリスト名 :"];
         [self addSubview:label];
         
-        footerTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 19, 180, 40)];
+        footerTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 180, 40)];
         [footerTitle setBackgroundColor:[UIColor clearColor]];
-        [footerTitle setFont:[UIFont systemFontOfSize:17.0f]];
+        [footerTitle setFont:[UIFont systemFontOfSize:19.0f]];
         [self addSubview:footerTitle];
 
         UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
         [lineImage setFrame:CGRectMake(0, 0, 320, 2)];
         [self addSubview:lineImage];
-        
-        DetailMusicView * musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(250, 0, 50, 50)];
+
+        DetailMusicView * musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(220, 20, 70, 50)];
+        musicView.backgroundColor = [UIColor grayColor];
         [self addSubview:musicView];
     }
     return self;

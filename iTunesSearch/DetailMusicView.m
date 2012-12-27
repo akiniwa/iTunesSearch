@@ -13,7 +13,7 @@
 #define PLAY_BUTTON_WIDTH 30
 #define PLAY_BUTTON_HEIGHT 30
 
-#define PAUSE_BUTTON_Y 30
+#define PAUSE_BUTTON_X 40
 
 @implementation DetailMusicView
 
@@ -30,7 +30,7 @@
 
         pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [pauseButton setImage:[UIImage imageNamed:@"pauseBtn"] forState:UIControlStateNormal];
-        [pauseButton setFrame:CGRectMake(PLAY_BUTTON_X, PAUSE_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT)];
+        [pauseButton setFrame:CGRectMake(PAUSE_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT)];
         [self addSubview:pauseButton];
     }
     return self;

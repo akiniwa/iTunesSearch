@@ -10,13 +10,13 @@
 #import "DetailMusicView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define ARTIST_NAME_X 150
-#define ARTIST_NAME_Y 10
+#define ARTIST_NAME_X 70
+#define ARTIST_NAME_Y 5
 #define ARTIST_NAME_WIDTH 120
 #define ARTIST_NAME_HEIGHT 20
 
-#define MUSIC_TITLE_X 150
-#define MUSIC_TITLE_Y 30
+#define MUSIC_TITLE_X 90
+#define MUSIC_TITLE_Y 27
 #define MUSIC_TITLE_WIDTH 120
 #define MUSIC_TITLE_HEIGHT 20
 
@@ -30,8 +30,15 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleGray;
 
+        artist = [[UILabel alloc] init];
+        [artist setFont:[UIFont systemFontOfSize:9]];
+        artist.backgroundColor = [UIColor clearColor];
+        [self setLabelFrame:artist :CGRectMake(ARTIST_NAME_X, ARTIST_NAME_Y, ARTIST_NAME_WIDTH, ARTIST_NAME_HEIGHT)];
+        [self addSubview:artist];
+        
         musicTitle = [[UILabel alloc] init];
-        [musicTitle setFont:[UIFont systemFontOfSize:10]];
+        [musicTitle setFont:[UIFont fontWithName:@"Arial-BoldMT" size:15]];
+        musicTitle.backgroundColor = [UIColor clearColor];
         [self setLabelFrame:musicTitle :CGRectMake(MUSIC_TITLE_X, MUSIC_TITLE_Y, MUSIC_TITLE_WIDTH, MUSIC_TITLE_HEIGHT)];
         [self addSubview:musicTitle];
 
@@ -41,13 +48,8 @@
         tlImageView.clipsToBounds = true;
         [self addSubview:tlImageView];
 
-        artist = [[UILabel alloc] init];
-        [artist setFont:[UIFont systemFontOfSize:10]];
-        [self setLabelFrame:artist :CGRectMake(ARTIST_NAME_X, ARTIST_NAME_Y, ARTIST_NAME_WIDTH, ARTIST_NAME_HEIGHT)];
-        [self addSubview:artist];
-
-        musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(100, 0, 50, 50)];
-        [self addSubview:musicView];
+//       musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(100, 0, 50, 50)];
+//       [self addSubview:musicView];
         
         UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
         [lineImage setFrame:CGRectMake(0, 58, 320, 2)];

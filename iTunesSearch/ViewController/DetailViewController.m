@@ -37,6 +37,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
 
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    [menuButton setBackgroundImage:[UIImage imageNamed:@"backPageBtn"]
+                          forState:UIControlStateNormal];
+    [menuButton addTarget:self action:@selector(pushBack) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
+    self.navigationItem.leftBarButtonItem = buttonItem;
+    
 	// Do any additional setup after loading the view.
     detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - 160) style:UITableViewStylePlain];
     detailTableView.backgroundColor = [UIColor clearColor];
@@ -62,6 +69,10 @@
     UINavigationController *naviCtr = [[UINavigationController alloc] initWithRootViewController:mainViewControllr];
     mainViewControllr.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentModalViewController:naviCtr animated:YES];
+}
+
+- (void)pushBack {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setButton:(BOOL)is_mine {

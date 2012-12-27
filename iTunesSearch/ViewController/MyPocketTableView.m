@@ -177,13 +177,13 @@ static NSString *user_id;
     }
 
     [cell.pocketTitle setText:[tlArray.pocket_title objectAtIndex:indexPath.row]];
-    [cell.userName setText:[tlArray.user_name objectAtIndex:indexPath.row]];
-    [cell.musicCount setText:[tlArray.music_count objectAtIndex:indexPath.row]];
+    [cell.userName setText:[NSString stringWithFormat:@"%@" ,[tlArray.user_name objectAtIndex:indexPath.row]]];
+    [cell.musicCount setText:[NSString stringWithFormat:@"%@ %@", [tlArray.music_count objectAtIndex:indexPath.row], @"曲"]];
 
     NSString *pathUrlImage;
 
     if ([[tlArray.music_count objectAtIndex:indexPath.row] intValue]) {
-        [cell.shared setText:[tlArray.shared objectAtIndex:indexPath.row]];
+        [cell.shared setText:[NSString stringWithFormat:@"%@ %@", [tlArray.shared objectAtIndex:indexPath.row], @"人の共有"]];
         [cell.musicTitle setText:[tlArray.music_title objectAtIndex:indexPath.row]];
 
         pathUrlImage = [tlArray.jacket_url objectAtIndex:indexPath.row];
@@ -309,7 +309,7 @@ static NSString *user_id;
 // セルの高さ
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 140;
+    return 145;
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {

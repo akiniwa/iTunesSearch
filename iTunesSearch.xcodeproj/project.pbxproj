@@ -73,6 +73,7 @@
 		763DCB6B1667051A00ECDF58 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DCB6A1667051A00ECDF58 /* MobileCoreServices.framework */; };
 		763DCB6D1667052400ECDF58 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DCB6C1667052400ECDF58 /* libz.dylib */; };
 		764EB2A2168157D100210CAA /* WaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764EB2A1168157D100210CAA /* WaitingView.m */; };
+		76565FAC168C590D00915034 /* backPageBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76565FAB168C590D00915034 /* backPageBtn@2x.png */; };
 		765946EE16535CE000C04B50 /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765946ED16535CE000C04B50 /* ScrollView.m */; };
 		765946F11653772100C04B50 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 765946F01653772100C04B50 /* GridViewController.m */; };
 		765C5A661638C1A10029DD17 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C5A651638C1A10029DD17 /* UIKit.framework */; };
@@ -251,6 +252,7 @@
 		763DCB6C1667052400ECDF58 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		764EB2A0168157D100210CAA /* WaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingView.h; sourceTree = "<group>"; };
 		764EB2A1168157D100210CAA /* WaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingView.m; sourceTree = "<group>"; };
+		76565FAB168C590D00915034 /* backPageBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backPageBtn@2x.png"; sourceTree = "<group>"; };
 		765946EC16535CE000C04B50 /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollView.h; sourceTree = "<group>"; };
 		765946ED16535CE000C04B50 /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollView.m; sourceTree = "<group>"; };
 		765946EF1653772100C04B50 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 		76252C7116786B8800AD7D5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				76565FAB168C590D00915034 /* backPageBtn@2x.png */,
 				7660F8EE168C38B7000A771E /* addMusic@2x.png */,
 				7660F8EC168C2EDD000A771E /* addPocket@2x.png */,
 				7660F8E4168C1B39000A771E /* discImage@2x.png */,
@@ -816,6 +819,7 @@
 				7660F8E5168C1B39000A771E /* discImage@2x.png in Resources */,
 				7660F8ED168C2EDD000A771E /* addPocket@2x.png in Resources */,
 				7660F8EF168C38B7000A771E /* addMusic@2x.png in Resources */,
+				76565FAC168C590D00915034 /* backPageBtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

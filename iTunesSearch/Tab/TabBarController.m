@@ -37,6 +37,7 @@
     [usersViewController initialization];
     [usersViewController setShareButton:NO];
     UINavigationController *naviUserPocket = [[UINavigationController alloc] initWithRootViewController:usersViewController];
+    [naviUserPocket.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];
 
     PublicViewController *publicViewController = [[PublicViewController alloc] init];
     publicViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
@@ -44,11 +45,8 @@
     [publicViewController initialization];
     [publicViewController setShareButton:YES];
     UINavigationController *naviPublicPocket = [[UINavigationController alloc] initWithRootViewController:publicViewController];
-/*
-    MainViewController *mainViewController = [[MainViewController alloc] init];
-    UINavigationController *naviMainViewController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
-    mainViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemContacts tag:2];
-*/
+    [naviPublicPocket.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];
+
     SettingViewController *settingViewController = [[SettingViewController alloc] init];
     settingViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3];
 

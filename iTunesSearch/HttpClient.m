@@ -10,6 +10,8 @@
         NSData *data = [NSURLConnection sendSynchronousRequest:request
                                              returningResponse:&response
                                                          error:&error];
+        DEBUGLOG(@"data:%@", response);
+
         if (error) {
             onError(error);
         } else {

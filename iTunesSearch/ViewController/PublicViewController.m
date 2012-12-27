@@ -21,7 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+
+    [self.myPocketTableView setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]]];
+//  [self.myPocketTableView setBackgroundColor:[UIColor lightGrayColor]];
     self.title = @"みんなのプレイリスト";
 }
 

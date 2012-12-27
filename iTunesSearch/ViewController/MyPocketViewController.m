@@ -39,8 +39,9 @@
 }
 
 - (void)initialization {
-    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 355) style:UITableViewStylePlain];
+    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(0, 0, 320, 365) style:UITableViewStylePlain];
     myPocketTableView.urlString = self.urlString;
+    myPocketTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     myPocketTableView.myPocketDelegate = self;
     [self.view addSubview:myPocketTableView];
 }
@@ -52,13 +53,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [myPocketTableView mainTableLoad];
 
     [self setTrigger];
+
+    [myPocketTableView mainTableLoad];
 }
 
 - (void) pushToDetailView:(NSString*)pocket_id:(NSString*)is_mine {
-
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     detailViewController.pocket_id = pocket_id;
     if ([is_mine isEqualToString:@"YES"]) {
@@ -75,6 +76,7 @@
     r.origin.y -= 70;
     r.size.height = 70;
     triggerHeader = [[UILabel alloc] initWithFrame:r];
+    [triggerHeader setBackgroundColor:[UIColor clearColor]];
     [myPocketTableView addSubview:triggerHeader];
 
     UIImageView* imageview = [[UIImageView alloc] initWithFrame:CGRectMake((r.size.width/2 - 30), (60 - 32) / 2, 45, 32)];
@@ -88,9 +90,8 @@
     //トリガーは追加。
     CGRect r = myPocketTableView.bounds;
     if (r.origin.y > -70) {
-        triggerHeader.text = @"引っ張って…";
+
     } else {
-        triggerHeader.text = @"離して更新!!";
         if (is_reload){
             [myPocketTableView reloadTable];
             is_reload = NO;

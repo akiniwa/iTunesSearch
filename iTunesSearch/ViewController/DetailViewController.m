@@ -9,6 +9,7 @@
 #import "DetailViewController.h"
 #import "AddPocketViewController.h"
 #import "MainViewController.h"
+#import "FooterForDetailView.h"
 
 #define DETAIL_POCKET_URL @"http://neiro.me/api/test/detailPocket.php?pocket_id="
 
@@ -34,12 +35,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
 
 	// Do any additional setup after loading the view.
-    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 355) style:UITableViewStylePlain];
+    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - 160) style:UITableViewStylePlain];
+    detailTableView.backgroundColor = [UIColor blackColor];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
+    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     detailTableView.is_editable = is_editable;
     detailTableView.pocket_id = pocket_id;
+
+    FooterForDetailView *footerForDetailView = [[FooterForDetailView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 160, 320, 100)];
+    [footerForDetailView setBackgroundColor:[UIColor blueColor]];
+    [self.view addSubview:footerForDetailView];
 
     [self.view addSubview:detailTableView];
 
@@ -56,9 +64,9 @@
 
 - (void)setButton:(BOOL)is_mine {
     if (is_mine) {
-        UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeCustom];
         [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
-        [addPocket setTitle:@"add music" forState:UIControlStateNormal];
+        [addPocket setImage:[UIImage imageNamed:@"addMusic"] forState:UIControlStateNormal];
         [addPocket addTarget:self action:@selector(showModal) forControlEvents:UIControlEventTouchUpInside];
 
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];

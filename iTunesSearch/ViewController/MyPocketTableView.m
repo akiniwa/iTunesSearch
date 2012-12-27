@@ -44,7 +44,7 @@ static NSString *user_id;
         [self setDelegate:(id)self];
         [self setDataSource:(id)self];
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        user_id = [defaults objectForKey:@"user_id"]; 
+        user_id = [defaults objectForKey:@"user_id"];
     }
     return self;
 }
@@ -196,6 +196,7 @@ static NSString *user_id;
 
     imageLoader = [ImageLoader sharedInstance];
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
+    cell.tlImageView.alpha = 0.0f;
     cell.tlImageView.image = jacketImage;
     
 
@@ -222,8 +223,22 @@ static NSString *user_id;
             [invocation setSelector:selector];
             [_self performSelectorOnMainThread:@selector(performJacketIcon:) withObject:invocation waitUntilDone:YES];
         }];
+    } else {
+        [self cellAnimation:cell];
     }
+
     return cell;
+}
+
+- (void) cellAnimation:(TLCell*)cell {
+    [cell setNeedsLayout];
+    [cell setNeedsDisplay];
+    [UIView animateWithDuration:1.2f
+                     animations:^{
+                         cell.tlImageView.alpha = 1.0f;
+                     }completion:^(BOOL finised){
+                         
+                     }];
 }
 
 - (void) sharePocket:(id)sender {
@@ -245,8 +260,7 @@ static NSString *user_id;
 - (void) reloadJacketIcon:(int)integer jacktImage:(UIImage*)image {
     TLCell *cell = (TLCell*)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:integer inSection:0]];
     cell.tlImageView.image = image;
-    [cell setNeedsDisplay];
-    [cell setNeedsLayout];
+    [self cellAnimation:cell];
 }
 
 - (void) performJacketIcon:(NSInvocation*)anInvocation {
@@ -293,7 +307,7 @@ static NSString *user_id;
 // セルの高さ
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 190;
+    return 140;
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {

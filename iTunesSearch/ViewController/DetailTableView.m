@@ -96,9 +96,8 @@
     [cell.musicView.pauseButton addTarget:self action:@selector(pauseMusic:) forControlEvents:UIControlEventTouchUpInside];
     cell.musicView.playButton.tag = indexPath.row;
     cell.musicView.pauseButton.tag = indexPath.row;
-//    [cell.musicView addSubview:cell.musicView.playButton];
+//  [cell.musicView addSubview:cell.musicView.playButton];
 
-    
     if (!jacketImage) {
         __weak DetailTableView *_self = self;
         [imageLoader loadImage:pathUrlImage completion:^(UIImage *image) {
@@ -172,14 +171,13 @@
 //セルを選択したとき
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [myPocketDelegate performSelector:@selector(pushToDetailView:) withObject:[tlArray.shared objectAtIndex:indexPath.row]];
-//    [self deselectRowAtIndexPath:indexPath animated:YES];
+    [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 //セルの高さ
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    return 60;
 }
 
 - (UITableViewCellEditingStyle)tableView:(UITableView*)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -208,6 +206,5 @@
     }
     FUNC();
 }
-
 
 @end

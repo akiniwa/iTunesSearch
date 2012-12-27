@@ -62,6 +62,8 @@ enum view {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar"] forBarMetrics:UIBarMetricsDefault];
 
     txField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 190, 30)];
     txField.delegate = (id)self;

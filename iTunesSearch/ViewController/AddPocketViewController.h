@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIFormDataRequest.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface AddPocketViewController : UIViewController <ASIHTTPRequestDelegate>
 {

@@ -12,6 +12,8 @@
 @interface MyPocketViewController()
 {
     BOOL is_reload;
+    UILabel *triggerHeader;
+    BOOL headerOn;
 }
 
 @end
@@ -37,7 +39,7 @@
 }
 
 - (void)initialization {
-    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 360) style:UITableViewStyleGrouped];
+    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 355) style:UITableViewStylePlain];
     myPocketTableView.urlString = self.urlString;
     myPocketTableView.myPocketDelegate = self;
     [self.view addSubview:myPocketTableView];
@@ -52,13 +54,7 @@
     [super viewDidLoad];
     [myPocketTableView mainTableLoad];
 
-    UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
-    [addPocket setTitle:@"reload" forState:UIControlStateNormal];
-    [addPocket addTarget:myPocketTableView action:@selector(reloadTable) forControlEvents:UIControlEventTouchUpInside];
-
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];
-    self.navigationItem.leftBarButtonItem = leftButton;
+    [self setTrigger];
 }
 
 - (void) pushToDetailView:(NSString*)pocket_id:(NSString*)is_mine {
@@ -73,6 +69,21 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+- (void)setTrigger{
+    //トリガーのイメージを埋め込む。
+    CGRect r = myPocketTableView.bounds;
+    r.origin.y -= 70;
+    r.size.height = 70;
+    triggerHeader = [[UILabel alloc] initWithFrame:r];
+    [myPocketTableView addSubview:triggerHeader];
+
+    UIImageView* imageview = [[UIImageView alloc] initWithFrame:CGRectMake((r.size.width/2 - 30), (60 - 32) / 2, 45, 32)];
+    imageview.image = [UIImage imageNamed:@"downward"];
+    imageview.tag = 1;
+    [triggerHeader addSubview:imageview];
+    is_reload = NO;
+}
+
 -(void)hideMusicView {
     //トリガーは追加。
     CGRect r = myPocketTableView.bounds;
@@ -81,6 +92,7 @@
     } else {
         triggerHeader.text = @"離して更新!!";
         if (is_reload){
+            [myPocketTableView reloadTable];
             is_reload = NO;
         }
     }
@@ -102,6 +114,9 @@
     }
 }
 
+- (void)showMusicView {
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

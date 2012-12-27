@@ -7,6 +7,8 @@
 //
 
 #import "TLCell.h"
+#import <QuartzCore/QuartzCore.h>
+
 
 #define USER_NAME_X 150
 #define USER_NAME_Y 100
@@ -36,11 +38,13 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleGray;
+
         userName = [[UILabel alloc] init];
         [userName setFont:[UIFont systemFontOfSize:10]];
         [self setLabelFrame:userName :CGRectMake(USER_NAME_X, USER_NAME_Y, USER_NAME_WIDTH, USER_NAME_HEIGHT)];
         [self addSubview:userName];
-        
+
         musicTitle = [[UILabel alloc] init];
         [musicTitle setFont:[UIFont systemFontOfSize:10]];
         [self setLabelFrame:musicTitle :CGRectMake(MUSIC_TITLE_X, MUSIC_TITLE_Y, MUSIC_TITLE_WIDTH, MUSIC_TITLE_HEIGHT)];
@@ -58,6 +62,8 @@
         
         tlImageView = [[UIImageView alloc] init];
         tlImageView.frame = CGRectMake(10, 10, 130, 130);
+        tlImageView.layer.cornerRadius = 8;
+        tlImageView.clipsToBounds = true;
         [self addSubview:tlImageView];
         
         musicCount = [[UILabel alloc] init];

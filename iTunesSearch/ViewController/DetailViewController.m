@@ -36,7 +36,7 @@
     [super viewDidLoad];
 
 	// Do any additional setup after loading the view.
-    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 350) style:UITableViewStyleGrouped];
+    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(10, 10, 300, 355) style:UITableViewStylePlain];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
     detailTableView.is_editable = is_editable;
     detailTableView.pocket_id = pocket_id;

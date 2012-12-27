@@ -304,11 +304,11 @@ static NSString *user_id;
 	if ((r.origin.y > -70) && (headerOn == YES)) {
 		headerOn = NO;
     }
-//    [myPocketDelegate performSelector:@selector(hideMusicView)];
+    [myPocketDelegate performSelector:@selector(hideMusicView)];
 }
 
 - (void) endScroll{
-//    [myPocketDelegate performSelector:@selector(showMusicView)];
+    [myPocketDelegate performSelector:@selector(showMusicView)];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

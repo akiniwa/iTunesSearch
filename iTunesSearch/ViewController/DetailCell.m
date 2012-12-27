@@ -8,6 +8,7 @@
 
 #import "DetailCell.h"
 #import "DetailMusicView.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define ARTIST_NAME_X 150
 #define ARTIST_NAME_Y 50
@@ -27,13 +28,17 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleGray;
+        
         musicTitle = [[UILabel alloc] init];
         [musicTitle setFont:[UIFont systemFontOfSize:10]];
         [self setLabelFrame:musicTitle :CGRectMake(MUSIC_TITLE_X, MUSIC_TITLE_Y, MUSIC_TITLE_WIDTH, MUSIC_TITLE_HEIGHT)];
         [self addSubview:musicTitle];
 
         tlImageView = [[UIImageView alloc] init];
-        tlImageView.frame = CGRectMake(10, 10, 80, 80);
+        tlImageView.frame = CGRectMake(10, 10, 60, 60);
+        tlImageView.layer.cornerRadius = 8;
+        tlImageView.clipsToBounds = true;
         [self addSubview:tlImageView];
 
         artist = [[UILabel alloc] init];

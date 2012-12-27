@@ -299,7 +299,9 @@ static NSString *user_id;
         is_mine = @"NO";
     }
     NSString *pocket_id = [tlArray.pocket_id objectAtIndex:indexPath.row];
-    [myPocketDelegate performSelector:@selector(pushToDetailView::) withObject:pocket_id withObject:is_mine];
+    NSString *pocket_title = [tlArray.pocket_title objectAtIndex:indexPath.row];
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:@[pocket_id, is_mine, pocket_title] forKeys:@[@"pocket_id", @"is_mine", @"pocket_title"]];
+    [myPocketDelegate performSelector:@selector(pushToDetailView:) withObject:dictionary];
     
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "FooterForDetailView.h"
+#import "DetailMusicView.h"
 
 @implementation FooterForDetailView
 {
@@ -17,10 +18,24 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        footerTitle = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 180, 45)];
-        [footerTitle setBackgroundColor:[UIColor redColor]];
-        [footerTitle setFont:[UIFont systemFontOfSize:14.0f]];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 150, 20)];
+        [label setFont:[UIFont systemFontOfSize:10]];
+        [label setTextColor:[UIColor grayColor]];
+        [label setBackgroundColor:[UIColor clearColor]];
+        [label setText:@"プレイリスト名 :"];
+        [self addSubview:label];
+        
+        footerTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 19, 180, 40)];
+        [footerTitle setBackgroundColor:[UIColor clearColor]];
+        [footerTitle setFont:[UIFont systemFontOfSize:17.0f]];
         [self addSubview:footerTitle];
+
+        UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
+        [lineImage setFrame:CGRectMake(0, 0, 320, 2)];
+        [self addSubview:lineImage];
+        
+        DetailMusicView * musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(250, 0, 50, 50)];
+        [self addSubview:musicView];
     }
     return self;
 }

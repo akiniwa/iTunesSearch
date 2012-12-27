@@ -10,4 +10,6 @@
 
 @interface FooterForDetailView : UIView
 
+- (void)setTitle:(NSString*)footerString;
+
 @end

@@ -59,10 +59,12 @@
     [myPocketTableView mainTableLoad];
 }
 
-- (void) pushToDetailView:(NSString*)pocket_id:(NSString*)is_mine {
+- (void) pushToDetailView:(NSDictionary*)dictionary {
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
-    detailViewController.pocket_id = pocket_id;
-    if ([is_mine isEqualToString:@"YES"]) {
+    detailViewController.pocket_id = [dictionary objectForKey:@"pocket_id"];
+    detailViewController.pocket_title = [dictionary objectForKey:@"pocket_title"];
+    
+    if ([[dictionary objectForKey:@"is_mine"] isEqualToString:@"YES"]) {
         [detailViewController setButton:YES];
     } else {
         [detailViewController setButton:NO];

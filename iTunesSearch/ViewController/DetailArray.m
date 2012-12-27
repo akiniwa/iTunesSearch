@@ -10,7 +10,7 @@
 
 @implementation DetailArray
 
-@synthesize artists, music_title, jacket_url, track_url, music_id;
+@synthesize artists, music_title, jacket_url, track_url, music_id, pocket_title;
 
 - (id)init {
     self = [super init];
@@ -20,6 +20,7 @@
         track_url = [NSMutableArray array];
         jacket_url = [NSMutableArray array];
         music_id = [NSMutableArray array];
+        pocket_title = [NSMutableArray array];
     }
     return self;
 }
@@ -30,6 +31,7 @@
     [track_url removeAllObjects];
     [jacket_url removeAllObjects];
     [music_id removeAllObjects];
+    [pocket_title removeAllObjects];
 }
 
 - (void)removeAtIndex:(NSInteger)index {
@@ -38,6 +40,7 @@
     [track_url removeObjectAtIndex:index];
     [jacket_url removeObjectAtIndex:index];
     [music_id removeObjectAtIndex:index];
+    [pocket_title removeObjectAtIndex:index];
 }
 
 @end

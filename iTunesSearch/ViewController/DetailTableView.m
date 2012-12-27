@@ -63,6 +63,7 @@
             [detailArray.artists addObject:[photo objectForKey:@"artist"]];
             [detailArray.music_id addObject:[photo objectForKey:@"music_id"]];
             [detailArray.track_url addObject:[photo objectForKey:@"track_url"]];
+            [detailArray.pocket_title addObject:[photo objectForKey:@"pocket_title"]];
         }
         [self performSelectorOnMainThread:@selector(updatePlayState) withObject:nil waitUntilDone:YES];
     };

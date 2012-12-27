@@ -50,7 +50,7 @@
         [self addSubview:musicView];
         
         UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
-        [lineImage setFrame:CGRectMake(0, 0, 320, 2)];
+        [lineImage setFrame:CGRectMake(0, 58, 320, 2)];
         [self addSubview:lineImage];
     }
     return self;

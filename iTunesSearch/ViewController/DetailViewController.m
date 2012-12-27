@@ -21,7 +21,7 @@
 
 @implementation DetailViewController
 
-@synthesize pocket_id;
+@synthesize pocket_id, pocket_title;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,14 +39,16 @@
 
 	// Do any additional setup after loading the view.
     detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - 160) style:UITableViewStylePlain];
-    detailTableView.backgroundColor = [UIColor blackColor];
+    detailTableView.backgroundColor = [UIColor clearColor];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
     detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     detailTableView.is_editable = is_editable;
     detailTableView.pocket_id = pocket_id;
 
     FooterForDetailView *footerForDetailView = [[FooterForDetailView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 160, 320, 100)];
-    [footerForDetailView setBackgroundColor:[UIColor blueColor]];
+    [footerForDetailView setTitle:pocket_title];
+    
+    [footerForDetailView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:footerForDetailView];
 
     [self.view addSubview:detailTableView];

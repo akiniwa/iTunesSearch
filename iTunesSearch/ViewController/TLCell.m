@@ -81,11 +81,11 @@
         [shareButton setTitle:@"share" forState:UIControlStateNormal];
 
         UIImageView *nextImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"next"]];
-        [nextImage setFrame:CGRectMake(290, self.bounds.size.height, 20, 40)];
+        [nextImage setFrame:CGRectMake(290, self.bounds.size.height + 5, 20, 40)];
         [self addSubview:nextImage];
-        
+
         UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
-        [lineImage setFrame:CGRectMake(0, 0, 320, 2)];
+        [lineImage setFrame:CGRectMake(0, 138, 320, 2)];
         [self addSubview:lineImage];
     }
     return self;

@@ -67,6 +67,25 @@
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = @"ユーザー情報";
+            break;
+        case 1:
+            sectionName = @"プライバシー設定";
+            break;
+        case 2:
+            sectionName = @"通知設定";
+        default:
+            sectionName = @"通知設定";
+            break;
+    }
+    return sectionName;
+}
+
 //リストアイテムの数。
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

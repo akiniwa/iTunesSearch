@@ -105,6 +105,7 @@
 		7660F8EF168C38B7000A771E /* addMusic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8EE168C38B7000A771E /* addMusic@2x.png */; };
 		7660F8F2168C3EC1000A771E /* FooterForDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7660F8F1168C3EC0000A771E /* FooterForDetailView.m */; };
 		768D8683166DB37100465565 /* PostMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 768D8682166DB37100465565 /* PostMutableArray.m */; };
+		D58C425216915FEC00C22B80 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425116915FEC00C22B80 /* UserView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -296,6 +297,8 @@
 		7660F8F1168C3EC0000A771E /* FooterForDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterForDetailView.m; sourceTree = "<group>"; };
 		768D8681166DB37100465565 /* PostMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostMutableArray.h; sourceTree = "<group>"; };
 		768D8682166DB37100465565 /* PostMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostMutableArray.m; sourceTree = "<group>"; };
+		D58C425016915FEC00C22B80 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
+		D58C425116915FEC00C22B80 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -691,6 +694,8 @@
 			children = (
 				76252CC616786B8E00AD7D5F /* UsersViewController.h */,
 				76252CC716786B8E00AD7D5F /* UsersViewController.m */,
+				D58C425016915FEC00C22B80 /* UserView.h */,
+				D58C425116915FEC00C22B80 /* UserView.m */,
 			);
 			name = UsersView;
 			sourceTree = "<group>";
@@ -909,6 +914,7 @@
 				761D8AAF168AB248002A7E0C /* MusicView.m in Sources */,
 				761D8AB5168AC955002A7E0C /* DetailMusicView.m in Sources */,
 				7660F8F2168C3EC1000A771E /* FooterForDetailView.m in Sources */,
+				D58C425216915FEC00C22B80 /* UserView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

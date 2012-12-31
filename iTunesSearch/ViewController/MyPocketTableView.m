@@ -302,7 +302,7 @@ static NSString *user_id;
     NSString *pocket_title = [tlArray.pocket_title objectAtIndex:indexPath.row];
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:@[pocket_id, is_mine, pocket_title] forKeys:@[@"pocket_id", @"is_mine", @"pocket_title"]];
     [myPocketDelegate performSelector:@selector(pushToDetailView:) withObject:dictionary];
-    
+
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -12,6 +12,7 @@
 @implementation FooterForDetailView
 {
     UILabel *footerTitle;
+    DetailMusicView *musicView;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -34,11 +35,15 @@
         [lineImage setFrame:CGRectMake(0, 0, 320, 2)];
         [self addSubview:lineImage];
 
-        DetailMusicView * musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(220, 20, 70, 50)];
+        musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(220, 20, 70, 50)];
         musicView.backgroundColor = [UIColor grayColor];
         [self addSubview:musicView];
     }
     return self;
+}
+
+- (void)viewWillDisappear {
+    [musicView removeObserverFromMusicView];
 }
 
 - (void) setTitle:(NSString*)footerString {

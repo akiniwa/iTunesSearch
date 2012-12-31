@@ -7,7 +7,6 @@
 //
 
 #import "DetailCell.h"
-#import "DetailMusicView.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define ARTIST_NAME_X 70
@@ -22,7 +21,7 @@
 
 @implementation DetailCell
 
-@synthesize tlImageView, musicTitle, artist, musicView;
+@synthesize tlImageView, musicTitle, artist;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -47,9 +46,6 @@
         tlImageView.layer.cornerRadius = 2;
         tlImageView.clipsToBounds = true;
         [self addSubview:tlImageView];
-
-//       musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(100, 0, 50, 50)];
-//       [self addSubview:musicView];
         
         UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
         [lineImage setFrame:CGRectMake(0, 58, 320, 2)];

@@ -15,5 +15,6 @@
 @property BOOL is_editable;
 
 - (void)mainTableLoad;
+- (void)viewWillDisappear:(BOOL)animated;
 
 @end

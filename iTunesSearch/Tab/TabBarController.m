@@ -34,7 +34,6 @@
     UsersViewController *usersViewController = [[UsersViewController alloc] init];
     usersViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
     usersViewController.urlString = USER_FEED_URL;
-    [usersViewController initialization];
     [usersViewController setShareButton:NO];
     UINavigationController *naviUserPocket = [[UINavigationController alloc] initWithRootViewController:usersViewController];
     [naviUserPocket.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];
@@ -42,7 +41,6 @@
     PublicViewController *publicViewController = [[PublicViewController alloc] init];
     publicViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
     publicViewController.urlString = PUBLIC_FEED_URL;
-    [publicViewController initialization];
     [publicViewController setShareButton:YES];
     UINavigationController *naviPublicPocket = [[UINavigationController alloc] initWithRootViewController:publicViewController];
     [naviPublicPocket.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];

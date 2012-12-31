@@ -42,6 +42,8 @@
     if (self) {
         [self setDelegate:(id)self];
         [self setDataSource:(id)self];
+        self.backgroundColor = [UIColor clearColor];
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
@@ -92,12 +94,6 @@
     imageLoader = [ImageLoader sharedInstance];
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
     cell.tlImageView.image = jacketImage;
-    
-    [cell.musicView.playButton addTarget:self action:@selector(playMusic:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.musicView.pauseButton addTarget:self action:@selector(pauseMusic:) forControlEvents:UIControlEventTouchUpInside];
-    cell.musicView.playButton.tag = indexPath.row;
-    cell.musicView.pauseButton.tag = indexPath.row;
-//  [cell.musicView addSubview:cell.musicView.playButton];
 
     if (!jacketImage) {
         __weak DetailTableView *_self = self;
@@ -131,30 +127,9 @@
 - (void)updatePlayState {
     NSLog(@"updatePlayState");
     [self reloadData];
-}
 
-- (void) playMusic:(UIButton*)playButton {
-    /*
-    NSArray *cells = [self visibleCells];
-
-    for (DetailCell *cell in cells) {
-        [cell.musicView.pauseButton removeFromSuperview];
-        [cell.musicView addSubview:cell.musicView.playButton];
-    }
-    
-    [cell.musicView playSound:[detailArray.track_url objectAtIndex:playButton.tag]];
-    [cell.musicView.playButton removeFromSuperview];
-    [cell.musicView addSubview:cell.musicView.pauseButton];
-     */
-    DetailCell *cell = (DetailCell*)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:playButton.tag inSection:0]];
-    [cell.musicView playSound:[detailArray.track_url objectAtIndex:playButton.tag]];
-}
-
-- (void) pauseMusic:(UIButton*)pauseButton {
-    DetailCell *cell = (DetailCell*)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:pauseButton.tag inSection:0]];
-    [cell.musicView pauseSound];
-//    [cell.musicView.pauseButton removeFromSuperview];
-//    [cell.musicView addSubview:cell.musicView.playButton];
+    NSIndexPath* indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    [self selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
 }
 
 //リストアイテムの数。
@@ -172,7 +147,10 @@
 //セルを選択したとき
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self deselectRowAtIndexPath:indexPath animated:YES];
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:[detailArray.track_url objectAtIndex:indexPath.row] forKey:@"trackUrl"];
+    NSNotification *n = [NSNotification notificationWithName:@"trackUrl" object:self userInfo:dic];
+    [[NSNotificationCenter defaultCenter] postNotification:n];
+//  [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 //セルの高さ
@@ -205,7 +183,6 @@
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // ここは空のままでOKです。
     }
-    FUNC();
 }
 
 @end

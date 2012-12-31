@@ -11,17 +11,14 @@
 
 @implementation UsersViewController
 
-- (void)initialization {
-    [super initialization];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     self.title = @"あなたのプレイリスト";
     [self.myPocketTableView setBackgroundColor:[UIColor clearColor]];
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
+    [self.myPocketTableView setFrame:CGRectMake(0, 50, 320, self.view.bounds.size.height - 145)];
 
     UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeCustom];
     [addPocket setFrame:CGRectMake(140, 5, 60, 40)];

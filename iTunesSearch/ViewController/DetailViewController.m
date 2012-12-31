@@ -15,6 +15,7 @@
 
 @interface DetailViewController (){
     BOOL is_editable;
+    FooterForDetailView *footerForDetailView;
 }
 
 @end
@@ -43,24 +44,19 @@
     [menuButton addTarget:self action:@selector(pushBack) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     self.navigationItem.leftBarButtonItem = buttonItem;
-    
-	// Do any additional setup after loading the view.
+
     detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - 160) style:UITableViewStylePlain];
-    detailTableView.backgroundColor = [UIColor clearColor];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
-    detailTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     detailTableView.is_editable = is_editable;
     detailTableView.pocket_id = pocket_id;
 
-    FooterForDetailView *footerForDetailView = [[FooterForDetailView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 160, 320, 100)];
-    [footerForDetailView setTitle:pocket_title];
-    
+    [self.view addSubview:detailTableView];
+    [detailTableView mainTableLoad];
+
+    footerForDetailView = [[FooterForDetailView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 160, 320, 100)];
+    [footerForDetailView setTitle:pocket_title];    
     [footerForDetailView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:footerForDetailView];
-
-    [self.view addSubview:detailTableView];
-
-    [detailTableView mainTableLoad];
 }
 
 - (void) showModal {
@@ -69,6 +65,10 @@
     UINavigationController *naviCtr = [[UINavigationController alloc] initWithRootViewController:mainViewControllr];
     mainViewControllr.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     [self presentModalViewController:naviCtr animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [footerForDetailView viewWillDisappear];
 }
 
 - (void)pushBack {

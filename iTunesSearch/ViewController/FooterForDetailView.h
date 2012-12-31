@@ -11,5 +11,6 @@
 @interface FooterForDetailView : UIView
 
 - (void)setTitle:(NSString*)footerString;
+- (void)viewWillDisappear;
 
 @end

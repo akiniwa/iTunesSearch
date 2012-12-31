@@ -39,7 +39,7 @@
 }
 
 - (void)initialization {
-    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(0, 0, 320, 365) style:UITableViewStylePlain];
+    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(0, 0, 320, (int)self.view.bounds.size.height-95) style:UITableViewStylePlain];
     myPocketTableView.urlString = self.urlString;
     myPocketTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     myPocketTableView.myPocketDelegate = self;
@@ -55,7 +55,7 @@
     [super viewDidLoad];
 
     [self setTrigger];
-
+    [self initialization];
     [myPocketTableView mainTableLoad];
 }
 

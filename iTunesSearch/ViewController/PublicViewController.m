@@ -14,16 +14,12 @@
 
 @implementation PublicViewController
 
-- (void)initialization {
-    [super initialization];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    [self.myPocketTableView setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]]];
-//  [self.myPocketTableView setBackgroundColor:[UIColor lightGrayColor]];
+    [self.myPocketTableView setBackgroundColor:[UIColor clearColor]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
     self.title = @"みんなのプレイリスト";
 }
 

@@ -15,6 +15,7 @@
 
 #define PAUSE_BUTTON_X 40
 
+
 @implementation DetailMusicView
 
 @synthesize playButton, pauseButton;
@@ -26,14 +27,32 @@
         playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [playButton setImage:[UIImage imageNamed:@"jacket_play"] forState:UIControlStateNormal];
         [playButton setFrame:CGRectMake(PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT)];
+        [playButton addTarget:self action:@selector(callplaySound) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:playButton];
 
         pauseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [pauseButton setImage:[UIImage imageNamed:@"pauseBtn"] forState:UIControlStateNormal];
         [pauseButton setFrame:CGRectMake(PAUSE_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT)];
+        [pauseButton addTarget:self action:@selector(pauseSound) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:pauseButton];
+        
+        NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+        DEBUGLOG(@"hoge");
+        [nc addObserver:self selector:@selector(setTrackUrl:) name:@"trackUrl" object:nil];
     }
     return self;
+}
+
+- (void) removeObserverFromMusicView {
+    // 通知オブジェクトを削除する。
+    FUNC();
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"trackUrl" object:nil];
+}
+
+-(void)setTrackUrl:(NSNotification*)center{
+    NSString *value = [[center userInfo] objectForKey:@"trackUrl"];
+    DEBUGLOG(@"value:%@", value);
+    [self playSound:value];
 }
 
 - (void)playSound:(NSString *)url {

@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-@class DetailMusicView;
 
 @interface DetailCell : UITableViewCell
 
 @property (nonatomic, retain) UIImageView *tlImageView;
 @property (nonatomic, retain) UILabel *musicTitle;
 @property (nonatomic, retain) UILabel *artist;
-@property (nonatomic, retain) DetailMusicView *musicView;
 
 @end

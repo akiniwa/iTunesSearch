@@ -14,7 +14,6 @@
 @property (nonatomic, retain) NSString *urlString;
 @property (nonatomic, retain) MyPocketTableView *myPocketTableView;
 
-- (void)initialization;
 - (void)setShareButton:(BOOL)is_button;
 
 @end

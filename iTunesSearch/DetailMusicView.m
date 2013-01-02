@@ -37,7 +37,6 @@
         [self addSubview:pauseButton];
         
         NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-        DEBUGLOG(@"hoge");
         [nc addObserver:self selector:@selector(setTrackUrl:) name:@"trackUrl" object:nil];
     }
     return self;

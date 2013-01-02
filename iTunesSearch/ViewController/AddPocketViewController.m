@@ -48,7 +48,7 @@
     [self.view addSubview:addPocket];
     
     UIButton *customView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 30)];
-    [customView setBackgroundImage:[UIImage imageNamed:@"cancelBtn.png"] forState:UIControlStateNormal];
+    [customView setBackgroundImage:[UIImage imageNamed:@"cancelBtn"] forState:UIControlStateNormal];
     [customView addTarget:self action:@selector(modalClose) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.leftBarButtonItem = buttonItem;

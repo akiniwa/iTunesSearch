@@ -30,7 +30,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
+
     UsersViewController *usersViewController = [[UsersViewController alloc] init];
     usersViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
     usersViewController.urlString = USER_FEED_URL;
@@ -39,14 +41,15 @@
     [naviUserPocket.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];
 
     PublicViewController *publicViewController = [[PublicViewController alloc] init];
-    publicViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:0];
+    publicViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:1];
+//    publicViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"hoge" image:[UIImage imageNamed:@"addMusic"] tag:1];
     publicViewController.urlString = PUBLIC_FEED_URL;
     [publicViewController setShareButton:YES];
     UINavigationController *naviPublicPocket = [[UINavigationController alloc] initWithRootViewController:publicViewController];
     [naviPublicPocket.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];
 
     SettingViewController *settingViewController = [[SettingViewController alloc] init];
-    settingViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:3];
+    settingViewController.tabBarItem = [[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemBookmarks tag:2];
 
     NSArray *viewArray = [NSArray arrayWithObjects:naviUserPocket, naviPublicPocket, settingViewController, nil];
     [self setViewControllers:viewArray animated:YES];

@@ -9,29 +9,29 @@
 #import "TLCell.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define POCKET_TITLE_X 130
+#define POCKET_TITLE_X 125
 #define POCKET_TITLE_Y 15
-#define POCKET_TITLE_WIDTH 150
-#define POCKET_TITLE_HEGHIT 20
+#define POCKET_TITLE_WIDTH 170
+#define POCKET_TITLE_HEGHIT 40
 
 #define USER_NAME_X 145
-#define USER_NAME_Y 45
+#define USER_NAME_Y 50
 #define USER_NAME_WIDTH 120
 #define USER_NAME_HEIGHT 20
 
 #define MUSIC_TITLE_X 145
-#define MUSIC_TITLE_Y 65
+#define MUSIC_TITLE_Y 70
 #define MUSIC_TITLE_WIDTH 120
 #define MUSIC_TITLE_HEIGHT 20
 
 #define SHARED_X 145
-#define SHARED_Y 110
+#define SHARED_Y 90
 #define SHARED_WIDTH 60
 #define SHARED_HEGHIT 10
 
 @implementation TLCell
 
-@synthesize tlImageView, userName, musicTitle, shared, pocketTitle, shareButton, musicCount;
+@synthesize tlImageView, jacketBackGround, userName, musicTitle, shared, pocketTitle, shareButton, musicCount;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -39,9 +39,15 @@
     if (self) {
         self.selectionStyle = UITableViewCellSelectionStyleGray;
 
+        jacketBackGround = [[UIImageView alloc] initWithFrame:CGRectMake(7, 17, 102, 102)];
+        [jacketBackGround setImage:[UIImage imageNamed:@"jacketImageBackGround"]];
+        jacketBackGround.alpha = 0.0f;
+        [self addSubview:jacketBackGround];
+        
         tlImageView = [[UIImageView alloc] init];
-        tlImageView.frame = CGRectMake(5, 5, 100, 100);
-        tlImageView.layer.cornerRadius = 8;
+        tlImageView.frame = CGRectMake(8, 18, 100, 100);
+        tlImageView.layer.cornerRadius = 6;
+        tlImageView.alpha = 0.0f;
         tlImageView.clipsToBounds = true;
         [self addSubview:tlImageView];
         
@@ -51,6 +57,7 @@
         [self setLabelFrame:pocketTitle :CGRectMake(POCKET_TITLE_X, POCKET_TITLE_Y, POCKET_TITLE_WIDTH, POCKET_TITLE_HEGHIT)];
         [self addSubview:pocketTitle];
         
+/*
         musicTitle = [[UILabel alloc] init];
         [musicTitle setFont:[UIFont systemFontOfSize:13]];
         [self setLabelProperty:musicTitle];
@@ -62,7 +69,7 @@
         [userName setFont:[UIFont systemFontOfSize:10]];
         [self setLabelFrame:userName :CGRectMake(USER_NAME_X, USER_NAME_Y, USER_NAME_WIDTH, USER_NAME_HEIGHT)];
         [self addSubview:userName];
-
+*/
         musicCount = [[UILabel alloc] init];
         [musicCount setFont:[UIFont systemFontOfSize:11]];
         [self setLabelProperty:musicCount];
@@ -80,11 +87,13 @@
         [shareButton setTitle:@"share" forState:UIControlStateNormal];
 
         UIImageView *nextImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"next"]];
-        [nextImage setFrame:CGRectMake(290, self.bounds.size.height + 5, 20, 40)];
+        [nextImage setFrame:CGRectMake(293, 45, 20, 40)];
         [self addSubview:nextImage];
+        
+        DEBUGLOG(@"height:%f", self.bounds.size.height);
 
         UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];
-        [lineImage setFrame:CGRectMake(0, 143, 320, 2)];
+        [lineImage setFrame:CGRectMake(self.bounds.origin.x, 133, self.bounds.size.width, 2)];
         [self addSubview:lineImage];
     }
     return self;

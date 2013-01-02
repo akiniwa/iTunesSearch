@@ -11,12 +11,12 @@
 
 #define ARTIST_NAME_X 70
 #define ARTIST_NAME_Y 5
-#define ARTIST_NAME_WIDTH 120
+#define ARTIST_NAME_WIDTH 240
 #define ARTIST_NAME_HEIGHT 20
 
 #define MUSIC_TITLE_X 90
 #define MUSIC_TITLE_Y 27
-#define MUSIC_TITLE_WIDTH 120
+#define MUSIC_TITLE_WIDTH 220
 #define MUSIC_TITLE_HEIGHT 20
 
 @implementation DetailCell
@@ -43,8 +43,8 @@
 
         tlImageView = [[UIImageView alloc] init];
         tlImageView.frame = CGRectMake(1, 1, 58, 58);
-        tlImageView.layer.cornerRadius = 2;
-        tlImageView.clipsToBounds = true;
+//      tlImageView.layer.cornerRadius = 2;
+//      tlImageView.clipsToBounds = true;
         [self addSubview:tlImageView];
         
         UIImageView *lineImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"line"]];

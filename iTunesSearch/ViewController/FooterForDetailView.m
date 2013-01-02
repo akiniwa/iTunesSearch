@@ -19,13 +19,15 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"footerBackGround"]]];
+
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 150, 20)];
         [label setFont:[UIFont systemFontOfSize:10]];
         [label setTextColor:[UIColor grayColor]];
         [label setBackgroundColor:[UIColor clearColor]];
         [label setText:@"プレイリスト名 :"];
         [self addSubview:label];
-        
+
         footerTitle = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 180, 40)];
         [footerTitle setBackgroundColor:[UIColor clearColor]];
         [footerTitle setFont:[UIFont systemFontOfSize:19.0f]];

@@ -24,36 +24,18 @@
 
 #define APP_ID @"355116974569178"
 
-/*
- デバッグログ用マクロ。
- NSLog()の使いすぎは明らかなパフォーマンスの低下を招くので、
- リリースビルドからは自動的に取り除かれるようにします。
- */
 #ifdef DEBUG
 #define DEBUGLOG(...) NSLog(__VA_ARGS__)
 #else
 #define DEBUGLOG(...) ;
 #endif
 
-/*
- ソース上の行番号を出力します。
- ランタイムエラーが出るけど、どこまで正常に実行できているか
- 検証する際によく用います。
- */
 #ifdef DEBUG
 #define LINE() NSLog(@"%d",__LINE__)
 #else
 #define LINE() ;
 #endif
 
-/*
- 実行された際、どの関数orメソッド内にいるか出力します。
- 同じようなログを出力しまくっていると、
- どのメソッドで出力されたものかわからなくなることがありますが、
- 一番最初にこいつを出力しておけば一目瞭然です。
- 
- 上のLINE()マクロと組み合わせてもいいですね。
- */
 #ifdef DEBUG
 #define FUNC() NSLog(@"%s",__PRETTY_FUNCTION__)
 #else

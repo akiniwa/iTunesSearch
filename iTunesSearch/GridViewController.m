@@ -7,20 +7,16 @@
 //
 
 #import "GridViewController.h"
-#import "GridView.h"
 #import "SBJson.h"
 #import "HttpClient.h"
-#import "MovingScrollView.h"
 #import "ScrollView.h"
 #import "PostMutableArray.h"
 
-#define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=musicTrack&limit=30&term="
+#define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=song&limit=24&term="
 
 @interface GridViewController ()
 {
-    GridView *gridView;
     UIScrollView *scrollView;
-    MovingScrollView *mscroll;
     
     PostMutableArray *postMutableArray;
     NSMutableDictionary *selectDictionary;
@@ -36,7 +32,15 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super init];
+    if (self) {
+        self.view.frame = frame;
+        // Do your init stuff here
     }
     return self;
 }
@@ -44,18 +48,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 
     CGRect bounds = [[UIScreen mainScreen] bounds];
     scrollView = [[ScrollView alloc] initWithFrame:bounds];
     scrollView.backgroundColor = [UIColor clearColor];
-    scrollView.contentSize = CGSizeMake(320, 700);
+    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, self.view.bounds.size.height);
     [self.view addSubview:scrollView];
 
     postMutableArray = [[PostMutableArray alloc] init];
 
-    // GridViewを組み込み。
-    gridView = [[GridView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+    gridView = [[GridView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    gridView.backgroundColor = [UIColor clearColor];
     gridView.delegateGridView = self;
     [scrollView addSubview:gridView];
 
@@ -68,8 +71,6 @@
 
     // 配列を作る。
     [self makeMutableArray];
-    // 配列化したviewをGridViewに送る。
-    // [self setGridView:array];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -131,7 +132,12 @@
         [items setObject:artists forKey:@"artists"];
         [items setObject:titles forKey:@"titles"];
         [items setObject:views forKey:@"views"];
-        
+
+        int height = (([titles count]+3)/4)*96;
+        NSLog(@"height::%d", height);
+        scrollView.contentSize = CGSizeMake(320, (height + 75));
+        gridView.frame = CGRectMake(0, 0, 320, height);
+ 
         [self performSelectorOnMainThread:@selector(setGridView:) withObject:items waitUntilDone:YES];
     };
     void (^onError)(NSError *) = ^(NSError *error) {
@@ -152,7 +158,7 @@
 - (void) notificateNumbers:(NSMutableDictionary*)dictionary {
     NSInteger button_number = [[dictionary objectForKey:@"button_number"] intValue];
     NSString *is_checked = [dictionary objectForKey:@"is_checked"];
-    
+
     if ([is_checked isEqualToString:@"NO"]) {
         [self removePostMutableArray:button_number];
     } else {
@@ -166,12 +172,10 @@
     [postMutableArray.track_url addObject:[[items objectForKey:@"track_url"] objectAtIndex:button_number]];
     [postMutableArray.jacket_url addObject:[[items objectForKey:@"jacket_url"] objectAtIndex:button_number]];
     [postMutableArray.artists addObject:[[items objectForKey:@"artists"] objectAtIndex:button_number]];
-    NSLog(@"array:add:%@", [[items objectForKey:@"titles"] objectAtIndex:button_number]);
 }
 
 - (void) removePostMutableArray:(NSInteger)button_number {
     [postMutableArray removeObject:[[selectDictionary objectForKey:[NSString stringWithFormat:@"%d", button_number]] intValue]];
-    NSLog(@"array::%@", postMutableArray);
     [selectDictionary removeObjectForKey:[NSString stringWithFormat:@"%d", button_number]];
 }
 
@@ -180,7 +184,6 @@
 {
     gridView.numberOfColumns = 4;
     [gridView setItems:localItems];
-    [mscroll showView];
 }
 
 - (void)setImage{

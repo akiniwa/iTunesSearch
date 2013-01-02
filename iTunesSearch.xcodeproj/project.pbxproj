@@ -95,8 +95,6 @@
 		7660F8D6168BE3F7000A771E /* barNull@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8D4168BE3F7000A771E /* barNull@2x.png */; };
 		7660F8D9168BEB25000A771E /* plus@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8D8168BEB25000A771E /* plus@2x.png */; };
 		7660F8DB168BF172000A771E /* next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8DA168BF172000A771E /* next@2x.png */; };
-		7660F8DD168C056F000A771E /* arabikiBack@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8DC168C056F000A771E /* arabikiBack@2x.png */; };
-		7660F8DF168C0695000A771E /* arabiki@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8DE168C0695000A771E /* arabiki@2x.png */; };
 		7660F8E1168C1249000A771E /* backgroundGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8E0168C1249000A771E /* backgroundGray@2x.png */; };
 		7660F8E3168C1823000A771E /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8E2168C1823000A771E /* line@2x.png */; };
 		7660F8E5168C1B39000A771E /* discImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8E4168C1B39000A771E /* discImage@2x.png */; };
@@ -106,6 +104,13 @@
 		7660F8F2168C3EC1000A771E /* FooterForDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7660F8F1168C3EC0000A771E /* FooterForDetailView.m */; };
 		768D8683166DB37100465565 /* PostMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 768D8682166DB37100465565 /* PostMutableArray.m */; };
 		D58C425216915FEC00C22B80 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425116915FEC00C22B80 /* UserView.m */; };
+		D58C425916916D4B00C22B80 /* UITabBarController+hidable.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */; };
+		D58C42751692266B00C22B80 /* lineGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C42741692266B00C22B80 /* lineGray@2x.png */; };
+		D58C427716922B2900C22B80 /* detailBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C427616922B2900C22B80 /* detailBackGround@2x.png */; };
+		D58C42791692312900C22B80 /* footerBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C42781692312900C22B80 /* footerBackGround@2x.png */; };
+		D58C427F1692393D00C22B80 /* jacketImageBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C427E1692393D00C22B80 /* jacketImageBackGround@2x.png */; };
+		D58C4281169257B500C22B80 /* addPlaylist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C4280169257B500C22B80 /* addPlaylist@2x.png */; };
+		D58C42ED1693B82500C22B80 /* GridViewSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C42EC1693B82500C22B80 /* GridViewSearchController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -285,8 +290,6 @@
 		7660F8D4168BE3F7000A771E /* barNull@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "barNull@2x.png"; sourceTree = "<group>"; };
 		7660F8D8168BEB25000A771E /* plus@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "plus@2x.png"; sourceTree = "<group>"; };
 		7660F8DA168BF172000A771E /* next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "next@2x.png"; sourceTree = "<group>"; };
-		7660F8DC168C056F000A771E /* arabikiBack@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arabikiBack@2x.png"; sourceTree = "<group>"; };
-		7660F8DE168C0695000A771E /* arabiki@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arabiki@2x.png"; sourceTree = "<group>"; };
 		7660F8E0168C1249000A771E /* backgroundGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backgroundGray@2x.png"; sourceTree = "<group>"; };
 		7660F8E2168C1823000A771E /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
 		7660F8E4168C1B39000A771E /* discImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "discImage@2x.png"; sourceTree = "<group>"; };
@@ -299,6 +302,15 @@
 		768D8682166DB37100465565 /* PostMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostMutableArray.m; sourceTree = "<group>"; };
 		D58C425016915FEC00C22B80 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		D58C425116915FEC00C22B80 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
+		D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+hidable.h"; sourceTree = "<group>"; };
+		D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+hidable.m"; sourceTree = "<group>"; };
+		D58C42741692266B00C22B80 /* lineGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lineGray@2x.png"; sourceTree = "<group>"; };
+		D58C427616922B2900C22B80 /* detailBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailBackGround@2x.png"; sourceTree = "<group>"; };
+		D58C42781692312900C22B80 /* footerBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footerBackGround@2x.png"; sourceTree = "<group>"; };
+		D58C427E1692393D00C22B80 /* jacketImageBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jacketImageBackGround@2x.png"; sourceTree = "<group>"; };
+		D58C4280169257B500C22B80 /* addPlaylist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addPlaylist@2x.png"; sourceTree = "<group>"; };
+		D58C42EB1693B82500C22B80 /* GridViewSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewSearchController.h; sourceTree = "<group>"; };
+		D58C42EC1693B82500C22B80 /* GridViewSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewSearchController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,14 +436,17 @@
 		76252C7116786B8800AD7D5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				D58C4280169257B500C22B80 /* addPlaylist@2x.png */,
+				D58C427E1692393D00C22B80 /* jacketImageBackGround@2x.png */,
+				D58C42781692312900C22B80 /* footerBackGround@2x.png */,
+				D58C427616922B2900C22B80 /* detailBackGround@2x.png */,
+				D58C42741692266B00C22B80 /* lineGray@2x.png */,
 				76565FAB168C590D00915034 /* backPageBtn@2x.png */,
 				7660F8EE168C38B7000A771E /* addMusic@2x.png */,
 				7660F8EC168C2EDD000A771E /* addPocket@2x.png */,
 				7660F8E4168C1B39000A771E /* discImage@2x.png */,
 				7660F8E2168C1823000A771E /* line@2x.png */,
 				7660F8E0168C1249000A771E /* backgroundGray@2x.png */,
-				7660F8DE168C0695000A771E /* arabiki@2x.png */,
-				7660F8DC168C056F000A771E /* arabikiBack@2x.png */,
 				7660F8DA168BF172000A771E /* next@2x.png */,
 				7660F8D8168BEB25000A771E /* plus@2x.png */,
 				7660F8D3168BE3F7000A771E /* bar@2x.png */,
@@ -495,6 +510,8 @@
 		76252CA916786B8E00AD7D5F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */,
+				D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */,
 				764EB29E168157B700210CAA /* WaitingView */,
 				769EAC26167F06D400F01AA7 /* MusicSearchView */,
 				769EAC25167F06A100F01AA7 /* SettingView */,
@@ -521,15 +538,17 @@
 			name = WaitingView;
 			sourceTree = "<group>";
 		};
-		765408AA165C622C00975C2A /* Grid */ = {
+		765408AA165C622C00975C2A /* GridViewController */ = {
 			isa = PBXGroup;
 			children = (
 				765946EF1653772100C04B50 /* GridViewController.h */,
 				765946F01653772100C04B50 /* GridViewController.m */,
 				765C5ACB1638D6340029DD17 /* GridView.h */,
 				765C5ACC1638D6340029DD17 /* GridView.m */,
+				D58C42EB1693B82500C22B80 /* GridViewSearchController.h */,
+				D58C42EC1693B82500C22B80 /* GridViewSearchController.m */,
 			);
-			name = Grid;
+			name = GridViewController;
 			sourceTree = "<group>";
 		};
 		765408AC165C623300975C2A /* Slide */ = {
@@ -597,7 +616,7 @@
 				763974561665E4C400D66FAF /* CheckButton.m */,
 				76252C7116786B8800AD7D5F /* Resource */,
 				765408AC165C623300975C2A /* Slide */,
-				765408AA165C622C00975C2A /* Grid */,
+				765408AA165C622C00975C2A /* GridViewController */,
 				765C5B001638F41A0029DD17 /* imageLoader */,
 				765C5AF81638E9FE0029DD17 /* HTTP */,
 				765C5A741638C1A10029DD17 /* AppDelegate.h */,
@@ -817,14 +836,17 @@
 				7660F8D6168BE3F7000A771E /* barNull@2x.png in Resources */,
 				7660F8D9168BEB25000A771E /* plus@2x.png in Resources */,
 				7660F8DB168BF172000A771E /* next@2x.png in Resources */,
-				7660F8DD168C056F000A771E /* arabikiBack@2x.png in Resources */,
-				7660F8DF168C0695000A771E /* arabiki@2x.png in Resources */,
 				7660F8E1168C1249000A771E /* backgroundGray@2x.png in Resources */,
 				7660F8E3168C1823000A771E /* line@2x.png in Resources */,
 				7660F8E5168C1B39000A771E /* discImage@2x.png in Resources */,
 				7660F8ED168C2EDD000A771E /* addPocket@2x.png in Resources */,
 				7660F8EF168C38B7000A771E /* addMusic@2x.png in Resources */,
 				76565FAC168C590D00915034 /* backPageBtn@2x.png in Resources */,
+				D58C42751692266B00C22B80 /* lineGray@2x.png in Resources */,
+				D58C427716922B2900C22B80 /* detailBackGround@2x.png in Resources */,
+				D58C42791692312900C22B80 /* footerBackGround@2x.png in Resources */,
+				D58C427F1692393D00C22B80 /* jacketImageBackGround@2x.png in Resources */,
+				D58C4281169257B500C22B80 /* addPlaylist@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -915,6 +937,8 @@
 				761D8AB5168AC955002A7E0C /* DetailMusicView.m in Sources */,
 				7660F8F2168C3EC1000A771E /* FooterForDetailView.m in Sources */,
 				D58C425216915FEC00C22B80 /* UserView.m in Sources */,
+				D58C425916916D4B00C22B80 /* UITabBarController+hidable.m in Sources */,
+				D58C42ED1693B82500C22B80 /* GridViewSearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -36,16 +36,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"detailBackGround"]];
 
-    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 50, 30)];
+    UIButton *menuButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, 50, 30)];
     [menuButton setBackgroundImage:[UIImage imageNamed:@"backPageBtn"]
                           forState:UIControlStateNormal];
     [menuButton addTarget:self action:@selector(pushBack) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:menuButton];
     self.navigationItem.leftBarButtonItem = buttonItem;
 
-    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - 160) style:UITableViewStylePlain];
+    detailTableView = [[DetailTableView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height - 160) style:UITableViewStylePlain];
     detailTableView.urlString = [NSString stringWithFormat:@"%@%@", DETAIL_POCKET_URL, pocket_id];
     detailTableView.is_editable = is_editable;
     detailTableView.pocket_id = pocket_id;
@@ -53,9 +53,8 @@
     [self.view addSubview:detailTableView];
     [detailTableView mainTableLoad];
 
-    footerForDetailView = [[FooterForDetailView alloc] initWithFrame:CGRectMake(0, self.view.bounds.size.height - 160, 320, 100)];
-    [footerForDetailView setTitle:pocket_title];    
-    [footerForDetailView setBackgroundColor:[UIColor clearColor]];
+    footerForDetailView = [[FooterForDetailView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.size.height - 160, self.view.bounds.size.width, 100)];
+    [footerForDetailView setTitle:pocket_title];
     [self.view addSubview:footerForDetailView];
 }
 
@@ -78,7 +77,7 @@
 - (void)setButton:(BOOL)is_mine {
     if (is_mine) {
         UIButton *addPocket = [UIButton buttonWithType:UIButtonTypeCustom];
-        [addPocket setFrame:CGRectMake(140, 5, 80, 40)];
+        [addPocket setFrame:CGRectMake(0, 0, 60, 35)];
         [addPocket setImage:[UIImage imageNamed:@"addMusic"] forState:UIControlStateNormal];
         [addPocket addTarget:self action:@selector(showModal) forControlEvents:UIControlEventTouchUpInside];
 

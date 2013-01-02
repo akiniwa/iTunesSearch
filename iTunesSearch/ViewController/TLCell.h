@@ -11,6 +11,7 @@
 @interface TLCell : UITableViewCell
 
 @property (nonatomic, retain) UIImageView *tlImageView;
+@property (nonatomic, retain) UIImageView *jacketBackGround;
 @property (nonatomic, retain) UILabel *userName;
 @property (nonatomic, retain) UILabel *pocketTitle;
 @property (nonatomic, retain) UILabel *musicTitle;

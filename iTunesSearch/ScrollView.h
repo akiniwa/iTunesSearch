@@ -22,7 +22,6 @@
 
 @property (nonatomic, retain) NSMutableArray* imageList;
 @property (nonatomic, retain) NSMutableDictionary *items;
-@property (nonatomic, retain) NSTimer *timer;
 @property (nonatomic, retain) id scrollViewDelegate;
 @property (readwrite) NSInteger flag;
 

@@ -8,14 +8,16 @@
 
 #import "MyPocketViewController.h"
 #import "DetailViewController.h"
+#import "UITabBarController+hidable.h"
 
 @interface MyPocketViewController()
 {
     BOOL is_reload;
     UILabel *triggerHeader;
     BOOL headerOn;
+    
+    BOOL hidden;
 }
-
 @end
 
 @implementation MyPocketViewController
@@ -39,7 +41,7 @@
 }
 
 - (void)initialization {
-    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(0, 0, 320, (int)self.view.bounds.size.height-95) style:UITableViewStylePlain];
+    myPocketTableView = [[MyPocketTableView alloc] initWithFrame:CGRectMake(0, 0, 320, (int)self.view.bounds.size.height) style:UITableViewStylePlain];
     myPocketTableView.urlString = self.urlString;
     myPocketTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     myPocketTableView.myPocketDelegate = self;
@@ -69,6 +71,10 @@
     } else {
         [detailViewController setButton:NO];
     }
+    [self.navigationController setNavigationBarHidden:NO
+                                             animated:NO];
+    [self.tabBarController setTabBarHidden:NO
+                                  animated:NO];
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
@@ -78,7 +84,8 @@
     r.origin.y -= 70;
     r.size.height = 70;
     triggerHeader = [[UILabel alloc] initWithFrame:r];
-    [triggerHeader setBackgroundColor:[UIColor clearColor]];
+
+    [triggerHeader setBackgroundColor:[UIColor redColor]];
     [myPocketTableView addSubview:triggerHeader];
 
     UIImageView* imageview = [[UIImageView alloc] initWithFrame:CGRectMake((r.size.width/2 - 30), (60 - 32) / 2, 45, 32)];
@@ -120,6 +127,35 @@
 - (void)showMusicView {
     
 }
+
+-(void)expand
+{
+    if(hidden)
+        return;
+    
+    hidden = YES;
+    
+    [self.tabBarController setTabBarHidden:YES
+                                  animated:YES];
+    
+    [self.navigationController setNavigationBarHidden:YES
+                                             animated:YES];
+}
+
+-(void)contract
+{
+    if(!hidden)
+        return;
+    
+    hidden = NO;
+    
+    [self.tabBarController setTabBarHidden:NO
+                                  animated:YES];
+    
+    [self.navigationController setNavigationBarHidden:NO
+                                             animated:YES];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

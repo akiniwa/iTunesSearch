@@ -9,11 +9,10 @@
 #import "MainViewController.h"
 #import "SBJson.h"
 #import "HttpClient.h"
-#import "MovingScrollView.h"
 #import "ScrollView.h"
 #import "PostToServer.h"
 #import "PostMutableArray.h"
-#import "GridViewController.h"
+#import "GridViewSearchController.h"
 
 #define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=album&limit=15&term="
 #define RSS_FEED_JPOP @"https://itunes.apple.com/jp/rss/topsongs/limit=25/genre=27/json"
@@ -36,9 +35,10 @@ enum view {
     ScrollView *scrollView01;
     ScrollView *scrollView02;
     ScrollView *scrollView03;
-    MovingScrollView *mscroll;
 
     PostMutableArray *postMutableArray;
+
+    UILabel *postCount;
     // postMutableArrayとscreen, buttonをひも付ける。
     NSMutableDictionary *selectDictionary;
     
@@ -65,7 +65,7 @@ enum view {
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar"] forBarMetrics:UIBarMetricsDefault];
 
-    txField = [[UITextField alloc] initWithFrame:CGRectMake(20, 10, 190, 30)];
+    txField = [[UITextField alloc] initWithFrame:CGRectMake(20, 30, 190, 30)];
     txField.delegate = (id)self;
     txField.borderStyle = UITextBorderStyleBezel;
     [self.view addSubview:txField];
@@ -84,14 +84,14 @@ enum view {
     self.navigationItem.rightBarButtonItem = rightButton;
 
     UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [searchButton setFrame:CGRectMake(240, 5, 80, 30)];
+    [searchButton setFrame:CGRectMake(240, 25, 80, 30)];
     [searchButton setTitle:@"search" forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(searchMusic) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:searchButton];
 
     postMutableArray = [[PostMutableArray alloc] init];
     selectDictionary = [NSMutableDictionary dictionary];
-
+/*
     scrollView01 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 80, 300, 100)];
     scrollView01.backgroundColor = [UIColor clearColor];
     scrollView01.flag = VIEW_TOP;
@@ -109,11 +109,28 @@ enum view {
     scrollView03.flag = VIEW_BOTTOM;
     scrollView03.scrollViewDelegate = self;
     [self.view addSubview:scrollView03];
+*/
+    GridViewSearchController *gridView = [[GridViewSearchController alloc] initWithFrame:CGRectMake(0, 100, 320, 400)];
+    gridView.artistName = @"glay";
+    gridView.gridViewDelegate = self;
+    [self addChildViewController:gridView];
+//  [gridView didMoveToParentViewController:self];
+    [self.view addSubview:gridView.view];
+
+    postCount = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 300, 20)];
+    [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.pocket_id count]]];
+    [self.view addSubview:postCount];
 
 //  配列を作る。
+    /*
     [self makeMutableArray:RSS_FEED_ROCK :scrollView01];
     [self makeMutableArray:RSS_FEED_JPOP :scrollView02];
     [self makeMutableArray:RSS_FEED_RB :scrollView03];
+     */
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    
 }
 
 -(void) modalClose {
@@ -149,6 +166,7 @@ enum view {
         [postMutableArray.titles addObject:[[dictionary objectForKey:@"titles"] objectAtIndex:i]];
         [postMutableArray.jacket_url addObject:[[dictionary objectForKey:@"jacket_url"] objectAtIndex:i]];
     }
+    [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.artists count]]];
 }
 
 - (void) postToCheck {
@@ -171,7 +189,7 @@ enum view {
     if (!txField.text) {
 
     } else {
-        GridViewController *gridViewController = [[GridViewController alloc] init];
+        GridViewSearchController *gridViewController = [[GridViewSearchController alloc] init];
         gridViewController.artistName = txField.text;
         gridViewController.gridViewDelegate = self;
         [self.navigationController pushViewController:gridViewController animated:YES];
@@ -219,24 +237,33 @@ enum view {
 
     if ([is_checked isEqualToString:@"NO"]) {
         [self removePostMutableArray:button_number];
+        [self setPostCount];
     } else {
         switch (button_number / LIMIT) {
             case VIEW_TOP:
                 [selectDictionary setObject:[NSString stringWithFormat:@"%d", [postMutableArray.titles count]] forKey:[NSString stringWithFormat:@"%d", button_number]];
                 [self addPostMutableArray:scrollView01 :button_number];
+                [self setPostCount];
                 break;
             case VIEW_MIDDLE:
                 [selectDictionary setObject:[NSString stringWithFormat:@"%d", [postMutableArray.titles count]] forKey:[NSString stringWithFormat:@"%d", button_number]];
                 [self addPostMutableArray:scrollView02 :button_number % LIMIT];
+                [self setPostCount];
                 break;
             case VIEW_BOTTOM:
                 [selectDictionary setObject:[NSString stringWithFormat:@"%d", [postMutableArray.titles count]] forKey:[NSString stringWithFormat:@"%d", button_number]];
                 [self addPostMutableArray:scrollView03 :button_number % LIMIT];
+                [self setPostCount];
                 break;
             default:
+                [self setPostCount];
                 break;
         }
     }
+}
+
+- (void) setPostCount {
+    [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.artists count]]];
 }
 
 - (void) addPostMutableArray:(ScrollView*)scrollView:(NSInteger)button_number {

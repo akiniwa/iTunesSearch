@@ -29,7 +29,7 @@
 
 @implementation ScrollView
 
-@synthesize imageList, items, timer, scrollViewDelegate, flag;
+@synthesize imageList, items, scrollViewDelegate, flag;
 
 - (void) stopAutoScroll {
     autoScrollStopped = YES;

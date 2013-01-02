@@ -10,6 +10,9 @@
 #import "ImageLoader.h"
 #import "CheckButton.h"
 
+#define JACKET_SIZE 77
+#define LABEL_HEIGHT 15
+
 @interface GridView ()
 {
     NSMutableArray *artists;
@@ -18,8 +21,6 @@
     NSMutableArray *titles;
     NSMutableArray *track_url;
     ImageLoader *imageLoader;
-    
-    
 }
 @end
 
@@ -62,7 +63,7 @@
             
             CheckButton *btn = [CheckButton buttonWithType:UIButtonTypeCustom];
             [btn setImage:userImg forState:UIControlStateNormal];
-            btn.frame = CGRectMake(0, 0, 77, 77);
+            btn.frame = CGRectMake(0, 0, JACKET_SIZE, JACKET_SIZE);
             btn.tag = i;
             btn.enabled = YES;
             btn.accessibilityElementsHidden = YES;
@@ -84,7 +85,7 @@
                     [self performSelectorOnMainThread:@selector(performArtWorkIcon:) withObject:invocation waitUntilDone:YES];
                     }];
             }
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 65, 80, 15)];
+            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, JACKET_SIZE, 80, LABEL_HEIGHT)];
             label.text = trackTitle;
             label.font = [UIFont systemFontOfSize:9];
             [[views objectAtIndex:i] addSubview:label];
@@ -119,7 +120,6 @@
     } else {
         [dictionary setObject:@"NO" forKey:@"is_checked"];
     }
-
     [delegateGridView performSelector:@selector(notificateNumbers:) withObject:dictionary];
 }
 
@@ -136,7 +136,7 @@
         xoffset += width;
         if (xoffset >= [self frame].size.width) {
             xoffset = 0;
-            yoffset += height;
+            yoffset += height + LABEL_HEIGHT;
         }
     }
 }

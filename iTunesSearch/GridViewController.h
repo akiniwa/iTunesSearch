@@ -7,10 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GridView.h"
 
 @interface GridViewController : UIViewController<UIScrollViewDelegate>
-
+{
+    GridView *gridView;
+}
 @property (nonatomic, retain) NSString *artistName;
 @property (nonatomic, retain) id gridViewDelegate;
+
+- (id)initWithFrame:(CGRect)frame;
 
 @end

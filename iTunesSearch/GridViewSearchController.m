@@ -1,15 +1,19 @@
 //
-//  SettingViewController.m
+//  GridViewSearchController.m
 //  iTunesSearch
 //
-//  Created by s_akiba on 12/12/10.
-//  Copyright (c) 2012年 s_akiba. All rights reserved.
+//  Created by Shinya Akiba on 13/01/02.
+//  Copyright (c) 2013年 s_akiba. All rights reserved.
 //
 
-#import "SettingViewController.h"
-#import "SettingTableView.h"
+#import "GridViewSearchController.h"
 
-@implementation SettingViewController
+@interface GridViewSearchController ()
+{
+}
+@end
+
+@implementation GridViewSearchController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,9 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    SettingTableView *settingTable = [[SettingTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - 40) style:UITableViewStyleGrouped];
-    [self.view addSubview:settingTable];
 }
 
 - (void)didReceiveMemoryWarning

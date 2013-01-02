@@ -22,6 +22,9 @@ static NSString *user_id;
     TLArray *tlArray;
     ImageLoader *imageLoader;
     BOOL headerOn;
+
+    CGFloat startContentOffset;
+    CGFloat lastContentOffset;
 }
 @end
 
@@ -33,7 +36,7 @@ static NSString *user_id;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }
@@ -73,7 +76,7 @@ static NSString *user_id;
     };
     void (^onError)(NSError *) = ^(NSError *error) {
     };
-    
+
     @try {
         [HttpClient request:request success:onSuccess error:onError];
     }
@@ -137,7 +140,6 @@ static NSString *user_id;
                 [self replaceObjectToTLArray:tlArray.pocket_id :tlReloadArray.pocket_id :l];
                 [self replaceObjectToTLArray:tlArray.user_id :tlReloadArray.user_id :l];
                 [self replaceObjectToTLArray:tlArray.music_count :tlReloadArray.music_count :l];
-                DEBUGLOG(@"replace");
             }
         }
 
@@ -177,6 +179,7 @@ static NSString *user_id;
     }
 
     [cell.pocketTitle setText:[tlArray.pocket_title objectAtIndex:indexPath.row]];
+    [cell.pocketTitle setNumberOfLines:2];
     [cell.userName setText:[NSString stringWithFormat:@"%@" ,[tlArray.user_name objectAtIndex:indexPath.row]]];
     [cell.musicCount setText:[NSString stringWithFormat:@"%@ %@", [tlArray.music_count objectAtIndex:indexPath.row], @"曲"]];
 
@@ -196,7 +199,7 @@ static NSString *user_id;
 
     imageLoader = [ImageLoader sharedInstance];
     UIImage *jacketImage = [imageLoader cacedImageForUrl:pathUrlImage];
-    cell.tlImageView.alpha = 0.0f;
+
     cell.tlImageView.image = jacketImage;
     
 
@@ -236,6 +239,7 @@ static NSString *user_id;
     [UIView animateWithDuration:1.2f
                      animations:^{
                          cell.tlImageView.alpha = 1.0f;
+                         cell.jacketBackGround.alpha = 1.0f;
                      }completion:^(BOOL finised){
                          
                      }];
@@ -270,6 +274,10 @@ static NSString *user_id;
 - (void)updatePlayState {
     NSLog(@"updatePlayState");
     [self reloadData];
+
+    NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:[tlArray.pocket_id count]] forKey:@"playlistCount"];
+    NSNotification *n = [NSNotification notificationWithName:@"playlistCount" object:self userInfo:dic];
+    [[NSNotificationCenter defaultCenter] postNotification:n];
 }
 
 - (void)setButton {
@@ -309,7 +317,7 @@ static NSString *user_id;
 // セルの高さ
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 145;
+    return 135;
 }
 
 - (void) scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -321,6 +329,28 @@ static NSString *user_id;
 		headerOn = NO;
     }
     [myPocketDelegate performSelector:@selector(hideMusicView)];
+    
+    CGFloat currentOffset = scrollView.contentOffset.y;
+    CGFloat differenceFromStart = startContentOffset - currentOffset;
+    CGFloat differenceFromLast = lastContentOffset - currentOffset;
+    lastContentOffset = currentOffset;
+    
+    if((differenceFromStart) < 0)
+    {
+        // scroll up
+        if(scrollView.isTracking && (abs(differenceFromLast)>1)) {
+            [myPocketDelegate performSelector:@selector(expand)];
+        }
+    }
+    else {
+        if(scrollView.isTracking && (abs(differenceFromLast)>1)) {
+            [myPocketDelegate performSelector:@selector(contract)];
+        }
+    }
+}
+
+- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    startContentOffset = lastContentOffset = scrollView.contentOffset.y;
 }
 
 - (void) endScroll{
@@ -341,6 +371,11 @@ static NSString *user_id;
     [self endScroll];
 }
 
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView {
+    [myPocketDelegate performSelector:@selector(contract)];
+    return YES;
+}
+
 - (UITableViewCellEditingStyle)tableView:(UITableView*)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([user_id isEqualToString:[tlArray.user_id objectAtIndex:indexPath.row]]) {
         return UITableViewCellEditingStyleDelete;
@@ -356,12 +391,12 @@ static NSString *user_id;
         [dictionary setValue:[tlArray.pocket_id objectAtIndex:indexPath.row] forKey:@"pocket_id"];
 
         NSURL *url = [[NSURL alloc] initWithString:POCKET_DELETE_URL];
-        
+
         PostToServer *postToServer = [[PostToServer alloc] init];
         [postToServer postData:dictionary :url :@"deletePocket"];
 
         [tlArray removeAtIndexPath:indexPath.row];
-        
+
         [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // ここは空のままでOKです。

@@ -10,4 +10,8 @@
 
 @interface GridViewForAddingMusicController : GridViewController
 
+- (void) removeScrollView;
+- (void) removeGridView;
+- (void) reDrawScrollView:(NSString*)searchKey;
+
 @end

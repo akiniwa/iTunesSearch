@@ -18,4 +18,33 @@
     [self.gridViewDelegate performSelector:@selector(notificateNumbers:) withObject:dictionary];
 }
 
+- (void) removeScrollView {
+    [scrollView removeFromSuperview];
+}
+
+- (void) removeGridView {
+    [gridView removeFromSuperview];
+}
+
+- (void) reDrawScrollView:(NSString*)searchKey {
+    self.artistName = searchKey;
+    
+    CGRect bounds = [[UIScreen mainScreen] bounds];
+    [self.view setFrame:CGRectMake(0, 75, bounds.size.width, bounds.size.height)];
+    
+    postMutableArray = [[PostMutableArray alloc] init];
+    
+    gridView = [[GridView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
+    gridView.backgroundColor = [UIColor clearColor];
+    gridView.delegateGridView = self;
+    
+    scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height - 60)];
+    scrollView.backgroundColor = [UIColor clearColor];
+    scrollView.contentSize = CGSizeMake(bounds.size.width, bounds.size.height + 100);
+    [self.view addSubview:scrollView];
+    
+    [scrollView addSubview:gridView];
+    [self makeMutableArray];
+}
+
 @end

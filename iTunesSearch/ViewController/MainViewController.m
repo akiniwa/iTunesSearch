@@ -39,6 +39,8 @@ enum view {
     // selectDictionaryはpostMutableArrayの要素を消去する際に必要。
     NSMutableArray *selectDictionaryArray;
     
+    GridViewForAddingMusicController *gridViewForAddingMusicController;
+    
     UITextField *txField;
 }
 @end
@@ -89,12 +91,12 @@ enum view {
     postMutableArray = [[PostMutableArray alloc] init];
     selectDictionaryArray = [NSMutableArray array];
 
-    GridViewForAddingMusicController *gridView = [[GridViewForAddingMusicController alloc] init];
-    gridView.artistName = @"glay";
-    gridView.gridViewDelegate = self;
-    [self addChildViewController:gridView];
+    gridViewForAddingMusicController = [[GridViewForAddingMusicController alloc] init];
+    gridViewForAddingMusicController.artistName = @"glay";
+    gridViewForAddingMusicController.gridViewDelegate = self;
+    [self addChildViewController:gridViewForAddingMusicController];
 
-    [self.view addSubview:gridView.view];
+    [self.view addSubview:gridViewForAddingMusicController.view];
 
     postCount = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 300, 20)];
     [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.pocket_id count]]];
@@ -114,25 +116,33 @@ enum view {
 }
 
 - (void) postToCheck {
-    NSURL *url = [[NSURL alloc] initWithString:POST_URL];
-    // ここで配列をディクショナリを作り直す。
-    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-
-    [dictionary setObject:postMutableArray.artists forKey:@"artists"];
-    [dictionary setObject:postMutableArray.titles forKey:@"titles"];
-    [dictionary setObject:postMutableArray.track_url forKey:@"track_url"];
-    [dictionary setObject:postMutableArray.jacket_url forKey:@"jacket_url"];
-    [dictionary setObject:pocket_id forKey:@"pocket_id"];
-
-    PostToServer *postToServer = [[PostToServer alloc] init];
-
-    [postToServer postData:dictionary :url :@"post_to_music"];
+    if ([postMutableArray.artists count]) {
+        NSURL *url = [[NSURL alloc] initWithString:POST_URL];
+        // ここで配列をディクショナリを作り直す。
+        NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+        
+        [dictionary setObject:postMutableArray.artists forKey:@"artists"];
+        [dictionary setObject:postMutableArray.titles forKey:@"titles"];
+        [dictionary setObject:postMutableArray.track_url forKey:@"track_url"];
+        [dictionary setObject:postMutableArray.jacket_url forKey:@"jacket_url"];
+        [dictionary setObject:pocket_id forKey:@"pocket_id"];
+        
+        PostToServer *postToServer = [[PostToServer alloc] init];
+        [postToServer postData:dictionary :url :@"post_to_music"];
+        
+        [self dismissModalViewControllerAnimated:YES];
+    } else {
+        //nomusic call alert.
+    }
 }
 
 - (void) searchMusic {
     if (!txField.text) {
 
     } else {
+        [gridViewForAddingMusicController removeGridView];
+        [gridViewForAddingMusicController removeScrollView];
+        [gridViewForAddingMusicController reDrawScrollView:txField.text];
     }
 }
 

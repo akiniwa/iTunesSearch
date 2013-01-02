@@ -74,7 +74,6 @@
 		763DCB6D1667052400ECDF58 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DCB6C1667052400ECDF58 /* libz.dylib */; };
 		764EB2A2168157D100210CAA /* WaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764EB2A1168157D100210CAA /* WaitingView.m */; };
 		76565FAC168C590D00915034 /* backPageBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76565FAB168C590D00915034 /* backPageBtn@2x.png */; };
-		765946EE16535CE000C04B50 /* ScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 765946ED16535CE000C04B50 /* ScrollView.m */; };
 		765946F11653772100C04B50 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 765946F01653772100C04B50 /* GridViewController.m */; };
 		765C5A661638C1A10029DD17 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C5A651638C1A10029DD17 /* UIKit.framework */; };
 		765C5A681638C1A10029DD17 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C5A671638C1A10029DD17 /* Foundation.framework */; };
@@ -110,7 +109,8 @@
 		D58C42791692312900C22B80 /* footerBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C42781692312900C22B80 /* footerBackGround@2x.png */; };
 		D58C427F1692393D00C22B80 /* jacketImageBackGround@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C427E1692393D00C22B80 /* jacketImageBackGround@2x.png */; };
 		D58C4281169257B500C22B80 /* addPlaylist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C4280169257B500C22B80 /* addPlaylist@2x.png */; };
-		D58C42ED1693B82500C22B80 /* GridViewSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C42EC1693B82500C22B80 /* GridViewSearchController.m */; };
+		D58C42F01693C98300C22B80 /* GridViewForAddingMusicController.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C42EF1693C98300C22B80 /* GridViewForAddingMusicController.m */; };
+		D58C42F31693DCF900C22B80 /* GridArray.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C42F21693DCF900C22B80 /* GridArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -259,8 +259,6 @@
 		764EB2A0168157D100210CAA /* WaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingView.h; sourceTree = "<group>"; };
 		764EB2A1168157D100210CAA /* WaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingView.m; sourceTree = "<group>"; };
 		76565FAB168C590D00915034 /* backPageBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backPageBtn@2x.png"; sourceTree = "<group>"; };
-		765946EC16535CE000C04B50 /* ScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollView.h; sourceTree = "<group>"; };
-		765946ED16535CE000C04B50 /* ScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollView.m; sourceTree = "<group>"; };
 		765946EF1653772100C04B50 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
 		765946F01653772100C04B50 /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
 		765C5A611638C1A10029DD17 /* iTunesSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -309,8 +307,10 @@
 		D58C42781692312900C22B80 /* footerBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footerBackGround@2x.png"; sourceTree = "<group>"; };
 		D58C427E1692393D00C22B80 /* jacketImageBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "jacketImageBackGround@2x.png"; sourceTree = "<group>"; };
 		D58C4280169257B500C22B80 /* addPlaylist@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "addPlaylist@2x.png"; sourceTree = "<group>"; };
-		D58C42EB1693B82500C22B80 /* GridViewSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewSearchController.h; sourceTree = "<group>"; };
-		D58C42EC1693B82500C22B80 /* GridViewSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewSearchController.m; sourceTree = "<group>"; };
+		D58C42EE1693C98300C22B80 /* GridViewForAddingMusicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewForAddingMusicController.h; sourceTree = "<group>"; };
+		D58C42EF1693C98300C22B80 /* GridViewForAddingMusicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewForAddingMusicController.m; sourceTree = "<group>"; };
+		D58C42F11693DCF800C22B80 /* GridArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridArray.h; sourceTree = "<group>"; };
+		D58C42F21693DCF900C22B80 /* GridArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -518,6 +518,7 @@
 				769EAC24167F069600F01AA7 /* PublicView */,
 				769EAC23167F063D00F01AA7 /* UsersView */,
 				769EAC22167F063600F01AA7 /* DetailView */,
+				765408AA165C622C00975C2A /* GridViewController */,
 				769EAC20167F062800F01AA7 /* MyPocket */,
 				76252CD816786BEB00AD7D5F /* MovingScrollView.h */,
 				76252CD916786BEB00AD7D5F /* MovingScrollView.m */,
@@ -545,23 +546,26 @@
 				765946F01653772100C04B50 /* GridViewController.m */,
 				765C5ACB1638D6340029DD17 /* GridView.h */,
 				765C5ACC1638D6340029DD17 /* GridView.m */,
-				D58C42EB1693B82500C22B80 /* GridViewSearchController.h */,
-				D58C42EC1693B82500C22B80 /* GridViewSearchController.m */,
+				D58C42F11693DCF800C22B80 /* GridArray.h */,
+				D58C42F21693DCF900C22B80 /* GridArray.m */,
+				763974551665E4C400D66FAF /* CheckButton.h */,
+				763974561665E4C400D66FAF /* CheckButton.m */,
+				D58C42EE1693C98300C22B80 /* GridViewForAddingMusicController.h */,
+				D58C42EF1693C98300C22B80 /* GridViewForAddingMusicController.m */,
 			);
 			name = GridViewController;
+			path = ..;
 			sourceTree = "<group>";
 		};
-		765408AC165C623300975C2A /* Slide */ = {
+		765408AC165C623300975C2A /* PostToServer */ = {
 			isa = PBXGroup;
 			children = (
 				763974581665FB9E00D66FAF /* PostToServer.h */,
 				763974591665FB9E00D66FAF /* PostToServer.m */,
-				765946EC16535CE000C04B50 /* ScrollView.h */,
-				765946ED16535CE000C04B50 /* ScrollView.m */,
 				768D8681166DB37100465565 /* PostMutableArray.h */,
 				768D8682166DB37100465565 /* PostMutableArray.m */,
 			);
-			name = Slide;
+			name = PostToServer;
 			sourceTree = "<group>";
 		};
 		765C5A561638C1A10029DD17 = {
@@ -607,16 +611,13 @@
 				761D8AB0168AB266002A7E0C /* MusicView */,
 				76252CA616786B8E00AD7D5F /* Tab */,
 				76252CA916786B8E00AD7D5F /* ViewController */,
+				76252B4A1678606B00AD7D5F /* LoginViewController */,
 				76252C7916786B8800AD7D5F /* SBJson */,
 				76252C5616786B7D00AD7D5F /* facebook-ios-sdk */,
 				76252C6516786B7D00AD7D5F /* GoogleAnalytics */,
 				76252C3616786B7300AD7D5F /* ASI */,
-				76252B4A1678606B00AD7D5F /* LoginViewController */,
-				763974551665E4C400D66FAF /* CheckButton.h */,
-				763974561665E4C400D66FAF /* CheckButton.m */,
 				76252C7116786B8800AD7D5F /* Resource */,
-				765408AC165C623300975C2A /* Slide */,
-				765408AA165C622C00975C2A /* GridViewController */,
+				765408AC165C623300975C2A /* PostToServer */,
 				765C5B001638F41A0029DD17 /* imageLoader */,
 				765C5AF81638E9FE0029DD17 /* HTTP */,
 				765C5A741638C1A10029DD17 /* AppDelegate.h */,
@@ -886,7 +887,6 @@
 				765C5ACD1638D6340029DD17 /* GridView.m in Sources */,
 				765C5AFB1638EA140029DD17 /* HttpClient.m in Sources */,
 				765C5B0F1638F86B0029DD17 /* ImageLoader.m in Sources */,
-				765946EE16535CE000C04B50 /* ScrollView.m in Sources */,
 				765946F11653772100C04B50 /* GridViewController.m in Sources */,
 				763974571665E4C400D66FAF /* CheckButton.m in Sources */,
 				7639745A1665FB9E00D66FAF /* PostToServer.m in Sources */,
@@ -938,7 +938,8 @@
 				7660F8F2168C3EC1000A771E /* FooterForDetailView.m in Sources */,
 				D58C425216915FEC00C22B80 /* UserView.m in Sources */,
 				D58C425916916D4B00C22B80 /* UITabBarController+hidable.m in Sources */,
-				D58C42ED1693B82500C22B80 /* GridViewSearchController.m in Sources */,
+				D58C42F01693C98300C22B80 /* GridViewForAddingMusicController.m in Sources */,
+				D58C42F31693DCF900C22B80 /* GridArray.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

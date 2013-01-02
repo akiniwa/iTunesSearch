@@ -9,10 +9,9 @@
 #import "MainViewController.h"
 #import "SBJson.h"
 #import "HttpClient.h"
-#import "ScrollView.h"
 #import "PostToServer.h"
 #import "PostMutableArray.h"
-#import "GridViewSearchController.h"
+#import "GridViewForAddingMusicController.h"
 
 #define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=album&limit=15&term="
 #define RSS_FEED_JPOP @"https://itunes.apple.com/jp/rss/topsongs/limit=25/genre=27/json"
@@ -32,15 +31,13 @@ enum view {
 
 @interface MainViewController ()
 {
-    ScrollView *scrollView01;
-    ScrollView *scrollView02;
-    ScrollView *scrollView03;
-
     PostMutableArray *postMutableArray;
 
     UILabel *postCount;
     // postMutableArrayとscreen, buttonをひも付ける。
-    NSMutableDictionary *selectDictionary;
+
+    // selectDictionaryはpostMutableArrayの要素を消去する際に必要。
+    NSMutableArray *selectDictionaryArray;
     
     UITextField *txField;
 }
@@ -90,83 +87,30 @@ enum view {
     [self.view addSubview:searchButton];
 
     postMutableArray = [[PostMutableArray alloc] init];
-    selectDictionary = [NSMutableDictionary dictionary];
-/*
-    scrollView01 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 80, 300, 100)];
-    scrollView01.backgroundColor = [UIColor clearColor];
-    scrollView01.flag = VIEW_TOP;
-    scrollView01.scrollViewDelegate = self;
-    [self.view addSubview:scrollView01];
+    selectDictionaryArray = [NSMutableArray array];
 
-    scrollView02 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 180, 300, 100)];
-    scrollView02.backgroundColor = [UIColor clearColor];
-    scrollView02.flag = VIEW_MIDDLE;
-    scrollView02.scrollViewDelegate = self;
-    [self.view addSubview:scrollView02];
-
-    scrollView03 = [[ScrollView alloc] initWithFrame:CGRectMake(10, 290, 300, 100)];
-    scrollView03.backgroundColor = [UIColor clearColor];
-    scrollView03.flag = VIEW_BOTTOM;
-    scrollView03.scrollViewDelegate = self;
-    [self.view addSubview:scrollView03];
-*/
-    GridViewSearchController *gridView = [[GridViewSearchController alloc] initWithFrame:CGRectMake(0, 100, 320, 400)];
+    GridViewForAddingMusicController *gridView = [[GridViewForAddingMusicController alloc] init];
     gridView.artistName = @"glay";
     gridView.gridViewDelegate = self;
     [self addChildViewController:gridView];
-//  [gridView didMoveToParentViewController:self];
+
     [self.view addSubview:gridView.view];
 
     postCount = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 300, 20)];
     [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.pocket_id count]]];
     [self.view addSubview:postCount];
-
-//  配列を作る。
-    /*
-    [self makeMutableArray:RSS_FEED_ROCK :scrollView01];
-    [self makeMutableArray:RSS_FEED_JPOP :scrollView02];
-    [self makeMutableArray:RSS_FEED_RB :scrollView03];
-     */
-}
-
-- (void) viewDidAppear:(BOOL)animated {
-    
 }
 
 -(void) modalClose {
     [self dismissModalViewControllerAnimated:YES];
 }
 
-- (void) makeMutableArray:(NSString*)keyword:(ScrollView*)scrollView {
-    // ここでiTunesから楽曲でーたのjsonを取得する。
-    // 与えられたpreviewURLやタイトルなどを送る(NSDictionary?)
-    // itunesからstatusesをダウンロードするためのURLリクエストを準備
-    NSString *encURL = [keyword stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encURL]];
-
-    void (^onSuccess)(NSData *) = ^(NSData *data) {
-        [self getJson:data :scrollView];
-    };
-        void (^onError)(NSError *) = ^(NSError *error) {
-    };
-
-    @try {
-        [HttpClient request:request success:onSuccess error:onError];
-    }
-    @catch (NSException *exception) {
-        DEBUGLOG(@"%@", exception);
-    }
-}
-
 - (void) setArray:(NSMutableDictionary *)dictionary {
-    for (int i=0; i<[[dictionary objectForKey:@"artists"] count]; i++) {
-        NSLog(@"dd:%@", [[dictionary objectForKey:@"artists"] objectAtIndex:i]);
-        [postMutableArray.artists addObject:[[dictionary objectForKey:@"artists"] objectAtIndex:i]];
-        [postMutableArray.track_url addObject:[[dictionary objectForKey:@"track_url"] objectAtIndex:i]];
-        [postMutableArray.titles addObject:[[dictionary objectForKey:@"titles"] objectAtIndex:i]];
-        [postMutableArray.jacket_url addObject:[[dictionary objectForKey:@"jacket_url"] objectAtIndex:i]];
-    }
-    [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.artists count]]];
+    NSDictionary *dict = [dictionary objectForKey:@"dictionary"];
+    [postMutableArray.artists addObject:[dict objectForKey:@"artist"]];
+    [postMutableArray.track_url addObject:[dict objectForKey:@"track_url"]];
+    [postMutableArray.titles addObject:[dict objectForKey:@"music_title"]];
+    [postMutableArray.jacket_url addObject:[dict objectForKey:@"jacket_url"]];
 }
 
 - (void) postToCheck {
@@ -181,7 +125,7 @@ enum view {
     [dictionary setObject:pocket_id forKey:@"pocket_id"];
 
     PostToServer *postToServer = [[PostToServer alloc] init];
-    FUNC();
+
     [postToServer postData:dictionary :url :@"post_to_music"];
 }
 
@@ -189,10 +133,6 @@ enum view {
     if (!txField.text) {
 
     } else {
-        GridViewSearchController *gridViewController = [[GridViewSearchController alloc] init];
-        gridViewController.artistName = txField.text;
-        gridViewController.gridViewDelegate = self;
-        [self.navigationController pushViewController:gridViewController animated:YES];
     }
 }
 
@@ -201,94 +141,26 @@ enum view {
     return YES;
 }
 
-- (void) getJson:(NSData*)data:(ScrollView*)scrollView {
-    NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-
-    NSDictionary *json = [json_string JSONValue];
-
-    NSDictionary *feed = [json objectForKey:@"feed"];
-    NSMutableArray *entry = [feed objectForKey:@"entry"];
-
-    scrollView.items = [NSMutableDictionary dictionary];
-
-    NSMutableArray *jacket_url = [NSMutableArray array];
-    NSMutableArray *artists = [NSMutableArray array];
-    NSMutableArray *titles = [NSMutableArray array];
-    NSMutableArray *track_url = [NSMutableArray array];
-
-    for (NSDictionary *status in entry) {
-        [artists addObject:[[status objectForKey:@"im:artist"] objectForKey:@"label"]];
-        [titles addObject:[[status objectForKey:@"im:name"] objectForKey:@"label"]];
-        [jacket_url addObject:[[[status objectForKey:@"im:image"] objectAtIndex:2] objectForKey:@"label"]];
-        [track_url addObject:[[[[status objectForKey:@"link"] objectAtIndex:1] objectForKey:@"attributes"] objectForKey:@"href"]];
-    }
-
-    [scrollView.items setObject:jacket_url forKey:@"jacket_url"];
-    [scrollView.items setObject:artists forKey:@"artists"];
-    [scrollView.items setObject:titles forKey:@"titles"];
-    [scrollView.items setObject:track_url forKey:@"track_url"];
-
-    [self performSelectorOnMainThread:@selector(setScrollView:) withObject:scrollView waitUntilDone:YES];
-}
-
 - (void) notificateNumbers:(NSMutableDictionary*)dictionary {
-    NSInteger button_number = [[dictionary objectForKey:@"button_number"] intValue];
-    NSString *is_checked = [dictionary objectForKey:@"is_checked"];
-
-    if ([is_checked isEqualToString:@"NO"]) {
-        [self removePostMutableArray:button_number];
-        [self setPostCount];
+    NSInteger grid_number = [[dictionary objectForKey:@"grid_number"] intValue];
+    BOOL is_checked = [(NSNumber*)[dictionary objectForKey:@"is_checked"] boolValue];
+    if (is_checked) {
+        [selectDictionaryArray addObject:[dictionary objectForKey:@"grid_number"]];
+        [self setArray:dictionary];
     } else {
-        switch (button_number / LIMIT) {
-            case VIEW_TOP:
-                [selectDictionary setObject:[NSString stringWithFormat:@"%d", [postMutableArray.titles count]] forKey:[NSString stringWithFormat:@"%d", button_number]];
-                [self addPostMutableArray:scrollView01 :button_number];
-                [self setPostCount];
-                break;
-            case VIEW_MIDDLE:
-                [selectDictionary setObject:[NSString stringWithFormat:@"%d", [postMutableArray.titles count]] forKey:[NSString stringWithFormat:@"%d", button_number]];
-                [self addPostMutableArray:scrollView02 :button_number % LIMIT];
-                [self setPostCount];
-                break;
-            case VIEW_BOTTOM:
-                [selectDictionary setObject:[NSString stringWithFormat:@"%d", [postMutableArray.titles count]] forKey:[NSString stringWithFormat:@"%d", button_number]];
-                [self addPostMutableArray:scrollView03 :button_number % LIMIT];
-                [self setPostCount];
-                break;
-            default:
-                [self setPostCount];
-                break;
-        }
+        [self removePostMutableArray:grid_number];
     }
+    [self setPostCount];
 }
 
 - (void) setPostCount {
     [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.artists count]]];
 }
 
-- (void) addPostMutableArray:(ScrollView*)scrollView:(NSInteger)button_number {
-    [postMutableArray.titles addObject:[[scrollView.items objectForKey:@"titles"] objectAtIndex:button_number]];
-    [postMutableArray.track_url addObject:[[scrollView.items objectForKey:@"track_url"] objectAtIndex:button_number]];
-    [postMutableArray.jacket_url addObject:[[scrollView.items objectForKey:@"jacket_url"] objectAtIndex:button_number]];
-    [postMutableArray.artists addObject:[[scrollView.items objectForKey:@"artists"] objectAtIndex:button_number]];
-}
-
-- (void) removePostMutableArray:(NSInteger)button_number {
-    [postMutableArray removeObject:[[selectDictionary objectForKey:[NSString stringWithFormat:@"%d", button_number]] intValue]];
-    [selectDictionary removeObjectForKey:[NSString stringWithFormat:@"%d", button_number]];
-}
-
-- (void) scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-}
-
-- (void) setScrollView:(ScrollView*)scrollView
-{
-    [scrollView setItems];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
+- (void) removePostMutableArray:(NSInteger)grid_number {
+    NSUInteger index = [selectDictionaryArray indexOfObject:[NSString stringWithFormat:@"%d", grid_number]];
+    [postMutableArray removeObject:index];
+    [selectDictionaryArray removeObjectAtIndex:index];
 }
 
 @end

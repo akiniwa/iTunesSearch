@@ -1,12 +1,17 @@
 //
 //  GridView.m
-//  iTunesSearch
+//
+//  GridViewはそれぞれのグリッドごとにviewと値をもつことができ、
+//  画像のurlを指定することで、viewに画像を非同期で表示することができる。
+//  また、delegateGridViewに渡されたidに対して、checkedとunchecked、
+//  と対応する要素の番号を通知する。
 //
 //  Created by s_akiba on 12/10/25.
 //  Copyright (c) 2012年 s_akiba. All rights reserved.
 //
 
 #import "GridView.h"
+#import "GridArray.h"
 #import "ImageLoader.h"
 #import "CheckButton.h"
 
@@ -15,11 +20,7 @@
 
 @interface GridView ()
 {
-    NSMutableArray *artists;
-    NSMutableArray *jacket_url;
-    NSMutableArray *views;
-    NSMutableArray *titles;
-    NSMutableArray *track_url;
+    GridArray *gridArray;
     ImageLoader *imageLoader;
 }
 @end
@@ -38,25 +39,28 @@
 
 - (void)setItems:(NSMutableDictionary *)value {
 
-    artists = [value objectForKey:@"artists"];
-    track_url = [value objectForKey:@"track_url"];
-    jacket_url = [value objectForKey:@"jacket_url"];
-    views = [value objectForKey:@"views"];
-    titles = [value objectForKey:@"titles"];
+    gridArray = [[GridArray alloc] init];
+
+    
+    gridArray.artists = [value objectForKey:@"artists"];
+    gridArray.track_url = [value objectForKey:@"track_url"];
+    gridArray.jacket_url = [value objectForKey:@"jacket_url"];
+    gridArray.views = [value objectForKey:@"views"];
+    gridArray.music_title = [value objectForKey:@"titles"];
 
     if (value != items) {
-        for (UIView *item in views) {
+        for (UIView *item in gridArray.views) {
             // ここで、渡されたurlを受け取り、非同期でimageを取得する。
             [item removeFromSuperview];
         }
             [items release];
             items = [value copy];
 
-        for (NSInteger i=0;i<[jacket_url count];i++) {
+        for (NSInteger i=0;i<[gridArray.jacket_url count];i++) {
 
-            UIView *view = [views objectAtIndex:i];
-            NSString *jacketUrl = [jacket_url objectAtIndex:i];
-            NSString *trackTitle = [titles objectAtIndex:i];
+            UIView *view = [gridArray.views objectAtIndex:i];
+            NSString *jacketUrl = [gridArray.jacket_url objectAtIndex:i];
+            NSString *musicTitle = [gridArray.music_title objectAtIndex:i];
 
             imageLoader = [ImageLoader sharedInstance];
             UIImage *userImg = [imageLoader cacedImageForUrl:jacketUrl];
@@ -86,12 +90,12 @@
                     }];
             }
             UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, JACKET_SIZE, 80, LABEL_HEIGHT)];
-            label.text = trackTitle;
+            label.text = musicTitle;
             label.font = [UIFont systemFontOfSize:9];
-            [[views objectAtIndex:i] addSubview:label];
-            [self addSubview:[views objectAtIndex:i]];
+            [[gridArray.views objectAtIndex:i] addSubview:label];
+            [self addSubview:[gridArray.views objectAtIndex:i]];
         }
-        for (UIView *item in views) {
+        for (UIView *item in gridArray.views) {
             [self addSubview:item];
         }
             [self setNeedsLayout];
@@ -113,12 +117,14 @@
 -(void)performBtnEvent:(CheckButton*)btn
 {
     [btn setCheckButton];
+
     NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:[NSString stringWithFormat:@"%d", btn.tag] forKey:@"button_number"];
+    [dictionary setObject:[NSString stringWithFormat:@"%d", btn.tag] forKey:@"grid_number"];
+    [dictionary setObject:[gridArray dictionaryAtindex:btn.tag] forKey:@"dictionary"];
     if ([btn confirmIsChecked]) {
-        [dictionary setObject:@"YES" forKey:@"is_checked"];
+        [dictionary setObject:[NSNumber numberWithBool:YES] forKey:@"is_checked"];
     } else {
-        [dictionary setObject:@"NO" forKey:@"is_checked"];
+        [dictionary setObject:[NSNumber numberWithBool:NO] forKey:@"is_checked"];
     }
     [delegateGridView performSelector:@selector(notificateNumbers:) withObject:dictionary];
 }
@@ -131,7 +137,7 @@
     CGFloat xoffset = 0;
     CGFloat yoffset = 0;
 
-    for (UIView *item in views) {
+    for (UIView *item in gridArray.views) {
         [item setFrame:CGRectMake(xoffset + 1, yoffset + 1, width - 2, height - 2)];
         xoffset += width;
         if (xoffset >= [self frame].size.width) {

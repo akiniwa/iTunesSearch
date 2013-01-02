@@ -25,7 +25,7 @@
 }
 
 - (void)removeObject:(NSInteger)button_number {
-//  [self removeObjectAtIndex:pocket_id :button_number];
+    DEBUGLOG(@"number:%d", button_number);
     [self removeObjectAtIndex:titles :button_number];
     [self removeObjectAtIndex:track_url :button_number];
     [self removeObjectAtIndex:jacket_url :button_number];

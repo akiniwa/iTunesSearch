@@ -8,14 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "GridView.h"
+#import "PostMutableArray.h"
 
 @interface GridViewController : UIViewController<UIScrollViewDelegate>
 {
     GridView *gridView;
+    UIScrollView *scrollView;
+    
+    PostMutableArray *postMutableArray;
+    NSMutableDictionary *selectDictionary;
+    NSMutableDictionary *items;
 }
+
 @property (nonatomic, retain) NSString *artistName;
 @property (nonatomic, retain) id gridViewDelegate;
 
-- (id)initWithFrame:(CGRect)frame;
+- (void) notificateNumbers:(NSMutableDictionary*)dictionary;
+- (void) makeMutableArray;
 
 @end

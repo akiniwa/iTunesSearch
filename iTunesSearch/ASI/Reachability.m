@@ -192,7 +192,6 @@ static void logNetworkStatus_(const char *name, int line, NetworkStatus status) 
 
 // Preclude direct access to ivars.
 + (BOOL) accessInstanceVariablesDirectly {
-	
 	return NO;
 
 } // accessInstanceVariablesDirectly

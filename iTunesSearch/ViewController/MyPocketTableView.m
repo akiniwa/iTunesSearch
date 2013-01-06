@@ -274,6 +274,8 @@ static NSString *user_id;
 - (void)updatePlayState {
     NSLog(@"updatePlayState");
     [self reloadData];
+    
+    [myPocketDelegate performSelector:@selector(didReload)];
 
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:[tlArray.pocket_id count]] forKey:@"playlistCount"];
     NSNotification *n = [NSNotification notificationWithName:@"playlistCount" object:self userInfo:dic];

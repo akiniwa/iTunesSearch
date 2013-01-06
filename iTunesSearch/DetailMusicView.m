@@ -44,7 +44,6 @@
 
 - (void) removeObserverFromMusicView {
     // 通知オブジェクトを削除する。
-    FUNC();
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"trackUrl" object:nil];
 }
 

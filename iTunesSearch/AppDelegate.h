@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@class Reachability;
 
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
+{
+    Reachability* hostReach;
+    Reachability* internetReach;
+    Reachability* wifiReach;
+}
 @property (strong, nonatomic) UIWindow *window;
 
 @end

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TabBarController.h"
 #import "LoginViewController.h"
+#import "Reachability.h"
 
 void uncaughtExceptionHander(NSException *exception) {
     NSLog(@"CRASH: %@", exception);
@@ -19,6 +20,12 @@ void uncaughtExceptionHander(NSException *exception) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+	
+    internetReach = [Reachability reachabilityForInternetConnection];
+	[internetReach startNotifier];
+	[self updateInterfaceWithReachability: internetReach];
+    
     NSSetUncaughtExceptionHandler(&uncaughtExceptionHander);
     
     [GAI sharedInstance].trackUncaughtExceptions = YES;
@@ -45,6 +52,66 @@ void uncaughtExceptionHander(NSException *exception) {
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (void) reachabilityChanged: (NSNotification* )note
+{
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	[self updateInterfaceWithReachability: curReach];
+}
+
+- (void) showAlert: (Reachability*) curReach {
+    NetworkStatus netStatus = [curReach currentReachabilityStatus];
+    BOOL connectionRequired= [curReach currentReachabilityStatus];
+    BOOL wifi = NO;
+    NSString* statusString;
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            connectionRequired= NO;
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            wifi = YES;
+            break;
+        }
+    }
+
+    if((connectionRequired) && (wifi))
+    {
+        statusString= @"コネクションもwifiもあり";
+    } else if((connectionRequired)==YES && (wifi)==NO) {
+        statusString = @"コネクションあり、wifi無し。";
+    } else if ((connectionRequired)==NO && (wifi)==YES) {
+        statusString= @"コネクション無し、wifiあり。";
+    } else if ((connectionRequired)==NO && (wifi)==NO) {
+        statusString= @"コネクション無し、wifi無し。";
+    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"alert"
+                                                        message:statusString
+                                                       delegate:self
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"OK", nil];
+    [alertView show];
+}
+
+- (void) updateInterfaceWithReachability: (Reachability*) curReach
+{
+    NetworkStatus status = [curReach currentReachabilityStatus];
+    DEBUGLOG(@"status:%u", status);
+    
+	if(curReach == internetReach)
+	{
+        [self showAlert:curReach];
+	}
+	if(curReach == wifiReach)
+	{
+        [self showAlert:curReach];
+	}
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {

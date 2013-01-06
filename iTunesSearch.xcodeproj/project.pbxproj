@@ -571,7 +571,6 @@
 		765C5A561638C1A10029DD17 = {
 			isa = PBXGroup;
 			children = (
-				7660F8E6168C21B2000A771E /* QuartzCore.framework */,
 				765C5A6B1638C1A10029DD17 /* iTunesSearch */,
 				765C5A891638C1A10029DD17 /* iTunesSearchTests */,
 				765C5A641638C1A10029DD17 /* Frameworks */,
@@ -592,6 +591,7 @@
 			isa = PBXGroup;
 			children = (
 				763DCB6C1667052400ECDF58 /* libz.dylib */,
+				7660F8E6168C21B2000A771E /* QuartzCore.framework */,
 				761D8AB1168AC010002A7E0C /* AVFoundation.framework */,
 				76252CDB16786F6000AD7D5F /* CoreData.framework */,
 				763DCB6A1667051A00ECDF58 /* MobileCoreServices.framework */,

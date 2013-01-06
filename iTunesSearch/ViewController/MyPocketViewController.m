@@ -12,7 +12,7 @@
 
 @interface MyPocketViewController()
 {
-    BOOL is_reload;
+    BOOL is_reloading;
     UILabel *triggerHeader;
     BOOL headerOn;
     
@@ -55,9 +55,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    [self setTrigger];
     [self initialization];
+    [self setTrigger];
     [myPocketTableView mainTableLoad];
 }
 
@@ -65,7 +64,7 @@
     DetailViewController *detailViewController = [[DetailViewController alloc] init];
     detailViewController.pocket_id = [dictionary objectForKey:@"pocket_id"];
     detailViewController.pocket_title = [dictionary objectForKey:@"pocket_title"];
-    
+
     if ([[dictionary objectForKey:@"is_mine"] isEqualToString:@"YES"]) {
         [detailViewController setButton:YES];
     } else {
@@ -85,37 +84,31 @@
     r.size.height = 70;
     triggerHeader = [[UILabel alloc] initWithFrame:r];
 
-    [triggerHeader setBackgroundColor:[UIColor redColor]];
+    [triggerHeader setBackgroundColor:[UIColor clearColor]];
     [myPocketTableView addSubview:triggerHeader];
 
     UIImageView* imageview = [[UIImageView alloc] initWithFrame:CGRectMake((r.size.width/2 - 30), (60 - 32) / 2, 45, 32)];
     imageview.image = [UIImage imageNamed:@"downward"];
     imageview.tag = 1;
     [triggerHeader addSubview:imageview];
-    is_reload = NO;
+    is_reloading = NO;
 }
 
 -(void)hideMusicView {
     //トリガーは追加。
     CGRect r = myPocketTableView.bounds;
-    if (r.origin.y > -70) {
-
-    } else {
-        if (is_reload){
-            [myPocketTableView reloadTable];
-            is_reload = NO;
-        }
-    }
-    if ((r.origin.y < -70) && (is_reload == NO)) {
-		is_reload = YES;
+    if (r.origin.y < -70) {
 		UIImageView* imageview = (UIImageView*)[triggerHeader viewWithTag:1];
 		[UIView beginAnimations:nil context:nil];
         //CGAffineTransformRotate:回転
 		imageview.transform = CGAffineTransformRotate(CGAffineTransformIdentity, 3.14);
 		[UIView commitAnimations];
+        if (!is_reloading){
+            is_reloading = YES;
+            [myPocketTableView reloadTable];
+        }
 	}
-	if ((r.origin.y > -70) && (is_reload == YES)) {
-		is_reload = NO;
+	if (r.origin.y > -70) {
 		UIImageView* imageview = (UIImageView*)[triggerHeader viewWithTag:1];
 		[UIView beginAnimations:nil context:nil];
         //CGAffineTransformIdentity:オリジナルのアフィンに戻す。
@@ -126,6 +119,10 @@
 
 - (void)showMusicView {
     
+}
+
+- (void) didReload {
+    is_reloading = NO;
 }
 
 -(void)expand
@@ -146,9 +143,9 @@
 {
     if(!hidden)
         return;
-    
+
     hidden = NO;
-    
+
     [self.tabBarController setTabBarHidden:NO
                                   animated:YES];
     

@@ -32,9 +32,6 @@
 
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithCustomView:addPocket];
     self.navigationItem.rightBarButtonItem = rightButton;
-    
-    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-    [nc addObserver:self selector:@selector(setUserViewTitle:) name:@"playlistCount" object:nil];
 }
 
 - (void) setUserViewTitle:(NSNotification*)center {
@@ -42,14 +39,17 @@
     userView.title.text = [NSString stringWithFormat:@"%@%@", [defaults objectForKey:@"name"], @"さんのプレイリスト"];
 
     int playlistCount = [(NSNumber*)[[center userInfo] objectForKey:@"playlistCount"] intValue];
+
     if (playlistCount) {
         userView.playlistInfo.text = [NSString stringWithFormat:@"%d%@", playlistCount, @"つのプレイリストが作成されています。"];
     } else {
         userView.playlistInfo.text = @"まだプレイリストが作成されていません。";
     }
+}
 
-    
-    
+- (void) viewWillAppear:(BOOL)animated {
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self selector:@selector(setUserViewTitle:) name:@"playlistCount" object:nil];    
 }
 
 - (void) viewDidDisappear:(BOOL)animated {

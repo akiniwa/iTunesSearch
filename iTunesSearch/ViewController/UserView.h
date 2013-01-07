@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserImageView.h"
 
 @interface UserView : UIView
 
 @property (nonatomic, retain) UILabel *title;
 @property (nonatomic, retain) UILabel *playlistInfo;
-@property (nonatomic, retain) UIImageView *userImage;
+@property (nonatomic, retain) UserImageView *userImage;
 
 @end

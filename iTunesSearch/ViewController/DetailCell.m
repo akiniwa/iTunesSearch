@@ -8,6 +8,7 @@
 
 #import "DetailCell.h"
 #import <QuartzCore/QuartzCore.h>
+#import "DiscRotationView.h"
 
 #define ARTIST_NAME_X 70
 #define ARTIST_NAME_Y 5
@@ -52,6 +53,12 @@
         [self addSubview:lineImage];
     }
     return self;
+}
+
+- (void)startRotation {
+    DiscRotationView *discRotationView = [[DiscRotationView alloc] initWithFrame:CGRectMake(250, 20, 40, 40)];
+    [self addSubview:discRotationView];
+    [discRotationView startRotation];
 }
 
 - (void) setLabelFrame:(UILabel*)labelInCell:(CGRect)rect {

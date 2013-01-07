@@ -23,10 +23,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellIdentifier = @"Cell";
     SettingCell *cell = (SettingCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
     if (cell==nil) {
         cell = [[SettingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
+    cell.textLabel.textAlignment = UITextAlignmentRight;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
@@ -38,6 +39,8 @@
                     break;
                 case 1:
                     cell.textLabel.text = [defaults objectForKey:@"name"];
+                    [cell setUserImage];
+                    break;
                 default:
                     break;
             }
@@ -45,22 +48,14 @@
         case 1:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"利用規約";
+                    cell.textLabel.text = [NSString stringWithFormat:@"プレイリスト数：%@", [defaults objectForKey:@"playlist_number"]];
                     break;
                 case 1:
-                    cell.textLabel.text = [defaults objectForKey:@"id"];
-                default:
-                    break;
-            }
-        case 2:
-            switch (indexPath.row) {
-                case 0:
-                    cell.textLabel.text = [defaults objectForKey:@"FBAccessTokenKey"];
+                    cell.textLabel.text = [NSString stringWithFormat:@"登録曲数：%@", [defaults objectForKey:@"music_number"]];
                     break;
                 default:
                     break;
             }
-        default:
             break;
     }
 
@@ -75,10 +70,8 @@
             sectionName = @"ユーザー情報";
             break;
         case 1:
-            sectionName = @"プライバシー設定";
+            sectionName = @"登録情報";
             break;
-        case 2:
-            sectionName = @"通知設定";
         default:
             sectionName = @"通知設定";
             break;
@@ -95,8 +88,7 @@
             break;
         case 1:
             return 2;
-        case 2:
-            return 1;
+            break;
         default:
             return 1;
             break;
@@ -106,13 +98,12 @@
 //セクションの数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 //セルを選択したとき
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    [myPocketDelegate performSelector:@selector(pushToDetailView:) withObject:[tlArray.shared objectAtIndex:indexPath.row]];
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 

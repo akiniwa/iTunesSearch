@@ -10,6 +10,9 @@
 #import "SettingTableView.h"
 
 @implementation SettingViewController
+{
+    SettingTableView *settingTable;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -23,9 +26,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    SettingTableView *settingTable = [[SettingTableView alloc] initWithFrame:CGRectMake(0, 0, 320, self.view.bounds.size.height - 40) style:UITableViewStyleGrouped];
+    
+    CGRect r = self.view.bounds;
+    settingTable = [[SettingTableView alloc] initWithFrame:CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height - 40) style:UITableViewStyleGrouped];
     [self.view addSubview:settingTable];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [settingTable reloadData];
 }
 
 - (void)didReceiveMemoryWarning

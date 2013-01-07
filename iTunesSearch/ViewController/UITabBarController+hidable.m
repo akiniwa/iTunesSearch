@@ -42,27 +42,32 @@
     } else {
 		contentView = [self.view.subviews objectAtIndex:0];
     }
- */
+*/
 	contentView = [self.view.subviews objectAtIndex:0];
     
     if(hidden)
     {
+        self.tabBar.frame = CGRectMake(self.view.bounds.origin.x,
+                                       self.view.bounds.size.height - TABBAR_HEIGHT,
+                                       self.view.bounds.size.width,
+                                       TABBAR_HEIGHT);
+        
+        contentView.frame = CGRectMake(self.view.bounds.origin.x,
+                                       self.view.bounds.origin.y,
+                                       self.view.bounds.size.width,
+                                       self.view.bounds.size.height - TABBAR_HEIGHT);
         if(animated)
-        {   
+        {
             [UIView animateWithDuration:0.2
                              animations:^{
                                  contentView.frame = self.view.bounds;
-                                 
                                  self.tabBar.frame = CGRectMake(self.view.bounds.origin.x,
                                                                 self.view.bounds.size.height,
                                                                 self.view.bounds.size.width,
                                                                 TABBAR_HEIGHT);
                              }
                              completion:^(BOOL finished) {
-                                 self.tabBar.frame = CGRectMake(self.view.bounds.origin.x,
-                                                                self.view.bounds.size.height,
-                                                                self.view.bounds.size.width,
-                                                                TABBAR_HEIGHT);
+                                 contentView.frame = self.view.bounds;
                              }];
         }
         else
@@ -77,10 +82,14 @@
     }
     else
     {
+
         self.tabBar.frame = CGRectMake(self.view.bounds.origin.x,
                                        self.view.bounds.size.height,
                                        self.view.bounds.size.width,
                                        TABBAR_HEIGHT);
+        
+        contentView.frame = self.view.bounds;
+        
         if(animated)
         {
             [UIView animateWithDuration:0.2

@@ -202,8 +202,6 @@ static NSString *user_id;
 
     cell.tlImageView.image = jacketImage;
     
-
-
     if (![[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
         [cell setButton];
         cell.shareButton.tag = indexPath.row;
@@ -272,11 +270,23 @@ static NSString *user_id;
 }
 
 - (void)updatePlayState {
-    NSLog(@"updatePlayState");
+    DEBUGLOG(@"updatePlayState: playlistCount:%d ", [tlArray.pocket_id count]);
     [self reloadData];
     
     [myPocketDelegate performSelector:@selector(didReload)];
-
+    NSString *className = NSStringFromClass([myPocketDelegate class]);
+    
+    if ([className isEqualToString:@"UsersViewController"]) {
+        int music_Count=0;
+        for (NSString* music in tlArray.music_count) {
+            music_Count += [music intValue];
+        }
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSString stringWithFormat:@"%d", [tlArray.pocket_id count]] forKey:@"playlist_number"];
+        [defaults setObject:[NSString stringWithFormat:@"%d", music_Count] forKey:@"music_number"];
+        [defaults synchronize];
+    }
+    
     NSDictionary *dic = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:[tlArray.pocket_id count]] forKey:@"playlistCount"];
     NSNotification *n = [NSNotification notificationWithName:@"playlistCount" object:self userInfo:dic];
     [[NSNotificationCenter defaultCenter] postNotification:n];
@@ -400,6 +410,7 @@ static NSString *user_id;
         [tlArray removeAtIndexPath:indexPath.row];
 
         [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self reloadTable];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // ここは空のままでOKです。
     }

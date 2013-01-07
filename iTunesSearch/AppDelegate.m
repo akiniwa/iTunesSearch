@@ -12,8 +12,8 @@
 #import "Reachability.h"
 
 void uncaughtExceptionHander(NSException *exception) {
-    NSLog(@"CRASH: %@", exception);
-    NSLog(@"Stack Trace: %@", [exception callStackSymbols]);
+    DEBUGLOG(@"CRASH: %@", exception);
+    DEBUGLOG(@"Stack Trace: %@", [exception callStackSymbols]);
 }
 
 @implementation AppDelegate
@@ -122,7 +122,6 @@ void uncaughtExceptionHander(NSException *exception) {
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
     
-    NSLog(@"waiting");
     DEBUGLOG(@"application:%@, url:%@", application, url);
     LoginViewController *loginViewController = [[LoginViewController alloc] init];
     _window.rootViewController = loginViewController;

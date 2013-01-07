@@ -102,6 +102,10 @@
 		768D8683166DB37100465565 /* PostMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 768D8682166DB37100465565 /* PostMutableArray.m */; };
 		76E8664E169A677800B44562 /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E8664D169A677800B44562 /* UserImageView.m */; };
 		76E86652169A801600B44562 /* DiscRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E86651169A801600B44562 /* DiscRotationView.m */; };
+		76E86671169AB47B00B44562 /* zip-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E86670169AB47B00B44562 /* zip-icon@2x.png */; };
+		76E8667B169ABCB000B44562 /* publicTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E8667A169ABCB000B44562 /* publicTab@2x.png */; };
+		76E8667F169AC2E900B44562 /* userTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E8667E169AC2E900B44562 /* userTab@2x.png */; };
+		76E86681169AC42900B44562 /* settingTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E86680169AC42900B44562 /* settingTab@2x.png */; };
 		D58C425216915FEC00C22B80 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425116915FEC00C22B80 /* UserView.m */; };
 		D58C425916916D4B00C22B80 /* UITabBarController+hidable.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */; };
 		D58C42751692266B00C22B80 /* lineGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C42741692266B00C22B80 /* lineGray@2x.png */; };
@@ -298,6 +302,10 @@
 		76E8664D169A677800B44562 /* UserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserImageView.m; path = ViewController/UserImageView.m; sourceTree = "<group>"; };
 		76E86650169A801600B44562 /* DiscRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscRotationView.h; path = ViewController/DiscRotationView.h; sourceTree = "<group>"; };
 		76E86651169A801600B44562 /* DiscRotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscRotationView.m; path = ViewController/DiscRotationView.m; sourceTree = "<group>"; };
+		76E86670169AB47B00B44562 /* zip-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zip-icon@2x.png"; sourceTree = "<group>"; };
+		76E8667A169ABCB000B44562 /* publicTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "publicTab@2x.png"; sourceTree = "<group>"; };
+		76E8667E169AC2E900B44562 /* userTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userTab@2x.png"; sourceTree = "<group>"; };
+		76E86680169AC42900B44562 /* settingTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingTab@2x.png"; sourceTree = "<group>"; };
 		D58C425016915FEC00C22B80 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		D58C425116915FEC00C22B80 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+hidable.h"; path = "../ViewController/UITabBarController+hidable.h"; sourceTree = "<group>"; };
@@ -437,6 +445,10 @@
 		76252C7116786B8800AD7D5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				76E86680169AC42900B44562 /* settingTab@2x.png */,
+				76E8667E169AC2E900B44562 /* userTab@2x.png */,
+				76E8667A169ABCB000B44562 /* publicTab@2x.png */,
+				76E86670169AB47B00B44562 /* zip-icon@2x.png */,
 				D58C4280169257B500C22B80 /* addPlaylist@2x.png */,
 				D58C427E1692393D00C22B80 /* jacketImageBackGround@2x.png */,
 				D58C42781692312900C22B80 /* footerBackGround@2x.png */,
@@ -875,6 +887,10 @@
 				D58C42791692312900C22B80 /* footerBackGround@2x.png in Resources */,
 				D58C427F1692393D00C22B80 /* jacketImageBackGround@2x.png in Resources */,
 				D58C4281169257B500C22B80 /* addPlaylist@2x.png in Resources */,
+				76E86671169AB47B00B44562 /* zip-icon@2x.png in Resources */,
+				76E8667B169ABCB000B44562 /* publicTab@2x.png in Resources */,
+				76E8667F169AC2E900B44562 /* userTab@2x.png in Resources */,
+				76E86681169AC42900B44562 /* settingTab@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

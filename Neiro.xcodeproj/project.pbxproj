@@ -29,12 +29,8 @@
 		76252C6F16786B7D00AD7D5F /* libGoogleAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76252C6B16786B7D00AD7D5F /* libGoogleAnalytics.a */; };
 		76252C7016786B7D00AD7D5F /* libGoogleAnalytics_debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76252C6C16786B7D00AD7D5F /* libGoogleAnalytics_debug.a */; };
 		76252C9316786B8800AD7D5F /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 76252C7216786B8800AD7D5F /* background.png */; };
-		76252C9416786B8800AD7D5F /* blank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 76252C7316786B8800AD7D5F /* blank.jpg */; };
 		76252C9516786B8800AD7D5F /* cancelBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76252C7416786B8800AD7D5F /* cancelBtn@2x.png */; };
 		76252C9616786B8800AD7D5F /* check@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76252C7516786B8800AD7D5F /* check@2x.png */; };
-		76252C9716786B8800AD7D5F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76252C7616786B8800AD7D5F /* Default-568h@2x.png */; };
-		76252C9816786B8800AD7D5F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76252C7716786B8800AD7D5F /* Default.png */; };
-		76252C9916786B8800AD7D5F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76252C7816786B8800AD7D5F /* Default@2x.png */; };
 		76252C9A16786B8800AD7D5F /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252C7B16786B8800AD7D5F /* NSObject+SBJson.m */; };
 		76252C9B16786B8800AD7D5F /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252C7E16786B8800AD7D5F /* SBJsonParser.m */; };
 		76252C9C16786B8800AD7D5F /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252C8016786B8800AD7D5F /* SBJsonStreamParser.m */; };
@@ -106,6 +102,13 @@
 		76E8667B169ABCB000B44562 /* publicTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E8667A169ABCB000B44562 /* publicTab@2x.png */; };
 		76E8667F169AC2E900B44562 /* userTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E8667E169AC2E900B44562 /* userTab@2x.png */; };
 		76E86681169AC42900B44562 /* settingTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E86680169AC42900B44562 /* settingTab@2x.png */; };
+		76E86694169ACF2000B44562 /* searchMusic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E86692169ACF2000B44562 /* searchMusic@2x.png */; };
+		76E86695169ACF2000B44562 /* postMusic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E86693169ACF2000B44562 /* postMusic@2x.png */; };
+		76E86699169AD63300B44562 /* MusicSearchTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E86698169AD63200B44562 /* MusicSearchTextField.m */; };
+		76E8669E169ADD1300B44562 /* 46.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E8669D169ADD1300B44562 /* 46.png */; };
+		76E866A0169ADD1B00B44562 /* 45.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E8669F169ADD1B00B44562 /* 45.png */; };
+		76E866A2169ADD3C00B44562 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E866A1169ADD3C00B44562 /* Default.png */; };
+		76E866A4169ADD4200B44562 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E866A3169ADD4100B44562 /* Default@2x.png */; };
 		D58C425216915FEC00C22B80 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425116915FEC00C22B80 /* UserView.m */; };
 		D58C425916916D4B00C22B80 /* UITabBarController+hidable.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */; };
 		D58C42751692266B00C22B80 /* lineGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C42741692266B00C22B80 /* lineGray@2x.png */; };
@@ -185,12 +188,8 @@
 		76252C6B16786B7D00AD7D5F /* libGoogleAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics.a; sourceTree = "<group>"; };
 		76252C6C16786B7D00AD7D5F /* libGoogleAnalytics_debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAnalytics_debug.a; sourceTree = "<group>"; };
 		76252C7216786B8800AD7D5F /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		76252C7316786B8800AD7D5F /* blank.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blank.jpg; sourceTree = "<group>"; };
 		76252C7416786B8800AD7D5F /* cancelBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cancelBtn@2x.png"; sourceTree = "<group>"; };
 		76252C7516786B8800AD7D5F /* check@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check@2x.png"; sourceTree = "<group>"; };
-		76252C7616786B8800AD7D5F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		76252C7716786B8800AD7D5F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		76252C7816786B8800AD7D5F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		76252C7A16786B8800AD7D5F /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		76252C7B16786B8800AD7D5F /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		76252C7C16786B8800AD7D5F /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -261,19 +260,19 @@
 		76565FAB168C590D00915034 /* backPageBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backPageBtn@2x.png"; sourceTree = "<group>"; };
 		765946EF1653772100C04B50 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
 		765946F01653772100C04B50 /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
-		765C5A611638C1A10029DD17 /* iTunesSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		765C5A611638C1A10029DD17 /* Neiro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neiro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		765C5A651638C1A10029DD17 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		765C5A671638C1A10029DD17 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		765C5A691638C1A10029DD17 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		765C5A6D1638C1A10029DD17 /* iTunesSearch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTunesSearch-Info.plist"; sourceTree = "<group>"; };
+		765C5A6D1638C1A10029DD17 /* Neiro-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Neiro-Info.plist"; sourceTree = "<group>"; };
 		765C5A6F1638C1A10029DD17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		765C5A711638C1A10029DD17 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		765C5A731638C1A10029DD17 /* iTunesSearch-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iTunesSearch-Prefix.pch"; sourceTree = "<group>"; };
+		765C5A731638C1A10029DD17 /* Neiro-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Neiro-Prefix.pch"; sourceTree = "<group>"; };
 		765C5A741638C1A10029DD17 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		765C5A751638C1A10029DD17 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		765C5A821638C1A10029DD17 /* iTunesSearchTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesSearchTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		765C5A821638C1A10029DD17 /* NeiroTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeiroTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		765C5A831638C1A10029DD17 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		765C5A8B1638C1A10029DD17 /* iTunesSearchTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iTunesSearchTests-Info.plist"; sourceTree = "<group>"; };
+		765C5A8B1638C1A10029DD17 /* NeiroTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NeiroTests-Info.plist"; sourceTree = "<group>"; };
 		765C5A8D1638C1A10029DD17 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		765C5A8F1638C1A10029DD17 /* iTunesSearchTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iTunesSearchTests.h; sourceTree = "<group>"; };
 		765C5A901638C1A10029DD17 /* iTunesSearchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iTunesSearchTests.m; sourceTree = "<group>"; };
@@ -306,6 +305,14 @@
 		76E8667A169ABCB000B44562 /* publicTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "publicTab@2x.png"; sourceTree = "<group>"; };
 		76E8667E169AC2E900B44562 /* userTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "userTab@2x.png"; sourceTree = "<group>"; };
 		76E86680169AC42900B44562 /* settingTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settingTab@2x.png"; sourceTree = "<group>"; };
+		76E86692169ACF2000B44562 /* searchMusic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchMusic@2x.png"; sourceTree = "<group>"; };
+		76E86693169ACF2000B44562 /* postMusic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "postMusic@2x.png"; sourceTree = "<group>"; };
+		76E86697169AD63200B44562 /* MusicSearchTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicSearchTextField.h; sourceTree = "<group>"; };
+		76E86698169AD63200B44562 /* MusicSearchTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicSearchTextField.m; sourceTree = "<group>"; };
+		76E8669D169ADD1300B44562 /* 46.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 46.png; path = ../../46.png; sourceTree = "<group>"; };
+		76E8669F169ADD1B00B44562 /* 45.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 45.png; path = ../../45.png; sourceTree = "<group>"; };
+		76E866A1169ADD3C00B44562 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		76E866A3169ADD4100B44562 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		D58C425016915FEC00C22B80 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		D58C425116915FEC00C22B80 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
 		D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+hidable.h"; path = "../ViewController/UITabBarController+hidable.h"; sourceTree = "<group>"; };
@@ -445,6 +452,10 @@
 		76252C7116786B8800AD7D5F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				76E8669F169ADD1B00B44562 /* 45.png */,
+				76E8669D169ADD1300B44562 /* 46.png */,
+				76E86692169ACF2000B44562 /* searchMusic@2x.png */,
+				76E86693169ACF2000B44562 /* postMusic@2x.png */,
 				76E86680169AC42900B44562 /* settingTab@2x.png */,
 				76E8667E169AC2E900B44562 /* userTab@2x.png */,
 				76E8667A169ABCB000B44562 /* publicTab@2x.png */,
@@ -469,12 +480,8 @@
 				761D8AA4168AADF9002A7E0C /* jacket_play@2x.png */,
 				76252CDD16786FBE00AD7D5F /* connectFB@2x.png */,
 				76252C7216786B8800AD7D5F /* background.png */,
-				76252C7316786B8800AD7D5F /* blank.jpg */,
 				76252C7416786B8800AD7D5F /* cancelBtn@2x.png */,
 				76252C7516786B8800AD7D5F /* check@2x.png */,
-				76252C7616786B8800AD7D5F /* Default-568h@2x.png */,
-				76252C7716786B8800AD7D5F /* Default.png */,
-				76252C7816786B8800AD7D5F /* Default@2x.png */,
 			);
 			name = Resource;
 			path = iTunesSearch/Resource;
@@ -552,6 +559,8 @@
 				763974561665E4C400D66FAF /* CheckButton.m */,
 				D58C42EE1693C98300C22B80 /* GridViewForAddingMusicController.h */,
 				D58C42EF1693C98300C22B80 /* GridViewForAddingMusicController.m */,
+				76E86697169AD63200B44562 /* MusicSearchTextField.h */,
+				76E86698169AD63200B44562 /* MusicSearchTextField.m */,
 			);
 			name = GridViewController;
 			path = ..;
@@ -571,6 +580,8 @@
 		765C5A561638C1A10029DD17 = {
 			isa = PBXGroup;
 			children = (
+				76E866A3169ADD4100B44562 /* Default@2x.png */,
+				76E866A1169ADD3C00B44562 /* Default.png */,
 				765C5A6B1638C1A10029DD17 /* iTunesSearch */,
 				76252C7116786B8800AD7D5F /* Resource */,
 				765C5A891638C1A10029DD17 /* iTunesSearchTests */,
@@ -583,8 +594,8 @@
 		765C5A621638C1A10029DD17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				765C5A611638C1A10029DD17 /* iTunesSearch.app */,
-				765C5A821638C1A10029DD17 /* iTunesSearchTests.octest */,
+				765C5A611638C1A10029DD17 /* Neiro.app */,
+				765C5A821638C1A10029DD17 /* NeiroTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -622,10 +633,10 @@
 		765C5A6C1638C1A10029DD17 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				765C5A6D1638C1A10029DD17 /* iTunesSearch-Info.plist */,
+				765C5A6D1638C1A10029DD17 /* Neiro-Info.plist */,
 				765C5A6E1638C1A10029DD17 /* InfoPlist.strings */,
 				765C5A711638C1A10029DD17 /* main.m */,
-				765C5A731638C1A10029DD17 /* iTunesSearch-Prefix.pch */,
+				765C5A731638C1A10029DD17 /* Neiro-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -643,7 +654,7 @@
 		765C5A8A1638C1A10029DD17 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				765C5A8B1638C1A10029DD17 /* iTunesSearchTests-Info.plist */,
+				765C5A8B1638C1A10029DD17 /* NeiroTests-Info.plist */,
 				765C5A8C1638C1A10029DD17 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -791,9 +802,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		765C5A601638C1A10029DD17 /* iTunesSearch */ = {
+		765C5A601638C1A10029DD17 /* Neiro */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 765C5A941638C1A10029DD17 /* Build configuration list for PBXNativeTarget "iTunesSearch" */;
+			buildConfigurationList = 765C5A941638C1A10029DD17 /* Build configuration list for PBXNativeTarget "Neiro" */;
 			buildPhases = (
 				765C5A5D1638C1A10029DD17 /* Sources */,
 				765C5A5E1638C1A10029DD17 /* Frameworks */,
@@ -803,14 +814,14 @@
 			);
 			dependencies = (
 			);
-			name = iTunesSearch;
+			name = Neiro;
 			productName = iTunesSearch;
-			productReference = 765C5A611638C1A10029DD17 /* iTunesSearch.app */;
+			productReference = 765C5A611638C1A10029DD17 /* Neiro.app */;
 			productType = "com.apple.product-type.application";
 		};
-		765C5A811638C1A10029DD17 /* iTunesSearchTests */ = {
+		765C5A811638C1A10029DD17 /* NeiroTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 765C5A971638C1A10029DD17 /* Build configuration list for PBXNativeTarget "iTunesSearchTests" */;
+			buildConfigurationList = 765C5A971638C1A10029DD17 /* Build configuration list for PBXNativeTarget "NeiroTests" */;
 			buildPhases = (
 				765C5A7D1638C1A10029DD17 /* Sources */,
 				765C5A7E1638C1A10029DD17 /* Frameworks */,
@@ -822,9 +833,9 @@
 			dependencies = (
 				765C5A881638C1A10029DD17 /* PBXTargetDependency */,
 			);
-			name = iTunesSearchTests;
+			name = NeiroTests;
 			productName = iTunesSearchTests;
-			productReference = 765C5A821638C1A10029DD17 /* iTunesSearchTests.octest */;
+			productReference = 765C5A821638C1A10029DD17 /* NeiroTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -836,7 +847,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = s_akiba;
 			};
-			buildConfigurationList = 765C5A5B1638C1A10029DD17 /* Build configuration list for PBXProject "iTunesSearch" */;
+			buildConfigurationList = 765C5A5B1638C1A10029DD17 /* Build configuration list for PBXProject "Neiro" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -848,8 +859,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				765C5A601638C1A10029DD17 /* iTunesSearch */,
-				765C5A811638C1A10029DD17 /* iTunesSearchTests */,
+				765C5A601638C1A10029DD17 /* Neiro */,
+				765C5A811638C1A10029DD17 /* NeiroTests */,
 			);
 		};
 /* End PBXProject section */
@@ -862,12 +873,8 @@
 				765C5A701638C1A10029DD17 /* InfoPlist.strings in Resources */,
 				76252C6D16786B7D00AD7D5F /* FBDialog.bundle in Resources */,
 				76252C9316786B8800AD7D5F /* background.png in Resources */,
-				76252C9416786B8800AD7D5F /* blank.jpg in Resources */,
 				76252C9516786B8800AD7D5F /* cancelBtn@2x.png in Resources */,
 				76252C9616786B8800AD7D5F /* check@2x.png in Resources */,
-				76252C9716786B8800AD7D5F /* Default-568h@2x.png in Resources */,
-				76252C9816786B8800AD7D5F /* Default.png in Resources */,
-				76252C9916786B8800AD7D5F /* Default@2x.png in Resources */,
 				76252CDE16786FBE00AD7D5F /* connectFB@2x.png in Resources */,
 				761D8AA5168AADF9002A7E0C /* jacket_play@2x.png in Resources */,
 				761D8AB7168ADC1C002A7E0C /* pauseBtn@2x.png in Resources */,
@@ -891,6 +898,12 @@
 				76E8667B169ABCB000B44562 /* publicTab@2x.png in Resources */,
 				76E8667F169AC2E900B44562 /* userTab@2x.png in Resources */,
 				76E86681169AC42900B44562 /* settingTab@2x.png in Resources */,
+				76E86694169ACF2000B44562 /* searchMusic@2x.png in Resources */,
+				76E86695169ACF2000B44562 /* postMusic@2x.png in Resources */,
+				76E8669E169ADD1300B44562 /* 46.png in Resources */,
+				76E866A0169ADD1B00B44562 /* 45.png in Resources */,
+				76E866A2169ADD3C00B44562 /* Default.png in Resources */,
+				76E866A4169ADD4200B44562 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -983,6 +996,7 @@
 				D58C42F31693DCF900C22B80 /* GridArray.m in Sources */,
 				76E8664E169A677800B44562 /* UserImageView.m in Sources */,
 				76E86652169A801600B44562 /* DiscRotationView.m in Sources */,
+				76E86699169AD63300B44562 /* MusicSearchTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -999,7 +1013,7 @@
 /* Begin PBXTargetDependency section */
 		765C5A881638C1A10029DD17 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 765C5A601638C1A10029DD17 /* iTunesSearch */;
+			target = 765C5A601638C1A10029DD17 /* Neiro */;
 			targetProxy = 765C5A871638C1A10029DD17 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1082,8 +1096,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iTunesSearch/iTunesSearch-Prefix.pch";
-				INFOPLIST_FILE = "iTunesSearch/iTunesSearch-Info.plist";
+				GCC_PREFIX_HEADER = "iTunesSearch/Neiro-Prefix.pch";
+				INFOPLIST_FILE = "iTunesSearch/Neiro-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1091,7 +1105,7 @@
 					"\"$(SRCROOT)/iTunesSearch/facebook-ios-sdk\"",
 					"\"$(SRCROOT)/iTunesSearch/GoogleAnalytics\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Neiro;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1101,8 +1115,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "iTunesSearch/iTunesSearch-Prefix.pch";
-				INFOPLIST_FILE = "iTunesSearch/iTunesSearch-Info.plist";
+				GCC_PREFIX_HEADER = "iTunesSearch/Neiro-Prefix.pch";
+				INFOPLIST_FILE = "iTunesSearch/Neiro-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1110,7 +1124,7 @@
 					"\"$(SRCROOT)/iTunesSearch/facebook-ios-sdk\"",
 					"\"$(SRCROOT)/iTunesSearch/GoogleAnalytics\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Neiro;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1126,8 +1140,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTunesSearch/iTunesSearch-Prefix.pch";
-				INFOPLIST_FILE = "iTunesSearchTests/iTunesSearchTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "iTunesSearchTests/NeiroTests-Info.plist";
+				PRODUCT_NAME = NeiroTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1143,8 +1157,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iTunesSearch/iTunesSearch-Prefix.pch";
-				INFOPLIST_FILE = "iTunesSearchTests/iTunesSearchTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "iTunesSearchTests/NeiroTests-Info.plist";
+				PRODUCT_NAME = NeiroTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1153,7 +1167,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		765C5A5B1638C1A10029DD17 /* Build configuration list for PBXProject "iTunesSearch" */ = {
+		765C5A5B1638C1A10029DD17 /* Build configuration list for PBXProject "Neiro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				765C5A921638C1A10029DD17 /* Debug */,
@@ -1162,7 +1176,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		765C5A941638C1A10029DD17 /* Build configuration list for PBXNativeTarget "iTunesSearch" */ = {
+		765C5A941638C1A10029DD17 /* Build configuration list for PBXNativeTarget "Neiro" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				765C5A951638C1A10029DD17 /* Debug */,
@@ -1171,7 +1185,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		765C5A971638C1A10029DD17 /* Build configuration list for PBXNativeTarget "iTunesSearchTests" */ = {
+		765C5A971638C1A10029DD17 /* Build configuration list for PBXNativeTarget "NeiroTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				765C5A981638C1A10029DD17 /* Debug */,

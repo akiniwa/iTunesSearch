@@ -7,12 +7,14 @@
 //
 
 #import "SettingCell.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation SettingCell
 
 - (void) setUserImage {
-    UserImageView *userImageView = [[UserImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    UserImageView *userImageView = [[UserImageView alloc] initWithFrame:CGRectMake(14, 4, 47, 47)];
+    userImageView.layer.cornerRadius = 4.0f;
+    userImageView.clipsToBounds = true;
     [self addSubview:userImageView];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *userImageUrl = [NSString stringWithFormat:@"%@%@%@", @"https://graph.facebook.com/", [defaults objectForKey:@"id"], @"/picture?type=square"];

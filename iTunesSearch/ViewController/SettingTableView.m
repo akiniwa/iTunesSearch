@@ -36,9 +36,6 @@
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = [defaults objectForKey:@"user_id"];
-                    break;
-                case 1:
                     cell.textLabel.text = [defaults objectForKey:@"name"];
                     [cell setUserImage];
                     break;
@@ -85,7 +82,7 @@
 {
     switch (section) {
         case 0:
-            return 2;
+            return 1;
             break;
         case 1:
             return 2;
@@ -111,7 +108,7 @@
 //セルの高さ
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    return 55;
 }
 
 @end

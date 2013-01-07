@@ -9,6 +9,7 @@
 #import "UserImageView.h"
 #import "HttpClient.h"
 #import "ImageLoader.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UserImageView
 {

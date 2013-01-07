@@ -12,6 +12,7 @@
 #import "PostToServer.h"
 #import "PostMutableArray.h"
 #import "GridViewForAddingMusicController.h"
+#import "MusicSearchTextField.h"
 
 #define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=album&limit=15&term="
 #define RSS_FEED_JPOP @"https://itunes.apple.com/jp/rss/topsongs/limit=25/genre=27/json"
@@ -41,7 +42,7 @@ enum view {
     
     GridViewForAddingMusicController *gridViewForAddingMusicController;
     
-    UITextField *txField;
+    MusicSearchTextField *txField;
 }
 @end
 
@@ -64,27 +65,31 @@ enum view {
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"bar"] forBarMetrics:UIBarMetricsDefault];
 
-    txField = [[UITextField alloc] initWithFrame:CGRectMake(20, 30, 190, 30)];
+    txField = [[MusicSearchTextField alloc] initWithFrame:CGRectMake(15, 35, 230, 30)];
+    [txField editingRectForBounds:CGRectMake(0, txField.bounds.origin.y+10, txField.bounds.size.width, txField.bounds.size.height+5)];
+    [txField textRectForBounds:CGRectMake(0, txField.bounds.origin.y+10, txField.bounds.size.width, txField.bounds.size.height+20)];
     txField.delegate = (id)self;
-    txField.borderStyle = UITextBorderStyleBezel;
+    [txField setFont:[UIFont systemFontOfSize:14]];
+    txField.placeholder = @"アーティストやアルバム名で検索";
+    txField.borderStyle = UITextBorderStyleRoundedRect;
     [self.view addSubview:txField];
 
-    UIButton *customView = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 55, 30)];
+    UIButton *customView = [[UIButton alloc] initWithFrame:CGRectMake(0, 5, 55, 30)];
     [customView setBackgroundImage:[UIImage imageNamed:@"cancelBtn.png"] forState:UIControlStateNormal];
     [customView addTarget:self action:@selector(modalClose) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.leftBarButtonItem = buttonItem;
 
-    UIButton *barButtom = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    UIButton *barButtom = [UIButton buttonWithType:UIButtonTypeCustom];
     [barButtom setFrame:CGRectMake(0, 0, 55, 30)];
-    [barButtom setTitle:@"post" forState:UIControlStateNormal];
+    [barButtom setImage:[UIImage imageNamed:@"postMusic"] forState:UIControlStateNormal];
     [barButtom addTarget:self action:@selector(postToCheck) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem* rightButton = [[UIBarButtonItem alloc] initWithCustomView:barButtom];
     self.navigationItem.rightBarButtonItem = rightButton;
 
-    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [searchButton setFrame:CGRectMake(240, 25, 80, 30)];
-    [searchButton setTitle:@"search" forState:UIControlStateNormal];
+    UIButton *searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [searchButton setFrame:CGRectMake(255, 35, 55, 30)];
+    [searchButton setImage:[UIImage imageNamed:@"searchMusic"] forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(searchMusic) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:searchButton];
 
@@ -92,13 +97,13 @@ enum view {
     selectDictionaryArray = [NSMutableArray array];
 
     gridViewForAddingMusicController = [[GridViewForAddingMusicController alloc] init];
-    gridViewForAddingMusicController.artistName = @"glay";
+    gridViewForAddingMusicController.artistName = @"larc ";
     gridViewForAddingMusicController.gridViewDelegate = self;
     [self addChildViewController:gridViewForAddingMusicController];
 
     [self.view addSubview:gridViewForAddingMusicController.view];
 
-    postCount = [[UILabel alloc] initWithFrame:CGRectMake(20, 5, 300, 20)];
+    postCount = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, 300, 20)];
     [postCount setText:[NSString stringWithFormat:@"%d曲が選択されています。", [postMutableArray.pocket_id count]]];
     [self.view addSubview:postCount];
 }
@@ -137,6 +142,7 @@ enum view {
 }
 
 - (void) searchMusic {
+    [txField resignFirstResponder];
     if (!txField.text) {
 
     } else {

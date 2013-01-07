@@ -7,7 +7,7 @@
 //
 
 #import "UserView.h"
-
+#import <QuartzCore/QuartzCore.h>
 
 @implementation UserView
 
@@ -35,7 +35,9 @@
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *userImageUrl = [NSString stringWithFormat:@"%@%@%@", @"https://graph.facebook.com/", [defaults objectForKey:@"id"], @"/picture?type=square"];
-        userImage = [[UserImageView alloc] initWithFrame:CGRectMake(2, 2, 50, 50)];
+        userImage = [[UserImageView alloc] initWithFrame:CGRectMake(2, 3, 50, 50)];
+        userImage.layer.cornerRadius = 4.0f;
+        userImage.clipsToBounds = true;
         [self addSubview:userImage];
         [userImage setImageWithUrl:userImageUrl];
         

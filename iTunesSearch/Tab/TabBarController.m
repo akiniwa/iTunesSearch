@@ -34,7 +34,7 @@
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
 
     UsersViewController *usersViewController = [[UsersViewController alloc] init];
-    usersViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"自分のプレイリスト" image:[UIImage imageNamed:@"userTab"] tag:0];
+    usersViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"マイページ" image:[UIImage imageNamed:@"userTab"] tag:0];
     usersViewController.urlString = USER_FEED_URL;
     [usersViewController setShareButton:NO];
     UINavigationController *naviUserPocket = [[UINavigationController alloc] initWithRootViewController:usersViewController];
@@ -48,7 +48,7 @@
     [naviPublicPocket.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];
 
     SettingViewController *settingViewController = [[SettingViewController alloc] init];
-    settingViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"" image:[UIImage imageNamed:@"settingTab"] tag:2];
+    settingViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"登録情報" image:[UIImage imageNamed:@"settingTab"] tag:2];
 
     NSArray *viewArray = [NSArray arrayWithObjects:naviUserPocket, naviPublicPocket, settingViewController, nil];
     [self setViewControllers:viewArray animated:YES];

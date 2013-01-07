@@ -103,11 +103,9 @@ static NSString *user_id;
         NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSDictionary *json = [json_string JSONValue];
 
-        int n = 0;
+        int diff = [json count] - [tlArray.pocket_id count];
+
         for (NSDictionary *value in json) {
-            if ([[value objectForKey:@"pocket_id"] intValue] > [self checkPocketId:tlArray.pocket_id]) {
-                n++;
-            }
             [tlReloadArray.user_name addObject:[value objectForKey:@"user_name"]];
             [tlReloadArray.shared addObject:[value objectForKey:@"shared"]];
             [tlReloadArray.pocket_title addObject:[value objectForKey:@"pocket_title"]];
@@ -118,19 +116,23 @@ static NSString *user_id;
             [tlReloadArray.music_count addObject:[value objectForKey:@"music_count"]];
         }
 
-        int k = n;
+        int k = diff;
+        if (diff<0) {
+            for (int n=0; n<(-diff); n++) {
+                [tlArray removeAtIndexPath:n];
+            }
+        }
         for (int l=0; l<[tlReloadArray.user_id count]; l++) {
             if (l<k) {
-                [self insertObjectToTLArray:tlArray.user_name :tlReloadArray.user_name :n];
-                [self insertObjectToTLArray:tlArray.shared :tlReloadArray.shared :n];
-                [self insertObjectToTLArray:tlArray.pocket_title :tlReloadArray.pocket_title :n];
-                [self insertObjectToTLArray:tlArray.music_title :tlReloadArray.music_title :n];
-                [self insertObjectToTLArray:tlArray.jacket_url :tlReloadArray.jacket_url :n];
-                [self insertObjectToTLArray:tlArray.pocket_id :tlReloadArray.pocket_id :n];
-                [self insertObjectToTLArray:tlArray.user_id :tlReloadArray.user_id :n];
-                [self insertObjectToTLArray:tlArray.music_count :tlReloadArray.music_count :n];
-                n--;
-                DEBUGLOG(@"insert");
+                [self insertObjectToTLArray:tlArray.user_name :tlReloadArray.user_name :diff];
+                [self insertObjectToTLArray:tlArray.shared :tlReloadArray.shared :diff];
+                [self insertObjectToTLArray:tlArray.pocket_title :tlReloadArray.pocket_title :diff];
+                [self insertObjectToTLArray:tlArray.music_title :tlReloadArray.music_title :diff];
+                [self insertObjectToTLArray:tlArray.jacket_url :tlReloadArray.jacket_url :diff];
+                [self insertObjectToTLArray:tlArray.pocket_id :tlReloadArray.pocket_id :diff];
+                [self insertObjectToTLArray:tlArray.user_id :tlReloadArray.user_id :diff];
+                [self insertObjectToTLArray:tlArray.music_count :tlReloadArray.music_count :diff];
+                diff--;
             } else {
                 [self replaceObjectToTLArray:tlArray.user_name :tlReloadArray.user_name :l];
                 [self replaceObjectToTLArray:tlArray.shared :tlReloadArray.shared :l];
@@ -147,7 +149,7 @@ static NSString *user_id;
     };
     void (^onError)(NSError *) = ^(NSError *error) {
     };
-    
+
     @try {
         [HttpClient request:request success:onSuccess error:onError];
     }
@@ -165,7 +167,6 @@ static NSString *user_id;
 
 - (NSURLRequest*) getRequest {
     NSString *encURL = [[NSString stringWithFormat:@"%@%@%@", urlString, @"?user_id=", user_id] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encURL]];
     return request;
 }
@@ -311,13 +312,13 @@ static NSString *user_id;
 // セルを選択したとき
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ;
     NSString *is_mine;
     if ([[tlArray.user_id objectAtIndex:indexPath.row] isEqualToString:user_id]) {
         is_mine = @"YES";
     } else {
         is_mine = @"NO";
     }
+
     NSString *pocket_id = [tlArray.pocket_id objectAtIndex:indexPath.row];
     NSString *pocket_title = [tlArray.pocket_title objectAtIndex:indexPath.row];
     NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:@[pocket_id, is_mine, pocket_title] forKeys:@[@"pocket_id", @"is_mine", @"pocket_title"]];
@@ -341,12 +342,12 @@ static NSString *user_id;
 		headerOn = NO;
     }
     [myPocketDelegate performSelector:@selector(hideMusicView)];
-    
+
     CGFloat currentOffset = scrollView.contentOffset.y;
     CGFloat differenceFromStart = startContentOffset - currentOffset;
     CGFloat differenceFromLast = lastContentOffset - currentOffset;
     lastContentOffset = currentOffset;
-    
+
     if((differenceFromStart) < 0)
     {
         // scroll up

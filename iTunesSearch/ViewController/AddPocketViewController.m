@@ -27,7 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     [self.view setBackgroundColor:[[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]]];
 
     UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(40, 20, 200, 35)];

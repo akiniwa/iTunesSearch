@@ -9,13 +9,13 @@
 #import "AddPocketViewController.h"
 #import "PostToServer.h"
 #import "SBJson.h"
+#import "DiscRotationView.h"
 
 #define POCKET_URL @"http://neiro.me/api/test/createPocket.php"
 
 @interface AddPocketViewController()
 {
     UITextField *textField;
-    UIImageView *discImage;
 }
 
 @end
@@ -53,36 +53,9 @@
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:customView];
     self.navigationItem.leftBarButtonItem = buttonItem;
 
-    discImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"discImage"]];
-    [discImage setFrame:CGRectMake(30, 190, 60, 60)];
+    DiscRotationView *discImage = [[DiscRotationView alloc] initWithFrame:CGRectMake(200, 200, 50, 50)];
     [self.view addSubview:discImage];
-
-    [self runSpinAnimationOnView:discImage duration:0.3f rotations:M_PI * 0.3f repeat:100.0f];
-}
-
-- (void) runSpinAnimationOnView:(UIImageView*)view duration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat;
-{
-    CABasicAnimation* rotationAnimation;
-
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.y"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat:rotations];
-    rotationAnimation.duration = duration;
-    rotationAnimation.cumulative = YES;
-//    rotationAnimation.repeatCount = repeat;
-    rotationAnimation.repeatCount = HUGE_VALF;
-
-    rotationAnimation.fillMode = kCAFillModeForwards;
-    rotationAnimation.removedOnCompletion = NO;
-
-    [view.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
-}
-
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
-    
-}
-
-- (void)animationDidStart:(CAAnimation *)anim {
-    
+    [discImage startRotation];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)txField {
@@ -144,11 +117,9 @@
 }
 
 - (void) requestDone:(id)sender {
-    NSLog(@"done, sender:%@", [sender class]);
 }
 
 - (void) requestFailed:(id)sender {
-    NSLog(@"failed, sender:%@", [sender class]);
 }
 
 @end

@@ -14,4 +14,6 @@
 @property (nonatomic, retain) UILabel *musicTitle;
 @property (nonatomic, retain) UILabel *artist;
 
+- (void) startRotation;
+
 @end

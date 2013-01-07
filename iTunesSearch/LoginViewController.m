@@ -57,7 +57,6 @@
                     @"publish_stream",
                     @"user_photos",
                     nil];
-    NSLog(@"loginViewController");
     [facebook authorize:permissions];
     FUNC();
 }
@@ -72,7 +71,6 @@
 //ログインが完了したときに呼ばれるデリゲートメソッド
 - (void)fbDidLogin {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSLog(@"didlogin");
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
@@ -83,14 +81,12 @@
 
 //ログインできなかったときに呼ばれるデリゲートメソッド
 -(void)fbDidNotLogin:(BOOL)cancelled {
-    NSLog(@"did not login");
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
 //ログアウトしたときに呼ばれるデリゲートメソッド
 - (void)fbDidLogout {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSLog(@"didlogout");
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if ([defaults objectForKey:@"FBAccessTokenKey"]) {
         [defaults removeObjectForKey:@"FBAccessTokenKey"];
@@ -100,13 +96,11 @@
 }
 
 - (void)request:(FBRequest *)request didReceiveResponse:(NSURLResponse *)response {
-    NSLog(@"received response:%@", response);
 }
 
 //requestが成功してロードされた時に呼び出されるデリゲートメソッド
 //getuserinfoメソッドで取得したデータをここで取得する。（ユーザの名前等）
 - (void)request:(FBRequest *)request didLoad:(id)result {
-    NSLog(@"didloadinging");
     if ([result isKindOfClass:[NSArray class]]) {
         result = [result objectAtIndex:0];//
     }
@@ -167,19 +161,15 @@
 }
 
 - (void) requestDone:(id)sender {
-    NSLog(@"done, sender:%@", [sender class]);
+
 }
 
 - (void) requestFailed:(id)sender {
-    NSLog(@"failed, sender:%@", [sender class]);
 }
 
 //Requestが失敗したときに呼ばれるデリゲートメソッド
 - (void)request:(FBRequest *)request didFailWithError:(NSError *)error {
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    NSLog(@"didfailwitherror");
-    NSLog(@"%@", [error localizedDescription]);
-    NSLog(@"%@", [error description]);
 }
 
 - (void)didReceiveMemoryWarning

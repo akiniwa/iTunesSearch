@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserImageView.h"
 
 @interface SettingCell : UITableViewCell
+
+- (void) setUserImage;
 
 @end

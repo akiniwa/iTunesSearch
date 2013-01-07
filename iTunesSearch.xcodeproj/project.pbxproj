@@ -63,7 +63,6 @@
 		76252CD516786B8E00AD7D5F /* TLArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252CC316786B8E00AD7D5F /* TLArray.m */; };
 		76252CD616786B8E00AD7D5F /* TLCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252CC516786B8E00AD7D5F /* TLCell.m */; };
 		76252CD716786B8E00AD7D5F /* UsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252CC716786B8E00AD7D5F /* UsersViewController.m */; };
-		76252CDA16786BEB00AD7D5F /* MovingScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76252CD916786BEB00AD7D5F /* MovingScrollView.m */; };
 		76252CDC16786F6000AD7D5F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 76252CDB16786F6000AD7D5F /* CoreData.framework */; };
 		76252CDE16786FBE00AD7D5F /* connectFB@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76252CDD16786FBE00AD7D5F /* connectFB@2x.png */; };
 		763974571665E4C400D66FAF /* CheckButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 763974561665E4C400D66FAF /* CheckButton.m */; };
@@ -72,7 +71,6 @@
 		763DCB691667050F00ECDF58 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DCB681667050F00ECDF58 /* CFNetwork.framework */; };
 		763DCB6B1667051A00ECDF58 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DCB6A1667051A00ECDF58 /* MobileCoreServices.framework */; };
 		763DCB6D1667052400ECDF58 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 763DCB6C1667052400ECDF58 /* libz.dylib */; };
-		764EB2A2168157D100210CAA /* WaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 764EB2A1168157D100210CAA /* WaitingView.m */; };
 		76565FAC168C590D00915034 /* backPageBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 76565FAB168C590D00915034 /* backPageBtn@2x.png */; };
 		765946F11653772100C04B50 /* GridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 765946F01653772100C04B50 /* GridViewController.m */; };
 		765C5A661638C1A10029DD17 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 765C5A651638C1A10029DD17 /* UIKit.framework */; };
@@ -102,6 +100,8 @@
 		7660F8EF168C38B7000A771E /* addMusic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7660F8EE168C38B7000A771E /* addMusic@2x.png */; };
 		7660F8F2168C3EC1000A771E /* FooterForDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7660F8F1168C3EC0000A771E /* FooterForDetailView.m */; };
 		768D8683166DB37100465565 /* PostMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 768D8682166DB37100465565 /* PostMutableArray.m */; };
+		76E8664E169A677800B44562 /* UserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E8664D169A677800B44562 /* UserImageView.m */; };
+		76E86652169A801600B44562 /* DiscRotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 76E86651169A801600B44562 /* DiscRotationView.m */; };
 		D58C425216915FEC00C22B80 /* UserView.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425116915FEC00C22B80 /* UserView.m */; };
 		D58C425916916D4B00C22B80 /* UITabBarController+hidable.m in Sources */ = {isa = PBXBuildFile; fileRef = D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */; };
 		D58C42751692266B00C22B80 /* lineGray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D58C42741692266B00C22B80 /* lineGray@2x.png */; };
@@ -214,8 +214,8 @@
 		76252C9216786B8800AD7D5F /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		76252CA716786B8E00AD7D5F /* TabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		76252CA816786B8E00AD7D5F /* TabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
-		76252CAA16786B8E00AD7D5F /* AddPocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPocketViewController.h; sourceTree = "<group>"; };
-		76252CAB16786B8E00AD7D5F /* AddPocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPocketViewController.m; sourceTree = "<group>"; };
+		76252CAA16786B8E00AD7D5F /* AddPocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddPocketViewController.h; path = ViewController/AddPocketViewController.h; sourceTree = "<group>"; };
+		76252CAB16786B8E00AD7D5F /* AddPocketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddPocketViewController.m; path = ViewController/AddPocketViewController.m; sourceTree = "<group>"; };
 		76252CAC16786B8E00AD7D5F /* DetailArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailArray.h; sourceTree = "<group>"; };
 		76252CAD16786B8E00AD7D5F /* DetailArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailArray.m; sourceTree = "<group>"; };
 		76252CAE16786B8E00AD7D5F /* DetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCell.h; sourceTree = "<group>"; };
@@ -224,8 +224,8 @@
 		76252CB116786B8E00AD7D5F /* DetailTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableView.m; sourceTree = "<group>"; };
 		76252CB216786B8E00AD7D5F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		76252CB316786B8E00AD7D5F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		76252CB416786B8E00AD7D5F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		76252CB516786B8E00AD7D5F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		76252CB416786B8E00AD7D5F /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ViewController/MainViewController.h; sourceTree = "<group>"; };
+		76252CB516786B8E00AD7D5F /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ViewController/MainViewController.m; sourceTree = "<group>"; };
 		76252CB616786B8E00AD7D5F /* MyPocketTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPocketTableView.h; sourceTree = "<group>"; };
 		76252CB716786B8E00AD7D5F /* MyPocketTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyPocketTableView.m; sourceTree = "<group>"; };
 		76252CB816786B8E00AD7D5F /* MyPocketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyPocketViewController.h; sourceTree = "<group>"; };
@@ -244,8 +244,6 @@
 		76252CC516786B8E00AD7D5F /* TLCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCell.m; sourceTree = "<group>"; };
 		76252CC616786B8E00AD7D5F /* UsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersViewController.h; sourceTree = "<group>"; };
 		76252CC716786B8E00AD7D5F /* UsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersViewController.m; sourceTree = "<group>"; };
-		76252CD816786BEB00AD7D5F /* MovingScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovingScrollView.h; sourceTree = "<group>"; };
-		76252CD916786BEB00AD7D5F /* MovingScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovingScrollView.m; sourceTree = "<group>"; };
 		76252CDB16786F6000AD7D5F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		76252CDD16786FBE00AD7D5F /* connectFB@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "connectFB@2x.png"; sourceTree = "<group>"; };
 		763974551665E4C400D66FAF /* CheckButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckButton.h; sourceTree = "<group>"; };
@@ -256,8 +254,6 @@
 		763DCB681667050F00ECDF58 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		763DCB6A1667051A00ECDF58 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		763DCB6C1667052400ECDF58 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		764EB2A0168157D100210CAA /* WaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingView.h; sourceTree = "<group>"; };
-		764EB2A1168157D100210CAA /* WaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingView.m; sourceTree = "<group>"; };
 		76565FAB168C590D00915034 /* backPageBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backPageBtn@2x.png"; sourceTree = "<group>"; };
 		765946EF1653772100C04B50 /* GridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridViewController.h; sourceTree = "<group>"; };
 		765946F01653772100C04B50 /* GridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GridViewController.m; sourceTree = "<group>"; };
@@ -298,10 +294,14 @@
 		7660F8F1168C3EC0000A771E /* FooterForDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FooterForDetailView.m; sourceTree = "<group>"; };
 		768D8681166DB37100465565 /* PostMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostMutableArray.h; sourceTree = "<group>"; };
 		768D8682166DB37100465565 /* PostMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostMutableArray.m; sourceTree = "<group>"; };
+		76E8664C169A677800B44562 /* UserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserImageView.h; path = ViewController/UserImageView.h; sourceTree = "<group>"; };
+		76E8664D169A677800B44562 /* UserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserImageView.m; path = ViewController/UserImageView.m; sourceTree = "<group>"; };
+		76E86650169A801600B44562 /* DiscRotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscRotationView.h; path = ViewController/DiscRotationView.h; sourceTree = "<group>"; };
+		76E86651169A801600B44562 /* DiscRotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscRotationView.m; path = ViewController/DiscRotationView.m; sourceTree = "<group>"; };
 		D58C425016915FEC00C22B80 /* UserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserView.h; sourceTree = "<group>"; };
 		D58C425116915FEC00C22B80 /* UserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserView.m; sourceTree = "<group>"; };
-		D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+hidable.h"; sourceTree = "<group>"; };
-		D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+hidable.m"; sourceTree = "<group>"; };
+		D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITabBarController+hidable.h"; path = "../ViewController/UITabBarController+hidable.h"; sourceTree = "<group>"; };
+		D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITabBarController+hidable.m"; path = "../ViewController/UITabBarController+hidable.m"; sourceTree = "<group>"; };
 		D58C42741692266B00C22B80 /* lineGray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lineGray@2x.png"; sourceTree = "<group>"; };
 		D58C427616922B2900C22B80 /* detailBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "detailBackGround@2x.png"; sourceTree = "<group>"; };
 		D58C42781692312900C22B80 /* footerBackGround@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "footerBackGround@2x.png"; sourceTree = "<group>"; };
@@ -367,6 +367,7 @@
 				76252B5E167864CB00AD7D5F /* LoginViewController.m */,
 			);
 			name = LoginViewController;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		76252C3616786B7300AD7D5F /* ASI */ = {
@@ -463,7 +464,8 @@
 				76252C7716786B8800AD7D5F /* Default.png */,
 				76252C7816786B8800AD7D5F /* Default@2x.png */,
 			);
-			path = Resource;
+			name = Resource;
+			path = iTunesSearch/Resource;
 			sourceTree = "<group>";
 		};
 		76252C7916786B8800AD7D5F /* SBJson */ = {
@@ -501,6 +503,8 @@
 		76252CA616786B8E00AD7D5F /* Tab */ = {
 			isa = PBXGroup;
 			children = (
+				D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */,
+				D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */,
 				76252CA716786B8E00AD7D5F /* TabBarController.h */,
 				76252CA816786B8E00AD7D5F /* TabBarController.m */,
 			);
@@ -510,38 +514,22 @@
 		76252CA916786B8E00AD7D5F /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				D58C425716916D4A00C22B80 /* UITabBarController+hidable.h */,
-				D58C425816916D4A00C22B80 /* UITabBarController+hidable.m */,
-				764EB29E168157B700210CAA /* WaitingView */,
-				769EAC26167F06D400F01AA7 /* MusicSearchView */,
-				769EAC25167F06A100F01AA7 /* SettingView */,
-				769EAC24167F069600F01AA7 /* PublicView */,
 				769EAC23167F063D00F01AA7 /* UsersView */,
+				769EAC24167F069600F01AA7 /* PublicView */,
+				769EAC25167F06A100F01AA7 /* SettingView */,
+				76252B4A1678606B00AD7D5F /* LoginViewController */,
 				769EAC22167F063600F01AA7 /* DetailView */,
 				765408AA165C622C00975C2A /* GridViewController */,
 				769EAC20167F062800F01AA7 /* MyPocket */,
-				76252CD816786BEB00AD7D5F /* MovingScrollView.h */,
-				76252CD916786BEB00AD7D5F /* MovingScrollView.m */,
-				76252CAA16786B8E00AD7D5F /* AddPocketViewController.h */,
-				76252CAB16786B8E00AD7D5F /* AddPocketViewController.m */,
-				76252CB416786B8E00AD7D5F /* MainViewController.h */,
-				76252CB516786B8E00AD7D5F /* MainViewController.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		764EB29E168157B700210CAA /* WaitingView */ = {
-			isa = PBXGroup;
-			children = (
-				764EB2A0168157D100210CAA /* WaitingView.h */,
-				764EB2A1168157D100210CAA /* WaitingView.m */,
-			);
-			name = WaitingView;
 			sourceTree = "<group>";
 		};
 		765408AA165C622C00975C2A /* GridViewController */ = {
 			isa = PBXGroup;
 			children = (
+				76252CB416786B8E00AD7D5F /* MainViewController.h */,
+				76252CB516786B8E00AD7D5F /* MainViewController.m */,
 				765946EF1653772100C04B50 /* GridViewController.h */,
 				765946F01653772100C04B50 /* GridViewController.m */,
 				765C5ACB1638D6340029DD17 /* GridView.h */,
@@ -572,7 +560,9 @@
 			isa = PBXGroup;
 			children = (
 				765C5A6B1638C1A10029DD17 /* iTunesSearch */,
+				76252C7116786B8800AD7D5F /* Resource */,
 				765C5A891638C1A10029DD17 /* iTunesSearchTests */,
+				76E86654169A85A000B44562 /* Libraries */,
 				765C5A641638C1A10029DD17 /* Frameworks */,
 				765C5A621638C1A10029DD17 /* Products */,
 			);
@@ -608,18 +598,8 @@
 		765C5A6B1638C1A10029DD17 /* iTunesSearch */ = {
 			isa = PBXGroup;
 			children = (
-				761D8AB0168AB266002A7E0C /* MusicView */,
-				76252CA616786B8E00AD7D5F /* Tab */,
+				76E86653169A851400B44562 /* GeneralViews */,
 				76252CA916786B8E00AD7D5F /* ViewController */,
-				76252B4A1678606B00AD7D5F /* LoginViewController */,
-				76252C7916786B8800AD7D5F /* SBJson */,
-				76252C5616786B7D00AD7D5F /* facebook-ios-sdk */,
-				76252C6516786B7D00AD7D5F /* GoogleAnalytics */,
-				76252C3616786B7300AD7D5F /* ASI */,
-				76252C7116786B8800AD7D5F /* Resource */,
-				765408AC165C623300975C2A /* PostToServer */,
-				765C5B001638F41A0029DD17 /* imageLoader */,
-				765C5AF81638E9FE0029DD17 /* HTTP */,
 				765C5A741638C1A10029DD17 /* AppDelegate.h */,
 				765C5A751638C1A10029DD17 /* AppDelegate.m */,
 				765C5A6C1638C1A10029DD17 /* Supporting Files */,
@@ -742,11 +722,58 @@
 			name = SettingView;
 			sourceTree = "<group>";
 		};
-		769EAC26167F06D400F01AA7 /* MusicSearchView */ = {
+		76E86653169A851400B44562 /* GeneralViews */ = {
 			isa = PBXGroup;
 			children = (
+				76E86657169A85DF00B44562 /* AddPocketViewController */,
+				76E86656169A85CB00B44562 /* DiscRotationView */,
+				76E86655169A85BE00B44562 /* UserImageView */,
+				76252CA616786B8E00AD7D5F /* Tab */,
+				761D8AB0168AB266002A7E0C /* MusicView */,
 			);
-			name = MusicSearchView;
+			name = GeneralViews;
+			sourceTree = "<group>";
+		};
+		76E86654169A85A000B44562 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				765408AC165C623300975C2A /* PostToServer */,
+				765C5B001638F41A0029DD17 /* imageLoader */,
+				765C5AF81638E9FE0029DD17 /* HTTP */,
+				76252C7916786B8800AD7D5F /* SBJson */,
+				76252C5616786B7D00AD7D5F /* facebook-ios-sdk */,
+				76252C6516786B7D00AD7D5F /* GoogleAnalytics */,
+				76252C3616786B7300AD7D5F /* ASI */,
+			);
+			name = Libraries;
+			path = iTunesSearch;
+			sourceTree = "<group>";
+		};
+		76E86655169A85BE00B44562 /* UserImageView */ = {
+			isa = PBXGroup;
+			children = (
+				76E8664C169A677800B44562 /* UserImageView.h */,
+				76E8664D169A677800B44562 /* UserImageView.m */,
+			);
+			name = UserImageView;
+			sourceTree = "<group>";
+		};
+		76E86656169A85CB00B44562 /* DiscRotationView */ = {
+			isa = PBXGroup;
+			children = (
+				76E86650169A801600B44562 /* DiscRotationView.h */,
+				76E86651169A801600B44562 /* DiscRotationView.m */,
+			);
+			name = DiscRotationView;
+			sourceTree = "<group>";
+		};
+		76E86657169A85DF00B44562 /* AddPocketViewController */ = {
+			isa = PBXGroup;
+			children = (
+				76252CAA16786B8E00AD7D5F /* AddPocketViewController.h */,
+				76252CAB16786B8E00AD7D5F /* AddPocketViewController.m */,
+			);
+			name = AddPocketViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -929,8 +956,6 @@
 				76252CD516786B8E00AD7D5F /* TLArray.m in Sources */,
 				76252CD616786B8E00AD7D5F /* TLCell.m in Sources */,
 				76252CD716786B8E00AD7D5F /* UsersViewController.m in Sources */,
-				76252CDA16786BEB00AD7D5F /* MovingScrollView.m in Sources */,
-				764EB2A2168157D100210CAA /* WaitingView.m in Sources */,
 				761D8AA9168AB054002A7E0C /* AudioPlayer.m in Sources */,
 				761D8AAC168AB1EC002A7E0C /* SoundData.m in Sources */,
 				761D8AAF168AB248002A7E0C /* MusicView.m in Sources */,
@@ -940,6 +965,8 @@
 				D58C425916916D4B00C22B80 /* UITabBarController+hidable.m in Sources */,
 				D58C42F01693C98300C22B80 /* GridViewForAddingMusicController.m in Sources */,
 				D58C42F31693DCF900C22B80 /* GridArray.m in Sources */,
+				76E8664E169A677800B44562 /* UserImageView.m in Sources */,
+				76E86652169A801600B44562 /* DiscRotationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

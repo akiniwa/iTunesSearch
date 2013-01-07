@@ -8,6 +8,15 @@
 
 #import "SettingCell.h"
 
+
 @implementation SettingCell
+
+- (void) setUserImage {
+    UserImageView *userImageView = [[UserImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+    [self addSubview:userImageView];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *userImageUrl = [NSString stringWithFormat:@"%@%@%@", @"https://graph.facebook.com/", [defaults objectForKey:@"id"], @"/picture?type=square"];
+    [userImageView setImageWithUrl:userImageUrl];
+}
 
 @end

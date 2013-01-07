@@ -8,6 +8,7 @@
 
 #import "UserView.h"
 
+
 @implementation UserView
 
 @synthesize title, playlistInfo, userImage;
@@ -25,10 +26,18 @@
         [playlistInfo setFont:[UIFont systemFontOfSize:10]];
         [playlistInfo setBackgroundColor:[UIColor clearColor]];
         [self addSubview:playlistInfo];
-        
+
+        /*
         userImage = [[UIImageView alloc] initWithFrame:CGRectMake(2, 2, 50, 50)];
         [userImage setBackgroundColor:[UIColor blackColor]];
         [self addSubview:userImage];
+         */
+
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *userImageUrl = [NSString stringWithFormat:@"%@%@%@", @"https://graph.facebook.com/", [defaults objectForKey:@"id"], @"/picture?type=square"];
+        userImage = [[UserImageView alloc] initWithFrame:CGRectMake(2, 2, 50, 50)];
+        [self addSubview:userImage];
+        [userImage setImageWithUrl:userImageUrl];
         
         UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(self.bounds.origin.x, self.bounds.size.height - 2, self.bounds.size.width, 2)];
         [line setImage:[UIImage imageNamed:@"lineGray"]];
@@ -36,4 +45,5 @@
     }
     return self;
 }
+
 @end

@@ -70,6 +70,11 @@
     [footerForDetailView viewWillDisappear];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    FUNC();
+    [detailTableView mainTableLoad];
+}
+
 - (void)pushBack {
     [self.navigationController popViewControllerAnimated:YES];
 }

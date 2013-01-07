@@ -101,7 +101,7 @@
     } else {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSString *user_id = [defaults objectForKey:@"user_id"];
-        
+
         NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
         [dictionary setValue:textField.text forKey:@"pocket_title"];
         [dictionary setValue:user_id forKey:@"user_id"];
@@ -111,10 +111,10 @@
         ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 
         [request setPostValue:[dictionary JSONRepresentation] forKey:@"pocket"];
-
         [request addRequestHeader:@"Content-Type" value:@"application/json; encoding=utf-8"];
-        [request setDelegate:self];
-        [request startAsynchronous];        
+//      [request setDelegate:self];
+        [request startAsynchronous];
+        [self modalClose];
     }
 }
 

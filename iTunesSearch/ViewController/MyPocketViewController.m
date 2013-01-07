@@ -77,6 +77,10 @@
     [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [myPocketTableView reloadTable];
+}
+
 - (void)setTrigger{
     //トリガーのイメージを埋め込む。
     CGRect r = myPocketTableView.bounds;

@@ -14,8 +14,8 @@
 #define POCKET_TITLE_WIDTH 170
 #define POCKET_TITLE_HEGHIT 40
 
-#define USER_NAME_X 145
-#define USER_NAME_Y 50
+#define USER_NAME_X 140
+#define USER_NAME_Y 75
 #define USER_NAME_WIDTH 120
 #define USER_NAME_HEIGHT 20
 
@@ -24,8 +24,8 @@
 #define MUSIC_TITLE_WIDTH 120
 #define MUSIC_TITLE_HEIGHT 20
 
-#define SHARED_X 145
-#define SHARED_Y 90
+#define SHARED_X 140
+#define SHARED_Y 60
 #define SHARED_WIDTH 60
 #define SHARED_HEGHIT 10
 
@@ -63,13 +63,13 @@
         [self setLabelProperty:musicTitle];
         [self setLabelFrame:musicTitle :CGRectMake(MUSIC_TITLE_X, MUSIC_TITLE_Y, MUSIC_TITLE_WIDTH, MUSIC_TITLE_HEIGHT)];
         [self addSubview:musicTitle];
-        
+*/        
         userName = [[UILabel alloc] init];
         [self setLabelProperty:userName];
         [userName setFont:[UIFont systemFontOfSize:10]];
         [self setLabelFrame:userName :CGRectMake(USER_NAME_X, USER_NAME_Y, USER_NAME_WIDTH, USER_NAME_HEIGHT)];
         [self addSubview:userName];
-*/
+
         musicCount = [[UILabel alloc] init];
         [musicCount setFont:[UIFont systemFontOfSize:11]];
         [self setLabelProperty:musicCount];
@@ -82,9 +82,9 @@
         [self setLabelFrame:shared :CGRectMake(SHARED_X + 40, SHARED_Y, SHARED_WIDTH, SHARED_HEGHIT)];
         [self addSubview:shared];
 
-        shareButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        shareButton.frame = CGRectMake(30, 110, 60, 30);
-        [shareButton setTitle:@"share" forState:UIControlStateNormal];
+        shareButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [shareButton setImage:[UIImage imageNamed:@"zip-icon"] forState:UIControlStateNormal];
+        shareButton.frame = CGRectMake(130, 95, 42, 35);
 
         UIImageView *nextImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"next"]];
         [nextImage setFrame:CGRectMake(293, 45, 20, 40)];

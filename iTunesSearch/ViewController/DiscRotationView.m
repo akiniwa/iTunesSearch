@@ -26,6 +26,10 @@
     [self runSpinAnimationOnView:discImage duration:0.3f rotations:M_PI*0.3f repeat:100.0f];
 }
 
+- (void) stopRotation {
+    [discImage.layer removeAllAnimations];
+}
+
 - (void) runSpinAnimationOnView:(UIImageView*)view duration:(CGFloat)duration rotations:(CGFloat)rotations repeat:(float)repeat;
 {
     CABasicAnimation* rotationAnimation;

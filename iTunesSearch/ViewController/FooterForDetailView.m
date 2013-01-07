@@ -38,7 +38,6 @@
         [self addSubview:lineImage];
 
         musicView = [[DetailMusicView alloc] initWithFrame:CGRectMake(220, 20, 70, 50)];
-        musicView.backgroundColor = [UIColor grayColor];
         [self addSubview:musicView];
     }
     return self;

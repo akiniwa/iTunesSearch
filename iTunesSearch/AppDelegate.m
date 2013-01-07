@@ -79,22 +79,15 @@ void uncaughtExceptionHander(NSException *exception) {
         }
     }
 
-    if((connectionRequired) && (wifi))
-    {
-        statusString= @"コネクションもwifiもあり";
-    } else if((connectionRequired)==YES && (wifi)==NO) {
-        statusString = @"コネクションあり、wifi無し。";
-    } else if ((connectionRequired)==NO && (wifi)==YES) {
-        statusString= @"コネクション無し、wifiあり。";
-    } else if ((connectionRequired)==NO && (wifi)==NO) {
-        statusString= @"コネクション無し、wifi無し。";
+    if ((connectionRequired)==NO) {
+        statusString= @"通信状況のよい場所で\nご利用ください。";
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"ネットワークエラー"
+                                                            message:statusString
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                                  otherButtonTitles:@"OK", nil];
+        [alertView show];
     }
-    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"alert"
-                                                        message:statusString
-                                                       delegate:self
-                                              cancelButtonTitle:nil
-                                              otherButtonTitles:@"OK", nil];
-    [alertView show];
 }
 
 - (void) updateInterfaceWithReachability: (Reachability*) curReach

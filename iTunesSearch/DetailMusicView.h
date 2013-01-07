@@ -11,7 +11,6 @@
 
 @interface DetailMusicView : MusicView
 
-@property (nonatomic, retain) UIButton *playButton;
 @property (nonatomic, retain) UIButton *pauseButton;
 
 - (void)removeObserverFromMusicView;

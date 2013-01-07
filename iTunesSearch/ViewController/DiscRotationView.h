@@ -13,5 +13,6 @@
     UIImageView *discImage;
 }
 - (void)startRotation;
+- (void)stopRotation;
 
 @end

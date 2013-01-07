@@ -21,6 +21,8 @@ static id theSharedManager = nil;
     {
         theSharedManager = [[self alloc] init];
     }
+//    [[AVAudioSession sharedInstance] setDelegate: self];
+//    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:NULL];
     return theSharedManager;
 }
 
@@ -30,9 +32,8 @@ static id theSharedManager = nil;
         {
             [player pause];
         }
-        player = [[AVAudioPlayer alloc] initWithData:soundData error:nil];
-        // logister to notificationCenter.
-        }
+    player = [[AVAudioPlayer alloc] initWithData:soundData error:nil];
+}
 
 - (BOOL) isPlaying {
     return [player isPlaying];
@@ -43,6 +44,8 @@ static id theSharedManager = nil;
     if (player) 
     {
         [player play];
+        NSNotification *n = [NSNotification notificationWithName:@"playing" object:self];
+        [[NSNotificationCenter defaultCenter] postNotification:n];
     }
 }
 
@@ -51,6 +54,8 @@ static id theSharedManager = nil;
     if (player) 
     {
         [player pause];
+        NSNotification *n = [NSNotification notificationWithName:@"pause" object:self];
+        [[NSNotificationCenter defaultCenter] postNotification:n];
     }
 }
 

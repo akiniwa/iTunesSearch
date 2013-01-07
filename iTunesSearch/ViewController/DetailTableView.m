@@ -150,9 +150,6 @@
     NSNotification *n = [NSNotification notificationWithName:@"trackUrl" object:self userInfo:dic];
     [[NSNotificationCenter defaultCenter] postNotification:n];
 //  [self deselectRowAtIndexPath:indexPath animated:YES];
-
-    DetailCell *cell = (DetailCell*)[self cellForRowAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-    [cell startRotation];
 }
 
 //セルの高さ

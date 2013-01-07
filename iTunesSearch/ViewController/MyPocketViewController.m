@@ -46,6 +46,7 @@
     myPocketTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     myPocketTableView.myPocketDelegate = self;
     [self.view addSubview:myPocketTableView];
+
 }
 
 - (void)setShareButton:(BOOL)is_button {

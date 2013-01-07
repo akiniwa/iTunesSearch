@@ -29,6 +29,7 @@
     
     CGRect r = self.view.bounds;
     settingTable = [[SettingTableView alloc] initWithFrame:CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height - 40) style:UITableViewStyleGrouped];
+    self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
     [self.view addSubview:settingTable];
 }
 

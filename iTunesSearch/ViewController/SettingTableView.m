@@ -16,6 +16,7 @@
     if (self) {
         [self setDelegate:(id)self];
         [self setDataSource:(id)self];
+        self.backgroundColor = [UIColor clearColor];
     }
     return self;
 }

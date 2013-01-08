@@ -97,7 +97,7 @@ enum view {
     selectDictionaryArray = [NSMutableArray array];
 
     gridViewForAddingMusicController = [[GridViewForAddingMusicController alloc] init];
-    gridViewForAddingMusicController.artistName = @"larc ";
+    gridViewForAddingMusicController.artistName = @"";
     gridViewForAddingMusicController.gridViewDelegate = self;
     [self addChildViewController:gridViewForAddingMusicController];
 
@@ -144,12 +144,11 @@ enum view {
 - (void) searchMusic {
     [txField resignFirstResponder];
     if (!txField.text) {
-
-    } else {
-        [gridViewForAddingMusicController removeGridView];
-        [gridViewForAddingMusicController removeScrollView];
-        [gridViewForAddingMusicController reDrawScrollView:txField.text];
+        txField.text = @"";
     }
+    [gridViewForAddingMusicController removeGridView];
+    [gridViewForAddingMusicController removeScrollView];
+    [gridViewForAddingMusicController reDrawScrollView:txField.text];
 }
 
 -(BOOL)textFieldShouldReturn:(UITextField*)textField {

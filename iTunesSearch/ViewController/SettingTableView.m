@@ -11,12 +11,15 @@
 
 @implementation SettingTableView
 
+@synthesize settingTableDelegate;
+
 - (id)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     self = [super initWithFrame:frame style:style];
     if (self) {
         [self setDelegate:(id)self];
         [self setDataSource:(id)self];
         self.backgroundColor = [UIColor clearColor];
+        self.bounces = NO;
     }
     return self;
 }
@@ -55,6 +58,16 @@
                     break;
             }
             break;
+        case 2:
+            switch (indexPath.row) {
+                case 0:
+                    cell.textLabel.text = @"ユーザーガイド";
+                    cell.selectionStyle = UITableViewCellSelectionStyleGray;
+                    break;
+                default:
+                    break;
+            }
+            
     }
 
     return cell;
@@ -70,8 +83,11 @@
         case 1:
             sectionName = @"登録情報";
             break;
+        case 2:
+            sectionName = @"About Neiro";
+            break;
         default:
-            sectionName = @"通知設定";
+            sectionName = @"";
             break;
     }
     return sectionName;
@@ -87,6 +103,9 @@
         case 1:
             return 2;
             break;
+        case 2:
+            return 1;
+            break;
         default:
             return 1;
             break;
@@ -96,12 +115,15 @@
 //セクションの数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 //セルを選択したとき
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section==2) {
+        [settingTableDelegate performSelector:@selector(showTutorialView)];
+    }
     [self deselectRowAtIndexPath:indexPath animated:YES];
 }
 

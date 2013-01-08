@@ -16,14 +16,13 @@
     if (self) {
         self.frame = frame;
         is_checked = NO;
-        // Initialization code
     }
     return self;
 }
 
 - (void)setCheckButton {
     if (!view) {
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(30, 30, 35, 35)];
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(45, 45, 30, 30)];
         view.image = [UIImage imageNamed:@"check.png"];
     }
     if (is_checked) {

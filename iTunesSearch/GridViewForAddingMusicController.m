@@ -30,7 +30,7 @@
     self.artistName = searchKey;
     
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    [self.view setFrame:CGRectMake(0, 75, bounds.size.width, bounds.size.height)];
+    [self.view setFrame:CGRectMake(0, 95, bounds.size.width, bounds.size.height)];
     
     postMutableArray = [[PostMutableArray alloc] init];
     
@@ -40,9 +40,9 @@
     
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height - 60)];
     scrollView.backgroundColor = [UIColor clearColor];
-    scrollView.contentSize = CGSizeMake(bounds.size.width, bounds.size.height + 100);
+    scrollView.contentSize = CGSizeMake(bounds.size.width, bounds.size.height + 120);
     [self.view addSubview:scrollView];
-    
+
     [scrollView addSubview:gridView];
     [self makeMutableArray];
 }

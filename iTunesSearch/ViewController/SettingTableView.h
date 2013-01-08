@@ -10,4 +10,6 @@
 
 @interface SettingTableView : UITableView
 
+@property (nonatomic, retain) id settingTableDelegate;
+
 @end

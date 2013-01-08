@@ -8,6 +8,7 @@
 
 #import "SettingViewController.h"
 #import "SettingTableView.h"
+#import "TutorialViewController.h"
 
 @implementation SettingViewController
 {
@@ -28,13 +29,23 @@
     [super viewDidLoad];
     
     CGRect r = self.view.bounds;
-    settingTable = [[SettingTableView alloc] initWithFrame:CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height - 40) style:UITableViewStyleGrouped];
+    settingTable = [[SettingTableView alloc] initWithFrame:CGRectMake(r.origin.x, r.origin.y, r.size.width, r.size.height - 49) style:UITableViewStyleGrouped];
+    settingTable.settingTableDelegate = self;
     self.view.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"backgroundGray"]];
     [self.view addSubview:settingTable];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [settingTable reloadData];
+}
+
+- (void)showTutorialView {
+    TutorialViewController *addPocketModal = [[TutorialViewController alloc] init];
+    UINavigationController *naviCtr = [[UINavigationController alloc] initWithRootViewController:addPocketModal];
+    [naviCtr.navigationBar setBackgroundImage:[UIImage imageNamed:@"barNull"] forBarMetrics:UIBarMetricsDefault];
+    addPocketModal.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+    [self presentModalViewController:naviCtr animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

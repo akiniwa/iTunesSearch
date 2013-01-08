@@ -1,3 +1,4 @@
+
 //
 //  DetailTableView.m
 //  iTunesSearch
@@ -44,6 +45,7 @@
         [self setDataSource:(id)self];
         self.backgroundColor = [UIColor clearColor];
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.bounces = NO;
     }
     return self;
 }

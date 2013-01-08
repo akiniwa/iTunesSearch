@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ASIFormDataRequest.h"
 #import "Facebook.h"
+#import "WaitingView.h"
 
 @interface LoginViewController : UIViewController<FBRequestDelegate,FBDialogDelegate,FBSessionDelegate, ASIHTTPRequestDelegate>
 {
     NSArray *permissions;
 }
+
 @property (nonatomic, retain) Facebook *facebook;
+
+- (void) showWaitingView;
 
 @end

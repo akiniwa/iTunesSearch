@@ -13,6 +13,7 @@
 #define NUMBER_OF_COLUMNS 4
 
 #define PREVIEW_URL @"http://itunes.apple.com/search?media=music&country=jp&entity=song&limit=24&term="
+#define POPULAR_URL @"http://neiro.me/api/test/createJson.php"
 
 @interface GridViewController ()
 
@@ -27,8 +28,8 @@
     [super viewDidLoad];
     
     CGRect bounds = [[UIScreen mainScreen] bounds];
-    [self.view setFrame:CGRectMake(0, 75, bounds.size.width, bounds.size.height)];
-    
+    [self.view setFrame:CGRectMake(0, 95, bounds.size.width, bounds.size.height)];
+
     postMutableArray = [[PostMutableArray alloc] init];
 
     gridView = [[GridView alloc] initWithFrame:CGRectMake(self.view.bounds.origin.x, self.view.bounds.origin.y, self.view.bounds.size.width, self.view.bounds.size.height)];
@@ -37,7 +38,8 @@
 
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height - 60)];
     scrollView.backgroundColor = [UIColor clearColor];
-    scrollView.contentSize = CGSizeMake(bounds.size.width, bounds.size.height + 100);
+    scrollView.contentSize = CGSizeMake(bounds.size.width, bounds.size.height + 120);
+    scrollView.bounces = NO;
     [self.view addSubview:scrollView];
 
     [scrollView addSubview:gridView];
@@ -45,11 +47,16 @@
 }
 
 - (void) makeMutableArray {
-    NSString* strURL = [NSString stringWithFormat:@"%@%@",PREVIEW_URL, artistName];
+    NSString *strURL;
+    if ([artistName isEqualToString:@""]) {
+        strURL = POPULAR_URL;
+    } else {
+        strURL = [NSString stringWithFormat:@"%@%@",PREVIEW_URL, artistName];
+    }
 
     NSString *encURL = [strURL stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:encURL]];
-    
+
     void (^onSuccess)(NSData *) = ^(NSData *data) {
         NSString *json_string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 
@@ -87,7 +94,7 @@
         [items setObject:views forKey:@"views"];
 
         int height = (([titles count]+3)/4)*96;
-        scrollView.contentSize = CGSizeMake(320, (height + 75));
+        scrollView.contentSize = CGSizeMake(320, (height + 95));
         gridView.frame = CGRectMake(0, 0, 320, height);
  
         [self performSelectorOnMainThread:@selector(setGridView:) withObject:items waitUntilDone:YES];
